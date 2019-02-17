@@ -1,57 +1,56 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "TOPIC")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "topic_id")
 public class TOPIC {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private String name;
+    private Long ID;
+    private String NAME;
 
     public TOPIC() {
     }
 
-    public Long getId() {
-        return id;
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setNAME(String NAME) {
+        this.NAME = NAME;
     }
 
-    public String getName() {
-        return name;
+    public Long getID() {
+        return ID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNAME() {
+        return NAME;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         TOPIC topic = (TOPIC) o;
-        return Objects.equals(id, topic.id) &&
-                Objects.equals(name, topic.name);
+        return ID.equals(topic.ID) && Objects.equals(NAME, topic.NAME);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(ID, NAME);
     }
-
 
     @Override
     public String toString() {
-        return "TOPIC{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "TOPIC{" + "ID=" + ID + ", NAME='" + NAME + '\'' + '}';
     }
 }

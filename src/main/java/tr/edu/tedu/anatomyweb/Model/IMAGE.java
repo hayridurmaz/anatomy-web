@@ -1,12 +1,14 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "IMAGE")
 public class IMAGE {
 
     @Id
@@ -15,17 +17,20 @@ public class IMAGE {
 
     private String data_url;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "topic_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+  //  @JsonIgnore
+    @JSOn
+    //@JsonManagedReference
     private TOPIC topic;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "system_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    //@JsonIgnore
+    //@JsonManagedReference
     private SYSTEM system;
 
 

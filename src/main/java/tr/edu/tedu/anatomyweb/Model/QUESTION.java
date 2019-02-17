@@ -6,13 +6,11 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "questions")
+@Table(name = "QUESTION")
 public class QUESTION {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -2,7 +2,10 @@ package tr.edu.tedu.anatomyweb.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
+import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
+import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Repository.QuizTypeRepository;
 
 import java.util.List;
@@ -17,8 +20,8 @@ public class QuiztypeService implements IQuiztypeService {
 
     @Override
     public List<QUIZTYPE> findAll() {
-        List<QUIZTYPE> cities = (List<QUIZTYPE>) repository.findAll();
-        return cities;
+        List<QUIZTYPE> quiztypes = (List<QUIZTYPE>) repository.findAll();
+        return quiztypes;
     }
 
     @Override
@@ -27,13 +30,15 @@ public class QuiztypeService implements IQuiztypeService {
     }
 
     @Override
-    public Optional<QUIZTYPE> findById(long quiztypeId) {
-        return repository.findById(quiztypeId);
+    public QUIZTYPE findById(Long quiztypeId) {
+        QUIZTYPE q = repository.findById(quiztypeId).orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + quiztypeId));
+        return q;
     }
 
     @Override
-    public void delete(QUIZTYPE quiztype) {
-        repository.delete(quiztype);
+    public void delete(Long quiztypeId) {
+        QUIZTYPE q = findById(quiztypeId);
+        repository.delete(q);
     }
 
 }

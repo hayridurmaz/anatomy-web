@@ -9,6 +9,6 @@ public interface IQuiztypeService {
 
     public List<QUIZTYPE> findAll();
     public QUIZTYPE save(QUIZTYPE quiztype);
-    public Optional<QUIZTYPE> findById(long quiztypeId);
-    public void delete(QUIZTYPE quiztype);
+    public QUIZTYPE findById(Long quiztypeId);
+    public void delete(Long quiztypeId);
 }
