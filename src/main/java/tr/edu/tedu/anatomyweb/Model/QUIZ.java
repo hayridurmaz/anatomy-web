@@ -1,6 +1,11 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,8 +15,21 @@ public class QUIZ {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
-    private Long TYPE;
-    private Long SYSTEMID;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "quiz_type_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private QUIZTYPE quiztype;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "system_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private SYSTEM system;
+
+    @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY)
+    public List<QUESTION> questions;
 
     public QUIZ() {
 
@@ -25,20 +43,28 @@ public class QUIZ {
         this.ID = ID;
     }
 
-    public Long getTYPE() {
-        return TYPE;
+    public QUIZTYPE getQuiztype() {
+        return quiztype;
     }
 
-    public void setTYPE(Long TYPE) {
-        this.TYPE = TYPE;
+    public void setQuiztype(QUIZTYPE quiztype) {
+        this.quiztype = quiztype;
     }
 
-    public Long getSYSTEMID() {
-        return SYSTEMID;
+    public SYSTEM getSystem() {
+        return system;
     }
 
-    public void setSYSTEMID(Long SYSTEMID) {
-        this.SYSTEMID = SYSTEMID;
+    public void setSystem(SYSTEM system) {
+        this.system = system;
+    }
+
+    public List<QUESTION> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<QUESTION> questions) {
+        this.questions = questions;
     }
 
     @Override
@@ -47,21 +73,23 @@ public class QUIZ {
         if (o == null || getClass() != o.getClass()) return false;
         QUIZ quiz = (QUIZ) o;
         return Objects.equals(ID, quiz.ID) &&
-                Objects.equals(TYPE, quiz.TYPE) &&
-                Objects.equals(SYSTEMID, quiz.SYSTEMID);
+                Objects.equals(quiztype, quiz.quiztype) &&
+                Objects.equals(system, quiz.system) &&
+                Objects.equals(questions, quiz.questions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, TYPE, SYSTEMID);
+        return Objects.hash(ID, quiztype, system, questions);
     }
 
     @Override
     public String toString() {
         return "QUIZ{" +
                 "ID=" + ID +
-                ", TYPE=" + TYPE +
-                ", SYSTEMID=" + SYSTEMID +
+                ", quiztype=" + quiztype +
+                ", system=" + system +
+                ", questions=" + questions +
                 '}';
     }
 }
