@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
-import tr.edu.tedu.anatomyweb.Repository.QuizTypeRepository;
 import tr.edu.tedu.anatomyweb.Service.IQuiztypeService;
 
 import javax.validation.Valid;
@@ -19,17 +18,15 @@ public class QuizTypeController {
 
     @Autowired
     IQuiztypeService quiztypeService;
-    @Autowired
-    QuizTypeRepository quizTypeRepository;
 
     @GetMapping(("/quiztypes"))
-    List<QUIZTYPE> quizTypes() {
+    List<QUIZTYPE> getQuiztypes() {
         List<QUIZTYPE> quiztypes = (List<QUIZTYPE>) quiztypeService.findAll();
         return quiztypes;
     }
 
     @PostMapping("/quiztypes")
-    public QUIZTYPE createQuestion(@Valid @RequestBody QUIZTYPE quiztype) {
+    public QUIZTYPE createQuiztype(@Valid @RequestBody QUIZTYPE quiztype) {
         return quiztypeService.save(quiztype);
     }
 
@@ -37,19 +34,19 @@ public class QuizTypeController {
     @PutMapping("/quiztypes/{quiztypeId}")
     public QUIZTYPE updateQuiztype(@PathVariable Long quiztypeId,
                                    @Valid @RequestBody QUIZTYPE quiztypeRequest) {
-        return quizTypeRepository.findById(quiztypeId)
+        return quiztypeService.findById(quiztypeId)
                 .map(quiztype -> {
                     quiztype.setNAME(quiztypeRequest.getNAME());
-                    return quizTypeRepository.save(quiztype);
+                    return quiztypeService.save(quiztype);
                 }).orElseThrow(() -> new ResourceNotFoundException("Quiztype not found with id " + quiztypeId));
     }
 
 
     @DeleteMapping("/quiztypes/{quiztypeId}")
     public @ResponseBody ResponseEntity<?> deleteQuiztype(@PathVariable Long quiztypeId) {
-        return quizTypeRepository.findById(quiztypeId)
+        return quiztypeService.findById(quiztypeId)
                 .map(quiztype -> {
-                    quizTypeRepository.delete(quiztype);
+                    quiztypeService.delete(quiztype);
                     return ResponseEntity.ok().build();
                 }).orElseThrow(() -> new ResourceNotFoundException("Quiztype not found with id " + quiztypeId));
     }

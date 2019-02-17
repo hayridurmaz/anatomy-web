@@ -6,6 +6,7 @@ import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
 import tr.edu.tedu.anatomyweb.Repository.QuizTypeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -23,6 +24,16 @@ public class QuiztypeService implements IQuiztypeService {
     @Override
     public QUIZTYPE save(QUIZTYPE quiztype) {
        return repository.save(quiztype);
+    }
+
+    @Override
+    public Optional<QUIZTYPE> findById(long quiztypeId) {
+        return repository.findById(quiztypeId);
+    }
+
+    @Override
+    public void delete(QUIZTYPE quiztype) {
+        repository.delete(quiztype);
     }
 
 }
