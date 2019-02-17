@@ -7,4 +7,5 @@ import java.util.List;
 public interface IQuiztypeService {
 
     public List<QUIZTYPE> findAll();
+    public QUIZTYPE save(QUIZTYPE quiztype);
 }

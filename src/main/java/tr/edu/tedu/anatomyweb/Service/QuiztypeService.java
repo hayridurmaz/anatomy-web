@@ -9,15 +9,20 @@ import java.util.List;
 
 
 @Service
-    public class QuiztypeService implements IQuiztypeService {
+public class QuiztypeService implements IQuiztypeService {
 
-        @Autowired
-        private QuizTypeRepository repository;
+    @Autowired
+    private QuizTypeRepository repository;
 
-        @Override
-        public List<QUIZTYPE> findAll() {
-            List<QUIZTYPE> cities = (List<QUIZTYPE>) repository.findAll();
-            return cities;
-        }
+    @Override
+    public List<QUIZTYPE> findAll() {
+        List<QUIZTYPE> cities = (List<QUIZTYPE>) repository.findAll();
+        return cities;
+    }
+
+    @Override
+    public QUIZTYPE save(QUIZTYPE quiztype) {
+       return repository.save(quiztype);
+    }
 
 }
