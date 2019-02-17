@@ -2,9 +2,12 @@ package tr.edu.tedu.anatomyweb.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
+import tr.edu.tedu.anatomyweb.Service.IQuizService;
 import tr.edu.tedu.anatomyweb.Service.IQuiztypeService;
 import tr.edu.tedu.anatomyweb.Service.QuiztypeService;
 
@@ -17,7 +20,8 @@ public class HelloController  {
 
     @Autowired
     IQuiztypeService quiztypeService;
-
+    @Autowired
+    IQuizService quizService;
 
     @RequestMapping("/")
     String home() {
@@ -25,7 +29,7 @@ public class HelloController  {
     }
 
 
-    @RequestMapping("/quiztypes")
+    @GetMapping(("/quiztypes"))
     List<String> quizTypes() {
 
         ArrayList<String> str= new ArrayList<>();
@@ -35,4 +39,16 @@ public class HelloController  {
         }
         return str;
     }
+
+    @GetMapping("/quizzes")
+    List<String> quizzes(){
+
+        ArrayList<String> str= new ArrayList<>();
+        for (QUIZ q : quizService.findAll()
+        ) {
+            str.add(q.toString());
+        }
+        return str;
+    }
+
 }
