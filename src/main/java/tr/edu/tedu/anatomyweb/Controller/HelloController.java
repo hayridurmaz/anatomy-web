@@ -15,10 +15,10 @@ public class HelloController  {
 
 
 
-    /*@RequestMapping("/")
+    @RequestMapping("/")
     String home() {
         return "Hello World from the server!";
-    }*/
+    }
 
 
 

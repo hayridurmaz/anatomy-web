@@ -27,14 +27,14 @@ public class QuizService implements IQuizService {
     }
 
     @Override
-    public QUIZ findById(Long Id){
-        QUIZ q = repository.findById(Id).orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + Id));
+    public QUIZ findById(Long quizId){
+        QUIZ q = repository.findById(quizId).orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + quizId));
         return q;
     }
 
     @Override
-    public void delete(Long Id){
-        QUIZ q = findById(Id);
+    public void delete(Long quizId){
+        QUIZ q = findById(quizId);
         repository.delete(q);
     }
 }

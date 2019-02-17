@@ -17,24 +17,18 @@ public class QuizController {
     @Autowired
     IQuizService quizService;
 
-    @RequestMapping("/")
-    String home() {
-        return "Hello World from the server!";
-    }
-
-
     @GetMapping("/GetQuizzes")
     List<QUIZ> quizzes(){
         return quizService.findAll();
     }
 
     @PostMapping("/CreateQuiz")
-    public QUIZ createQuestion(@Valid @RequestBody QUIZ quiz) {
+    public QUIZ createQuiz(@Valid @RequestBody QUIZ quiz) {
         return quizService.save(quiz);
     }
 
     @PutMapping("/UpdateQuiz/{QuizId}")
-    public QUIZ updateQuiztype(@PathVariable Long QuizId,
+    public QUIZ updateQuiz(@PathVariable Long QuizId,
                                    @Valid @RequestBody QUIZ quizRequest) {
         QUIZ q = quizService.findById(QuizId);
         q.setSYSTEMID(quizRequest.getSYSTEMID());
@@ -43,10 +37,9 @@ public class QuizController {
     }
 
     @DeleteMapping("/DeleteQuiz/{QuizId}")
-    public ResponseEntity<?> deleteQuiztype(@PathVariable Long QuizId) {
+    public ResponseEntity<?> deleteQuiz(@PathVariable Long QuizId) {
         quizService.delete(QuizId);
         return ResponseEntity.ok().build();
-
     }
 
 }
