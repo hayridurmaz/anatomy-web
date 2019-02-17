@@ -1,10 +1,9 @@
 package tr.edu.tedu.anatomyweb.Controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.QUIZ;
-import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
 import tr.edu.tedu.anatomyweb.Service.IQuizService;
 
 import javax.validation.Valid;
@@ -24,7 +23,7 @@ public class QuizController {
 
 
     @GetMapping("/GetQuizzes")
-    List<QUIZ> quizzes(){
+    List<QUIZ> quizzes() {
         return quizService.findAll();
     }
 
@@ -35,7 +34,7 @@ public class QuizController {
 
     @PutMapping("/UpdateQuiz/{QuizId}")
     public QUIZ updateQuiztype(@PathVariable Long QuizId,
-                                   @Valid @RequestBody QUIZ quizRequest) {
+                               @Valid @RequestBody QUIZ quizRequest) {
         QUIZ q = quizService.findById(QuizId);
         q.setSYSTEMID(quizRequest.getSYSTEMID());
         q.setTYPE(quizRequest.getTYPE());
