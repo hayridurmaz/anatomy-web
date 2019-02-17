@@ -2,6 +2,7 @@ package tr.edu.tedu.anatomyweb.Model;
 
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "QUIZTYPE")
@@ -17,6 +18,36 @@ public class QUIZTYPE {
     }
 
     public QUIZTYPE() {
+    }
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
+
+    public String getNAME() {
+        return NAME;
+    }
+
+    public void setNAME(String NAME) {
+        this.NAME = NAME;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QUIZTYPE quiztype = (QUIZTYPE) o;
+        return Objects.equals(ID, quiztype.ID) &&
+                Objects.equals(NAME, quiztype.NAME);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID, NAME);
     }
 
     @Override

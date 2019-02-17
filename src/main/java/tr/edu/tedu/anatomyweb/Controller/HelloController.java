@@ -9,9 +9,6 @@ import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
 import tr.edu.tedu.anatomyweb.Service.IQuizService;
 import tr.edu.tedu.anatomyweb.Service.IQuiztypeService;
-import tr.edu.tedu.anatomyweb.Service.QuiztypeService;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -30,25 +27,14 @@ public class HelloController  {
 
 
     @GetMapping(("/quiztypes"))
-    List<String> quizTypes() {
-
-        ArrayList<String> str= new ArrayList<>();
-        for (QUIZTYPE q:quiztypeService.findAll()
-        ) {
-            str.add(q.toString());
-        }
-        return str;
+    List<QUIZTYPE> quizTypes() {
+        List<QUIZTYPE> quiztypes = (List<QUIZTYPE>) quiztypeService.findAll();
+        return quiztypes;
     }
 
     @GetMapping("/quizzes")
-    List<String> quizzes(){
-
-        ArrayList<String> str= new ArrayList<>();
-        for (QUIZ q : quizService.findAll()
-        ) {
-            str.add(q.toString());
-        }
-        return str;
+    List<QUIZ> quizzes(){
+        return quizService.findAll();
     }
 
 }
