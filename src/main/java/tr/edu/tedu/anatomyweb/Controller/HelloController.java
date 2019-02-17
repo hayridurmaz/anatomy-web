@@ -13,18 +13,13 @@ import java.util.List;
 @RestController
 public class HelloController  {
 
-    @Autowired
-    IQuizService quizService;
 
-    @RequestMapping("/")
+
+    /*@RequestMapping("/")
     String home() {
         return "Hello World from the server!";
-    }
+    }*/
 
 
-    @GetMapping("/quizzes")
-    List<QUIZ> quizzes(){
-        return quizService.findAll();
-    }
 
 }

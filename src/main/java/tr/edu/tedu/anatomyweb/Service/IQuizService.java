@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface IQuizService {
     public List<QUIZ> findAll();
+    public QUIZ save(QUIZ quiz);
+    public QUIZ findById(Long Id);
+    public void delete(Long Id);
 }
