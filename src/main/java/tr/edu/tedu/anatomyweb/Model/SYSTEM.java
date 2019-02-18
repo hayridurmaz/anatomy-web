@@ -1,8 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import java.util.Objects;
 

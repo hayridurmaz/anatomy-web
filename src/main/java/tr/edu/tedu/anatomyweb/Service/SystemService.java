@@ -3,14 +3,10 @@ package tr.edu.tedu.anatomyweb.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
-import tr.edu.tedu.anatomyweb.Model.QUIZ;
-import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
 import tr.edu.tedu.anatomyweb.Model.SYSTEM;
-import tr.edu.tedu.anatomyweb.Repository.QuizTypeRepository;
 import tr.edu.tedu.anatomyweb.Repository.SystemRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SystemService implements ISystemService {

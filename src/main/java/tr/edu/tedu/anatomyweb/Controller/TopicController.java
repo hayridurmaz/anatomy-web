@@ -9,6 +9,8 @@ import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
 import tr.edu.tedu.anatomyweb.Service.ISystemService;
+import tr.edu.tedu.anatomyweb.Service.ITopicService;
+import tr.edu.tedu.anatomyweb.Service.TopicService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,31 +20,30 @@ import java.util.List;
 public class TopicController {
 
     @Autowired
-    TopicRepository repository;
+    ITopicService topicService;
 
-    @GetMapping("/GetTopics")
-    List<TOPIC> topics(){
-        List<TOPIC> topics = (List<TOPIC>) repository.findAll();
+    @GetMapping("/Topics")
+    List<TOPIC> getTopics(){
+        List<TOPIC> topics = (List<TOPIC>) topicService.findAll();
         return topics;
     }
 
-    @PostMapping("/CreateTopic")
-    public SYSTEM createTopic(@Valid @RequestBody SYSTEM system) {
-        return systemService.save(system);
+    @PostMapping("/Topics")
+    public TOPIC createTopic(@Valid @RequestBody TOPIC topic) {
+        return topicService.save(topic);
     }
 
-    @PutMapping("/UpdateTopic/{TopicId}")
-    public SYSTEM updateSystem(@PathVariable Long SystemId,
-                               @Valid @RequestBody SYSTEM systemRequest) {
-        SYSTEM s = systemService.findById(SystemId);
-        s.setNAME(systemRequest.getNAME());
-        return systemService.save(s);
+    @PutMapping("/Topics/{TopicId}")
+    public TOPIC updateTopic(@PathVariable Long SystemId,
+                               @Valid @RequestBody TOPIC tRequest) {
+        TOPIC t = topicService.findById(SystemId);
+        t.setNAME(tRequest.getNAME());
+        return topicService.save(t);
     }
 
-    @DeleteMapping("/DeleteTopic/{TopicId}")
-    public ResponseEntity<?> deleteSystem(@PathVariable Long systemId) {
-        systemService.delete(systemId);
+    @DeleteMapping("/Topics/{TopicId}")
+    public ResponseEntity<?> deleteTopic(@PathVariable Long topicId) {
+        topicService.delete(topicId);
         return ResponseEntity.ok().build();
-
     }
 }
