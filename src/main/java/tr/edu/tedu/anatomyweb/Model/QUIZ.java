@@ -16,19 +16,19 @@ public class QUIZ {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_type_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    //@JsonIgnore
     private QUIZTYPE quiztype;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(/* = FetchType.LAZY*/optional = false)
     @JoinColumn(name = "system_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    //@JsonIgnore
     private SYSTEM system;
 
-    @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "quiz"/*fetch = FetchType.LAZY*/)
     public List<QUESTION> questions;
 
     public QUIZ() {

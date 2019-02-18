@@ -17,22 +17,17 @@ public class IMAGE {
 
     private String data_url;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "topic_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    //  @JsonIgnore
-    //  @JSOn
-    //@JsonManagedReference
+    // @JsonIgnore
     private TOPIC topic;
 
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "system_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
-    //@JsonManagedReference
+    // @JsonIgnore
     private SYSTEM system;
-
 
     public IMAGE() {
     }
@@ -71,13 +66,13 @@ public class IMAGE {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         IMAGE image = (IMAGE) o;
-        return Objects.equals(id, image.id) &&
-                Objects.equals(data_url, image.data_url) &&
-                Objects.equals(topic, image.topic) &&
-                Objects.equals(system, image.system);
+        return Objects.equals(id, image.id) && Objects.equals(data_url, image.data_url)
+                && Objects.equals(topic, image.topic) && Objects.equals(system, image.system);
     }
 
     @Override
@@ -87,11 +82,7 @@ public class IMAGE {
 
     @Override
     public String toString() {
-        return "IMAGE{" +
-                "id=" + id +
-                ", data_url='" + data_url + '\'' +
-                ", topic=" + topic +
-                ", system=" + system +
-                '}';
+        return "IMAGE{" + "id=" + id + ", data_url='" + data_url + '\'' + ", topic=" + topic + ", system=" + system
+                + '}';
     }
 }

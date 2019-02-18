@@ -1,9 +1,10 @@
 package tr.edu.tedu.anatomyweb.Controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
+import tr.edu.tedu.anatomyweb.Model.IMAGE;
 import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Model.TOPIC;
@@ -23,7 +24,7 @@ public class TopicController {
     ITopicService topicService;
 
     @GetMapping("/Topics")
-    List<TOPIC> getTopics(){
+    List<TOPIC> getTopics() {
         List<TOPIC> topics = (List<TOPIC>) topicService.findAll();
         return topics;
     }
@@ -34,8 +35,7 @@ public class TopicController {
     }
 
     @PutMapping("/Topics/{TopicId}")
-    public TOPIC updateTopic(@PathVariable Long SystemId,
-                               @Valid @RequestBody TOPIC tRequest) {
+    public TOPIC updateTopic(@PathVariable Long SystemId, @Valid @RequestBody TOPIC tRequest) {
         TOPIC t = topicService.findById(SystemId);
         t.setNAME(tRequest.getNAME());
         return topicService.save(t);
@@ -45,5 +45,11 @@ public class TopicController {
     public ResponseEntity<?> deleteTopic(@PathVariable Long topicId) {
         topicService.delete(topicId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/Topics/{TopicId}")
+    TOPIC GetTopicById(@PathVariable Long TopicId) {
+        TOPIC t = topicService.findById(TopicId);
+        return t;
     }
 }

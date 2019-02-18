@@ -2,14 +2,18 @@ package tr.edu.tedu.anatomyweb.Model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.beans.factory.annotation.Autowired;
+import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
+import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
 
+import javax.naming.Name;
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "TOPIC")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "topic_id")
 public class TOPIC {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
@@ -17,6 +21,7 @@ public class TOPIC {
 
     public TOPIC() {
     }
+
 
     public void setID(Long ID) {
         this.ID = ID;

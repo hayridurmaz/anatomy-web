@@ -24,12 +24,12 @@ public class QUIZTYPE {
         return ID;
     }
 
-    public void setID(Long ID) {
-        this.ID = ID;
-    }
-
     public String getNAME() {
         return NAME;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 
     public void setNAME(String NAME) {
@@ -41,7 +41,7 @@ public class QUIZTYPE {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QUIZTYPE quiztype = (QUIZTYPE) o;
-        return Objects.equals(ID, quiztype.ID) &&
+        return ID.equals(quiztype.ID) &&
                 Objects.equals(NAME, quiztype.NAME);
     }
 

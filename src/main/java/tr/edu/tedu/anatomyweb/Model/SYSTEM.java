@@ -5,7 +5,6 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "SYSTEM")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "system_id")
 public class SYSTEM {
 
     @Id
@@ -34,11 +33,12 @@ public class SYSTEM {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         SYSTEM system = (SYSTEM) o;
-        return Objects.equals(ID, system.ID) &&
-                Objects.equals(NAME, system.NAME);
+        return Objects.equals(ID, system.ID) && Objects.equals(NAME, system.NAME);
     }
 
     @Override
@@ -48,9 +48,6 @@ public class SYSTEM {
 
     @Override
     public String toString() {
-        return "SYSTEM{" +
-                "ID=" + ID +
-                ", NAME='" + NAME + '\'' +
-                '}';
+        return "SYSTEM{" + "ID=" + ID + ", NAME='" + NAME + '\'' + '}';
     }
 }
