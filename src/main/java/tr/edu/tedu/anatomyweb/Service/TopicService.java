@@ -3,7 +3,6 @@ package tr.edu.tedu.anatomyweb.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
-import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
 

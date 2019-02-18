@@ -3,15 +3,8 @@ package tr.edu.tedu.anatomyweb.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
-import tr.edu.tedu.anatomyweb.Model.IMAGE;
-import tr.edu.tedu.anatomyweb.Model.QUIZ;
-import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Model.TOPIC;
-import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
-import tr.edu.tedu.anatomyweb.Service.ISystemService;
 import tr.edu.tedu.anatomyweb.Service.ITopicService;
-import tr.edu.tedu.anatomyweb.Service.TopicService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -44,7 +37,7 @@ public class TopicController {
     @DeleteMapping("/Topics/{TopicId}")
     public ResponseEntity<?> deleteTopic(@PathVariable Long TopicId) {
         topicService.delete(TopicId);
-        return ResponseEntity.ok().;
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/Topics/{TopicId}")

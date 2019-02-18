@@ -1,12 +1,6 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.beans.factory.annotation.Autowired;
-import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
-import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
 
-import javax.naming.Name;
 import javax.persistence.*;
 import java.util.Objects;
 
