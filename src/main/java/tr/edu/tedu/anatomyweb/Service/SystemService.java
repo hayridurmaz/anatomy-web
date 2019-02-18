@@ -27,7 +27,7 @@ public class SystemService implements ISystemService {
 
     @Override
     public SYSTEM findById(long systemId) {
-        SYSTEM s = repository.findById(systemId).orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + systemId));
+        SYSTEM s = repository.findById(systemId).orElseThrow(() -> new ResourceNotFoundException("System not found with id " + systemId));
         return s;
     }
 

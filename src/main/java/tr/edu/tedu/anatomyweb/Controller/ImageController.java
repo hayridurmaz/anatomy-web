@@ -11,7 +11,8 @@ import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.*;
 import tr.edu.tedu.anatomyweb.Repository.ImageRepository;
 import tr.edu.tedu.anatomyweb.Repository.SystemRepository;
-import tr.edu.tedu.anatomyweb.Service.IQuiztypeService;
+import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
+import tr.edu.tedu.anatomyweb.Service.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -23,16 +24,16 @@ import java.util.Map;
 public class ImageController {
 
     @Autowired
-    SystemRepository systemRepository;
+    SystemService systemService;
     @Autowired
-    SystemRepository topicRepository;
+    TopicService topicService;
     @Autowired
-    ImageRepository imageRepository;
+    IImageService imageService;
 
     @GetMapping(("/images"))
     List<IMAGE> getImages() {
         List<IMAGE> img= new ArrayList<>();
-        imageRepository.findAll().forEach(image -> {
+        imageService.findAll().forEach(image -> {
             System.out.println(image.getSystem().toString());
             img.add(image);
         });
@@ -40,35 +41,55 @@ public class ImageController {
     }
 
     @PostMapping("/images")
-    public void createImage(@Valid @RequestBody Object reqBody) {
-
-
+    public IMAGE createImage(@Valid @RequestBody String reqBody) {
 
         JsonParser factory = JsonParserFactory.getJsonParser();
-        Map parser = factory.parseMap(reqBody.toString());
+        Map parser = factory.parseMap(reqBody);
 
-        /*SYSTEM s = systemRepository.findById(parser.system_id);
-        TOPIC t =topicRepository.findById(parser.topic_id);*/
+        SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
+        TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
 
-        System.out.println(parser.toString());
-        //return imageRepository.save(image);
+        IMAGE i = new IMAGE();
+        i.setTopic(t);
+        i.setSystem(s);
+        i.setData_url(parser.get("data_url").toString());
+        return imageService.save(i);
     }
 
     @PutMapping("/images/{imageId}")
-    public IMAGE updateImage(@PathVariable Long imageId, @Valid @RequestBody IMAGE imageRequest) {
-        IMAGE i = imageRepository.findById(imageId).orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + imageId));
-        i.setData_url(imageRequest.getData_url());
-        i.setSystem(imageRequest.getSystem());
-        i.setTopic(imageRequest.getTopic());
-        return imageRepository.save(i);
+    public IMAGE updateImage(@PathVariable Long imageId, @Valid @RequestBody String reqBody) {
+        JsonParser factory = JsonParserFactory.getJsonParser();
+        Map parser = factory.parseMap(reqBody);
+
+        IMAGE i = imageService.findById(imageId);
+        SYSTEM s;
+        if(parser.get("system_id")!=null){
+            s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
+        }
+        else{
+            s=i.getSystem();
+        }
+
+        TOPIC t;
+        if(parser.get("topic_id")!=null){
+            t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
+        }
+        else{
+            t=i.getTopic();
+        }
+
+        i.setTopic(t);
+        i.setSystem(s);
+        i.setData_url(parser.get("data_url").toString());
+        return imageService.save(i);
     }
 
-   /* @DeleteMapping("/images/{quiztypeId}")
+   @DeleteMapping("/images/{imageId}")
     public @ResponseBody
-    ResponseEntity<?> deleteQuiztype(@PathVariable Long quiztypeId) {
-        quiztypeService.delete(quiztypeId);
+    ResponseEntity<?> deleteImage(@PathVariable Long imageId) {
+        imageService.delete(imageId);
         return ResponseEntity.ok().build();
     }
-*/
+
 
 }

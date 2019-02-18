@@ -31,7 +31,7 @@ public class QuiztypeService implements IQuiztypeService {
 
     @Override
     public QUIZTYPE findById(Long quiztypeId) {
-        QUIZTYPE q = repository.findById(quiztypeId).orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + quiztypeId));
+        QUIZTYPE q = repository.findById(quiztypeId).orElseThrow(() -> new ResourceNotFoundException("Quiz type not found with id " + quiztypeId));
         return q;
     }
 
