@@ -35,16 +35,16 @@ public class TopicController {
     }
 
     @PutMapping("/Topics/{TopicId}")
-    public TOPIC updateTopic(@PathVariable Long SystemId, @Valid @RequestBody TOPIC tRequest) {
-        TOPIC t = topicService.findById(SystemId);
+    public TOPIC updateTopic(@PathVariable Long TopicId, @Valid @RequestBody TOPIC tRequest) {
+        TOPIC t = topicService.findById(TopicId);
         t.setNAME(tRequest.getNAME());
         return topicService.save(t);
     }
 
     @DeleteMapping("/Topics/{TopicId}")
-    public ResponseEntity<?> deleteTopic(@PathVariable Long topicId) {
-        topicService.delete(topicId);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> deleteTopic(@PathVariable Long TopicId) {
+        topicService.delete(TopicId);
+        return ResponseEntity.ok().;
     }
 
     @GetMapping("/Topics/{TopicId}")
