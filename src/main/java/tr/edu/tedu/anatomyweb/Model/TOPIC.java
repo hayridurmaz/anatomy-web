@@ -1,6 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -15,7 +14,6 @@ public class TOPIC {
 
     public TOPIC() {
     }
-
 
     public void setID(Long ID) {
         this.ID = ID;

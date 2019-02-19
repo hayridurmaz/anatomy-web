@@ -61,21 +61,17 @@ public class QuizController {
         SYSTEM s;
         QUIZTYPE qt;
 
-        if(parser.get("system_id")!=null){
+        if (parser.get("system_id") != null) {
             s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
-        }
-        else{
-            s = q.getSystem();//is it really needed?
+        } else {
+            s = q.getSystem();// is it really needed?
         }
 
-
-        if(parser.get("quiz_type_id")!=null){
+        if (parser.get("quiz_type_id") != null) {
             qt = quiztypeService.findById(Long.parseLong(parser.get("quiz_type_id").toString()));
+        } else {
+            qt = q.getQuiztype();
         }
-        else{
-            qt=q.getQuiztype();
-        }
-
 
         q.setQuiztype(qt);
         q.setSystem(s);

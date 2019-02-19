@@ -1,6 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -16,12 +15,12 @@ public class IMAGE {
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "topic_id", nullable = false)
-    //@OnDelete(action = OnDeleteAction.CASCADE)
+    // @OnDelete(action = OnDeleteAction.CASCADE)
     private TOPIC topic;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "system_id", nullable = false)
-    //@OnDelete(action = OnDeleteAction.CASCADE)
+    // @OnDelete(action = OnDeleteAction.CASCADE)
     private SYSTEM system;
 
     public IMAGE() {

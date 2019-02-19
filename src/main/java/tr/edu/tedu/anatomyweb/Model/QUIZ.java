@@ -1,9 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -19,16 +15,16 @@ public class QUIZ {
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_type_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
+    // @JsonIgnore
     private QUIZTYPE quiztype;
 
-    @ManyToOne(/* = FetchType.LAZY*/optional = false)
+    @ManyToOne(/* = FetchType.LAZY */optional = false)
     @JoinColumn(name = "system_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
+    // @JsonIgnore
     private SYSTEM system;
 
-    @OneToMany(mappedBy = "quiz"/*fetch = FetchType.LAZY*/)
+    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
     public List<QUESTION> questions;
 
     public QUIZ() {
@@ -69,13 +65,13 @@ public class QUIZ {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         QUIZ quiz = (QUIZ) o;
-        return Objects.equals(ID, quiz.ID) &&
-                Objects.equals(quiztype, quiz.quiztype) &&
-                Objects.equals(system, quiz.system) &&
-                Objects.equals(questions, quiz.questions);
+        return Objects.equals(ID, quiz.ID) && Objects.equals(quiztype, quiz.quiztype)
+                && Objects.equals(system, quiz.system) && Objects.equals(questions, quiz.questions);
     }
 
     @Override
@@ -85,11 +81,7 @@ public class QUIZ {
 
     @Override
     public String toString() {
-        return "QUIZ{" +
-                "ID=" + ID +
-                ", quiztype=" + quiztype +
-                ", system=" + system +
-                ", questions=" + questions +
-                '}';
+        return "QUIZ{" + "ID=" + ID + ", quiztype=" + quiztype + ", system=" + system + ", questions=" + questions
+                + '}';
     }
 }

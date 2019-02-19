@@ -1,15 +1,12 @@
 package tr.edu.tedu.anatomyweb.Controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.tedu.anatomyweb.Model.*;
-import tr.edu.tedu.anatomyweb.Service.AnswerService;
 import tr.edu.tedu.anatomyweb.Service.IAnswerService;
-import tr.edu.tedu.anatomyweb.Service.IImageService;
 import tr.edu.tedu.anatomyweb.Service.IQuestionService;
 
 import javax.validation.Valid;
@@ -60,21 +57,17 @@ public class AnswerController {
         QUESTION q;
         String atext;
 
-        if(parser.get("question_id")!=null){
+        if (parser.get("question_id") != null) {
             q = questionService.findById(Long.parseLong(parser.get("question_id").toString()));
-        }
-        else{
-            q = a.getQuestion();//is it really needed?
+        } else {
+            q = a.getQuestion();// is it really needed?
         }
 
-
-        if(parser.get("atext")!=null){
+        if (parser.get("atext") != null) {
             atext = parser.get("atext").toString();
+        } else {
+            atext = a.getAtext();
         }
-        else{
-            atext=a.getAtext();
-        }
-
 
         a.setQuestion(q);
         a.setAtext(atext);

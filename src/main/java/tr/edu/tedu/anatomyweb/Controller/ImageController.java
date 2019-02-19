@@ -1,6 +1,5 @@
 package tr.edu.tedu.anatomyweb.Controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
@@ -27,9 +26,9 @@ public class ImageController {
 
     @GetMapping(("/Images"))
     List<IMAGE> getImages() {
-        List<IMAGE> img= new ArrayList<>();
+        List<IMAGE> img = new ArrayList<>();
         imageService.findAll().forEach(image -> {
-            //System.out.println(image.getSystem().toString());
+            // System.out.println(image.getSystem().toString());
             img.add(image);
         });
         return img;
@@ -66,27 +65,22 @@ public class ImageController {
         SYSTEM s;
         TOPIC t;
         String data_url;
-        if(parser.get("system_id")!=null){
+        if (parser.get("system_id") != null) {
             s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
-        }
-        else{
-            s=i.getSystem();
+        } else {
+            s = i.getSystem();
         }
 
-
-        if(parser.get("topic_id")!=null){
+        if (parser.get("topic_id") != null) {
             t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
-        }
-        else{
-            t=i.getTopic();
+        } else {
+            t = i.getTopic();
         }
 
-
-        if(parser.get("data_url")!=null){
-            data_url=parser.get("data_url").toString();
-        }
-        else{
-            data_url=i.getData_url();
+        if (parser.get("data_url") != null) {
+            data_url = parser.get("data_url").toString();
+        } else {
+            data_url = i.getData_url();
         }
 
         i.setTopic(t);
@@ -95,12 +89,10 @@ public class ImageController {
         return imageService.save(i);
     }
 
-   @DeleteMapping("/Images/{imageId}")
-    public @ResponseBody
-    ResponseEntity<?> deleteImage(@PathVariable Long imageId) {
+    @DeleteMapping("/Images/{imageId}")
+    public @ResponseBody ResponseEntity<?> deleteImage(@PathVariable Long imageId) {
         imageService.delete(imageId);
         return ResponseEntity.ok().build();
     }
-
 
 }

@@ -1,10 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -19,29 +14,26 @@ public class QUESTION {
     private String qtext;
     private String hint;
 
-
     @OneToMany(mappedBy = "question")
     public List<ANSWER> answers;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "image_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
+    // @JsonIgnore
     private IMAGE image;
-
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false)
-    //@OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
+    // @OnDelete(action = OnDeleteAction.CASCADE)
+    // @JsonIgnore
     private TOPIC topic;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_id", nullable = false)
-    //@OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
+    // @OnDelete(action = OnDeleteAction.CASCADE)
+    // @JsonIgnore
     private QUIZ quiz;
-
 
     public QUESTION() {
     }
@@ -104,16 +96,15 @@ public class QUESTION {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         QUESTION question = (QUESTION) o;
-        return Objects.equals(id, question.id) &&
-                Objects.equals(qtext, question.qtext) &&
-                Objects.equals(hint, question.hint) &&
-                Objects.equals(answers, question.answers) &&
-                Objects.equals(image, question.image) &&
-                Objects.equals(topic, question.topic) &&
-                Objects.equals(quiz, question.quiz);
+        return Objects.equals(id, question.id) && Objects.equals(qtext, question.qtext)
+                && Objects.equals(hint, question.hint) && Objects.equals(answers, question.answers)
+                && Objects.equals(image, question.image) && Objects.equals(topic, question.topic)
+                && Objects.equals(quiz, question.quiz);
     }
 
     @Override
@@ -123,14 +114,7 @@ public class QUESTION {
 
     @Override
     public String toString() {
-        return "QUESTION{" +
-                "id=" + id +
-                ", qtext='" + qtext + '\'' +
-                ", hint='" + hint + '\'' +
-                ", answers=" + answers +
-                ", image=" + image +
-                ", topic=" + topic +
-                ", quiz=" + quiz +
-                '}';
+        return "QUESTION{" + "id=" + id + ", qtext='" + qtext + '\'' + ", hint='" + hint + '\'' + ", answers=" + answers
+                + ", image=" + image + ", topic=" + topic + ", quiz=" + quiz + '}';
     }
 }

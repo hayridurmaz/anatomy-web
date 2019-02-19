@@ -7,6 +7,7 @@ import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Repository.QuizRepository;
 
 import java.util.List;
+
 @Service
 public class QuizService implements IQuizService {
 
@@ -20,18 +21,19 @@ public class QuizService implements IQuizService {
     }
 
     @Override
-    public QUIZ save(QUIZ quiz){
+    public QUIZ save(QUIZ quiz) {
         return repository.save(quiz);
     }
 
     @Override
-    public QUIZ findById(Long quizId){
-        QUIZ q = repository.findById(quizId).orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + quizId));
+    public QUIZ findById(Long quizId) {
+        QUIZ q = repository.findById(quizId)
+                .orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + quizId));
         return q;
     }
 
     @Override
-    public void delete(Long quizId){
+    public void delete(Long quizId) {
         repository.deleteById(quizId);
     }
 }

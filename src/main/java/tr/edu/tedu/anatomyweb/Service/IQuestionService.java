@@ -1,7 +1,5 @@
 package tr.edu.tedu.anatomyweb.Service;
 
-
-import org.springframework.beans.factory.parsing.QualifierEntry;
 import tr.edu.tedu.anatomyweb.Model.QUESTION;
 
 import java.util.List;
@@ -16,4 +14,3 @@ public interface IQuestionService {
 
     public void delete(Long Id);
 }
-

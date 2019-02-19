@@ -8,12 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-
-
     @RequestMapping("/")
     String home() {
         return "Hello World from the server!";
     }
-
 
 }

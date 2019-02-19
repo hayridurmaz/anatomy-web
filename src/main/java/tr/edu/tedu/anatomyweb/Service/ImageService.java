@@ -13,7 +13,6 @@ public class ImageService implements IImageService {
     @Autowired
     ImageRepository imageRepository;
 
-
     @Override
     public List<IMAGE> findAll() {
         return (List<IMAGE>) imageRepository.findAll();
@@ -26,7 +25,8 @@ public class ImageService implements IImageService {
 
     @Override
     public IMAGE findById(Long Id) {
-        return imageRepository.findById(Id).orElseThrow(() -> new ResourceNotFoundException("Image not found with id " + Id));
+        return imageRepository.findById(Id)
+                .orElseThrow(() -> new ResourceNotFoundException("Image not found with id " + Id));
     }
 
     @Override

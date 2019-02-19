@@ -3,7 +3,6 @@ package tr.edu.tedu.anatomyweb.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
-import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
 
@@ -14,7 +13,6 @@ public class TopicService implements ITopicService {
 
     @Autowired
     private TopicRepository repository;
-
 
     @Override
     public List<TOPIC> findAll() {
@@ -28,7 +26,8 @@ public class TopicService implements ITopicService {
 
     @Override
     public TOPIC findById(long topicId) {
-        TOPIC t = repository.findById(topicId).orElseThrow(() -> new ResourceNotFoundException("Topic not found with id " + topicId));
+        TOPIC t = repository.findById(topicId)
+                .orElseThrow(() -> new ResourceNotFoundException("Topic not found with id " + topicId));
         return t;
     }
 

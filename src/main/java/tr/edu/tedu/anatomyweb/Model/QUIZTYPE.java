@@ -1,6 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -38,11 +37,12 @@ public class QUIZTYPE {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         QUIZTYPE quiztype = (QUIZTYPE) o;
-        return ID.equals(quiztype.ID) &&
-                Objects.equals(NAME, quiztype.NAME);
+        return ID.equals(quiztype.ID) && Objects.equals(NAME, quiztype.NAME);
     }
 
     @Override
@@ -52,9 +52,6 @@ public class QUIZTYPE {
 
     @Override
     public String toString() {
-        return "QUIZTYPE{" +
-                "ID=" + ID +
-                ", NAME='" + NAME + '\'' +
-                '}';
+        return "QUIZTYPE{" + "ID=" + ID + ", NAME='" + NAME + '\'' + '}';
     }
 }

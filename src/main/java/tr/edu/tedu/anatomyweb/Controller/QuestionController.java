@@ -74,28 +74,27 @@ public class QuestionController {
         String qtext;
         String hint;
 
-        if(parser.get("image_id")!=null){
+        if (parser.get("image_id") != null) {
             i = imageService.findById(Long.parseLong(parser.get("image_id").toString()));
             qu.setImage(i);
         }
 
-
-        if(parser.get("topic_id")!=null){
+        if (parser.get("topic_id") != null) {
             t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
             qu.setTopic(t);
         }
 
-        if(parser.get("quiz_id")!=null){
+        if (parser.get("quiz_id") != null) {
             q = quizService.findById(Long.parseLong(parser.get("quiz_id").toString()));
             qu.setQuiz(q);
         }
 
-        if(parser.get("qtext")!=null){
+        if (parser.get("qtext") != null) {
             qtext = parser.get("qtext").toString();
             qu.setQtext(qtext);
         }
 
-        if(parser.get("hint")!=null){
+        if (parser.get("hint") != null) {
             hint = parser.get("hint").toString();
             qu.setHint(hint);
         }

@@ -1,10 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -19,8 +14,8 @@ public class ANSWER {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "question_id", nullable = false)
-    //@OnDelete(action = OnDeleteAction.CASCADE)
-    //@JsonIgnore
+    // @OnDelete(action = OnDeleteAction.CASCADE)
+    // @JsonIgnore
     private QUESTION question;
 
     public ANSWER() {
@@ -53,12 +48,13 @@ public class ANSWER {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         ANSWER answer = (ANSWER) o;
-        return Objects.equals(id, answer.id) &&
-                Objects.equals(atext, answer.atext) &&
-                Objects.equals(question, answer.question);
+        return Objects.equals(id, answer.id) && Objects.equals(atext, answer.atext)
+                && Objects.equals(question, answer.question);
     }
 
     @Override
@@ -68,11 +64,6 @@ public class ANSWER {
 
     @Override
     public String toString() {
-        return "ANSWER{" +
-                "id=" + id +
-                ", atext='" + atext + '\'' +
-                ", question=" + question +
-                '}';
+        return "ANSWER{" + "id=" + id + ", atext='" + atext + '\'' + ", question=" + question + '}';
     }
 }
-
