@@ -58,23 +58,16 @@ public class QuizController {
         Map parser = factory.parseMap(reqBody);
 
         QUIZ q = quizService.findById(QuizId);
-        SYSTEM s;
-        QUIZTYPE qt;
 
         if (parser.get("system_id") != null) {
-            s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
-        } else {
-            s = q.getSystem();// is it really needed?
+            SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
+            q.setSystem(s);
         }
-
         if (parser.get("quiz_type_id") != null) {
-            qt = quiztypeService.findById(Long.parseLong(parser.get("quiz_type_id").toString()));
-        } else {
-            qt = q.getQuiztype();
+            QUIZTYPE qt = quiztypeService.findById(Long.parseLong(parser.get("quiz_type_id").toString()));
+            q.setQuiztype(qt);
         }
 
-        q.setQuiztype(qt);
-        q.setSystem(s);
         return quizService.save(q);
     }
 

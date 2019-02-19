@@ -54,23 +54,17 @@ public class AnswerController {
         Map parser = factory.parseMap(reqBody);
 
         ANSWER a = answerService.findById(AnswerId);
-        QUESTION q;
-        String atext;
 
         if (parser.get("question_id") != null) {
-            q = questionService.findById(Long.parseLong(parser.get("question_id").toString()));
-        } else {
-            q = a.getQuestion();// is it really needed?
+            QUESTION q = questionService.findById(Long.parseLong(parser.get("question_id").toString()));
+            a.setQuestion(q);
         }
 
         if (parser.get("atext") != null) {
-            atext = parser.get("atext").toString();
-        } else {
-            atext = a.getAtext();
+            String atext = parser.get("atext").toString();
+            a.setAtext(atext);
         }
 
-        a.setQuestion(q);
-        a.setAtext(atext);
         return answerService.save(a);
     }
 

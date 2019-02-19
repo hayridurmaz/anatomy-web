@@ -62,30 +62,22 @@ public class ImageController {
         Map parser = factory.parseMap(reqBody);
 
         IMAGE i = imageService.findById(imageId);
-        SYSTEM s;
-        TOPIC t;
-        String data_url;
         if (parser.get("system_id") != null) {
-            s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
-        } else {
-            s = i.getSystem();
+            SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
+            i.setSystem(s);
         }
 
         if (parser.get("topic_id") != null) {
-            t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
-        } else {
-            t = i.getTopic();
+            TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
+            i.setTopic(t);
+
         }
 
         if (parser.get("data_url") != null) {
-            data_url = parser.get("data_url").toString();
-        } else {
-            data_url = i.getData_url();
+            String data_url = parser.get("data_url").toString();
+            i.setData_url(data_url);
         }
 
-        i.setTopic(t);
-        i.setSystem(s);
-        i.setData_url(data_url);
         return imageService.save(i);
     }
 
