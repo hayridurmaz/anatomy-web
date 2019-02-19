@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface IImageService {
     public List<IMAGE> findAll();
+
     public IMAGE save(IMAGE image);
+
     public IMAGE findById(Long Id);
+
     public void delete(Long Id);
 }

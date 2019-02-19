@@ -18,13 +18,13 @@ public class QUIZ {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_type_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    // @OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
     private QUIZTYPE quiztype;
 
     @ManyToOne(/* = FetchType.LAZY*/optional = false)
     @JoinColumn(name = "system_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    // @OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
     private SYSTEM system;
 

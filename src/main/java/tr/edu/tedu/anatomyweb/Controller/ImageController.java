@@ -1,17 +1,12 @@
 package tr.edu.tedu.anatomyweb.Controller;
 
 
-import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.*;
-import tr.edu.tedu.anatomyweb.Repository.ImageRepository;
-import tr.edu.tedu.anatomyweb.Repository.SystemRepository;
-import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
 import tr.edu.tedu.anatomyweb.Service.*;
 
 import javax.validation.Valid;
@@ -30,7 +25,7 @@ public class ImageController {
     @Autowired
     IImageService imageService;
 
-    @GetMapping(("/images"))
+    @GetMapping(("/Images"))
     List<IMAGE> getImages() {
         List<IMAGE> img= new ArrayList<>();
         imageService.findAll().forEach(image -> {
@@ -40,7 +35,13 @@ public class ImageController {
         return img;
     }
 
-    @PostMapping("/images")
+    @GetMapping(("/Images/{ImageId}"))
+    IMAGE getImageById(@PathVariable Long ImageId) {
+        IMAGE img = imageService.findById(ImageId);
+        return img;
+    }
+
+    @PostMapping("/Images")
     public IMAGE createImage(@Valid @RequestBody String reqBody) {
 
         JsonParser factory = JsonParserFactory.getJsonParser();
@@ -56,13 +57,15 @@ public class ImageController {
         return imageService.save(i);
     }
 
-    @PutMapping("/images/{imageId}")
+    @PutMapping("/Images/{imageId}")
     public IMAGE updateImage(@PathVariable Long imageId, @Valid @RequestBody String reqBody) {
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
 
         IMAGE i = imageService.findById(imageId);
         SYSTEM s;
+        TOPIC t;
+        String data_url;
         if(parser.get("system_id")!=null){
             s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
         }
@@ -70,7 +73,7 @@ public class ImageController {
             s=i.getSystem();
         }
 
-        TOPIC t;
+
         if(parser.get("topic_id")!=null){
             t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
         }
@@ -78,13 +81,21 @@ public class ImageController {
             t=i.getTopic();
         }
 
+
+        if(parser.get("data_url")!=null){
+            data_url=parser.get("data_url").toString();
+        }
+        else{
+            data_url=i.getData_url();
+        }
+
         i.setTopic(t);
         i.setSystem(s);
-        i.setData_url(parser.get("data_url").toString());
+        i.setData_url(data_url);
         return imageService.save(i);
     }
 
-   @DeleteMapping("/images/{imageId}")
+   @DeleteMapping("/Images/{imageId}")
     public @ResponseBody
     ResponseEntity<?> deleteImage(@PathVariable Long imageId) {
         imageService.delete(imageId);

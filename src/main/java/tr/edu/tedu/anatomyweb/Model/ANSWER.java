@@ -19,7 +19,7 @@ public class ANSWER {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "question_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
     private QUESTION question;
 

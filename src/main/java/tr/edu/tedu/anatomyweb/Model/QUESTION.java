@@ -25,20 +25,20 @@ public class QUESTION {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "image_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    // @OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
     private IMAGE image;
 
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
     private TOPIC topic;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
     private QUIZ quiz;
 

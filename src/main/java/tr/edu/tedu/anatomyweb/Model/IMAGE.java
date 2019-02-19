@@ -1,8 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import com.fasterxml.jackson.annotation.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -19,14 +16,12 @@ public class IMAGE {
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "topic_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonIgnore
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     private TOPIC topic;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "system_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonIgnore
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     private SYSTEM system;
 
     public IMAGE() {
