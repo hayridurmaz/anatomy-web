@@ -22,6 +22,12 @@ public class TopicController {
         return topics;
     }
 
+    @GetMapping("/Topics/{TopicId}")
+    TOPIC GetTopicById(@PathVariable Long TopicId) {
+        TOPIC t = topicService.findById(TopicId);
+        return t;
+    }
+
     @PostMapping("/Topics")
     public TOPIC createTopic(@Valid @RequestBody TOPIC topic) {
         return topicService.save(topic);
@@ -40,9 +46,4 @@ public class TopicController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/Topics/{TopicId}")
-    TOPIC GetTopicById(@PathVariable Long TopicId) {
-        TOPIC t = topicService.findById(TopicId);
-        return t;
-    }
 }

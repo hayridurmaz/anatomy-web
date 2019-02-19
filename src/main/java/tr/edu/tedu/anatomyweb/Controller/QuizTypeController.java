@@ -18,25 +18,31 @@ public class QuizTypeController {
     @Autowired
     IQuiztypeService quiztypeService;
 
-    @GetMapping(("/quiztypes"))
+    @GetMapping(("/Quiztypes"))
     List<QUIZTYPE> getQuiztypes() {
         List<QUIZTYPE> quiztypes = (List<QUIZTYPE>) quiztypeService.findAll();
         return quiztypes;
     }
 
-    @PostMapping("/quiztypes")
+    @GetMapping(("/Quiztypes/{QuiztypeId}"))
+    QUIZTYPE getQuiztypeById(@PathVariable Long QuiztypeId) {
+        QUIZTYPE qt = quiztypeService.findById(QuiztypeId);
+        return qt;
+    }
+
+    @PostMapping("/Quiztypes")
     public QUIZTYPE createQuiztype(@Valid @RequestBody QUIZTYPE quiztype) {
         return quiztypeService.save(quiztype);
     }
 
-    @PutMapping("/quiztypes/{quiztypeId}")
+    @PutMapping("/Quiztypes/{quiztypeId}")
     public QUIZTYPE updateQuiztype(@PathVariable Long quiztypeId, @Valid @RequestBody QUIZTYPE quiztypeRequest) {
         QUIZTYPE q = quiztypeService.findById(quiztypeId);
         q.setNAME(quiztypeRequest.getNAME());
         return quiztypeService.save(q);
     }
 
-    @DeleteMapping("/quiztypes/{quiztypeId}")
+    @DeleteMapping("/Quiztypes/{quiztypeId}")
     public @ResponseBody ResponseEntity<?> deleteQuiztype(@PathVariable Long quiztypeId) {
         quiztypeService.delete(quiztypeId);
         return ResponseEntity.ok().build();

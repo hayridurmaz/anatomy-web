@@ -32,7 +32,6 @@ public class QuizService implements IQuizService {
 
     @Override
     public void delete(Long quizId){
-        QUIZ q = findById(quizId);
-        repository.delete(q);
+        repository.deleteById(quizId);
     }
 }

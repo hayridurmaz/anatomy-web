@@ -37,8 +37,7 @@ public class QuiztypeService implements IQuiztypeService {
 
     @Override
     public void delete(Long quiztypeId) {
-        QUIZTYPE q = findById(quiztypeId);
-        repository.delete(q);
+        repository.deleteById(quiztypeId);
     }
 
 }

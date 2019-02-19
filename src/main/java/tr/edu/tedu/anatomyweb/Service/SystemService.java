@@ -33,8 +33,7 @@ public class SystemService implements ISystemService {
 
     @Override
     public void delete(Long systemId) {
-        SYSTEM s = findById(systemId);
-        repository.delete(s);
+        repository.deleteById(systemId);
     }
 
 }

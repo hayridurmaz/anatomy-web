@@ -19,9 +19,9 @@ import java.util.Map;
 public class ImageController {
 
     @Autowired
-    SystemService systemService;
+    ISystemService systemService;
     @Autowired
-    TopicService topicService;
+    ITopicService topicService;
     @Autowired
     IImageService imageService;
 
@@ -29,7 +29,7 @@ public class ImageController {
     List<IMAGE> getImages() {
         List<IMAGE> img= new ArrayList<>();
         imageService.findAll().forEach(image -> {
-            System.out.println(image.getSystem().toString());
+            //System.out.println(image.getSystem().toString());
             img.add(image);
         });
         return img;
