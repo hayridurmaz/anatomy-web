@@ -13,12 +13,12 @@ public class IMAGE {
 
     private String data_url;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false /*,cascade = CascadeType.ALL*/)
     @JoinColumn(name = "topic_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     private TOPIC topic;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false/*, cascade = CascadeType.ALL*/)
     @JoinColumn(name = "system_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     private SYSTEM system;
