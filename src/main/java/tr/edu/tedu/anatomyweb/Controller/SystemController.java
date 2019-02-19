@@ -3,11 +3,7 @@ package tr.edu.tedu.anatomyweb.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
-import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.SYSTEM;
-import tr.edu.tedu.anatomyweb.Model.TOPIC;
-import tr.edu.tedu.anatomyweb.Service.IQuizService;
 import tr.edu.tedu.anatomyweb.Service.ISystemService;
 
 import javax.validation.Valid;
@@ -25,13 +21,13 @@ public class SystemController {
         return systemService.findAll();
     }
 
-    @GetMapping("/GetSystemById/{SystemId}")
+    @GetMapping("/Systems/{SystemId}")
     SYSTEM GetSystemById(@PathVariable Long SystemId) {
         SYSTEM s = systemService.findById(SystemId);
         return s;
     }
 
-    @PostMapping("/CreateSystem")
+    @PostMapping("/Systems")
     public SYSTEM createSystem(@Valid @RequestBody SYSTEM system) {
         return systemService.save(system);
     }
@@ -44,8 +40,8 @@ public class SystemController {
     }
 
     @DeleteMapping("/Systems/{SystemId}")
-    public ResponseEntity<?> deleteSystem(@PathVariable Long systemId) {
-        systemService.delete(systemId);
+    public ResponseEntity<?> deleteSystem(@PathVariable Long SystemId) {
+        systemService.delete(SystemId);
         return ResponseEntity.ok().build();
 
     }

@@ -9,7 +9,10 @@ import java.util.Optional;
 public interface ISystemService {
 
     public List<SYSTEM> findAll();
+
     public SYSTEM save(SYSTEM system);
+
     public SYSTEM findById(long systemId);
+
     public void delete(Long systemId);
 }
