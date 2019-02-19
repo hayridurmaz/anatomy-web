@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
+import tr.edu.tedu.anatomyweb.Model.IMAGE;
 import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Model.TOPIC;
@@ -25,6 +26,12 @@ public class TopicController {
     List<TOPIC> topics(){
         List<TOPIC> topics = (List<TOPIC>) repository.findAll();
         return topics;
+    }
+
+    @GetMapping("/GetTopicById/{TopicId}")
+    TOPIC GetTopicById(@PathVariable Long TopicId){
+        TOPIC t = repository.findById(TopicId).orElseThrow(() -> new ResourceNotFoundException("Topic not found with id " + TopicId));
+        return t;
     }
 
     @PostMapping("/CreateTopic")

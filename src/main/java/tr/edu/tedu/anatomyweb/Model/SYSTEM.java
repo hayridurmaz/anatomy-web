@@ -2,13 +2,16 @@ package tr.edu.tedu.anatomyweb.Model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.beans.factory.annotation.Autowired;
+import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
+import tr.edu.tedu.anatomyweb.Repository.SystemRepository;
+import tr.edu.tedu.anatomyweb.Repository.TopicRepository;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "SYSTEM")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "system_id")
 public class SYSTEM {
 
     @Id
@@ -18,6 +21,7 @@ public class SYSTEM {
 
     public SYSTEM() {
     }
+
 
     public Long getID() {
         return ID;

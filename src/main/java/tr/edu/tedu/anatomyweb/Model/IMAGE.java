@@ -17,20 +17,17 @@ public class IMAGE {
 
     private String data_url;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false,cascade = CascadeType.ALL)
+    @ManyToOne(optional = false,cascade = CascadeType.ALL)
     @JoinColumn(name = "topic_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-  //  @JsonIgnore
-    @JSOn
-    //@JsonManagedReference
+    //@JsonIgnore
     private TOPIC topic;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "system_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     //@JsonIgnore
-    //@JsonManagedReference
     private SYSTEM system;
 
 

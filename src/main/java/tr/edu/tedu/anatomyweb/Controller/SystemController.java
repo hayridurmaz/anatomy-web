@@ -3,8 +3,10 @@ package tr.edu.tedu.anatomyweb.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.SYSTEM;
+import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Service.IQuizService;
 import tr.edu.tedu.anatomyweb.Service.ISystemService;
 
@@ -21,6 +23,12 @@ public class SystemController {
     @GetMapping("/GetSystems")
     List<SYSTEM> systems(){
         return systemService.findAll();
+    }
+
+    @GetMapping("/GetSystemById/{SystemId}")
+    SYSTEM GetSystemById(@PathVariable Long SystemId){
+        SYSTEM s = systemService.findById(SystemId);
+        return s;
     }
 
     @PostMapping("/CreateSystem")

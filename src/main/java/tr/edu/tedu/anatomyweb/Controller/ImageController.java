@@ -1,25 +1,31 @@
 package tr.edu.tedu.anatomyweb.Controller;
 
 
+import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JsonParser;
+import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
-import tr.edu.tedu.anatomyweb.Model.IMAGE;
-import tr.edu.tedu.anatomyweb.Model.QUIZ;
-import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
+import tr.edu.tedu.anatomyweb.Model.*;
 import tr.edu.tedu.anatomyweb.Repository.ImageRepository;
+import tr.edu.tedu.anatomyweb.Repository.SystemRepository;
 import tr.edu.tedu.anatomyweb.Service.IQuiztypeService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
 public class ImageController {
 
-
+    @Autowired
+    SystemRepository systemRepository;
+    @Autowired
+    SystemRepository topicRepository;
     @Autowired
     ImageRepository imageRepository;
 
@@ -27,14 +33,25 @@ public class ImageController {
     List<IMAGE> getImages() {
         List<IMAGE> img= new ArrayList<>();
         imageRepository.findAll().forEach(image -> {
+            System.out.println(image.getSystem().toString());
             img.add(image);
         });
         return img;
     }
 
     @PostMapping("/images")
-    public IMAGE createImage(@Valid @RequestBody IMAGE image) {
-        return imageRepository.save(image);
+    public void createImage(@Valid @RequestBody Object reqBody) {
+
+
+
+        JsonParser factory = JsonParserFactory.getJsonParser();
+        Map parser = factory.parseMap(reqBody.toString());
+
+        /*SYSTEM s = systemRepository.findById(parser.system_id);
+        TOPIC t =topicRepository.findById(parser.topic_id);*/
+
+        System.out.println(parser.toString());
+        //return imageRepository.save(image);
     }
 
     @PutMapping("/images/{imageId}")
@@ -53,4 +70,5 @@ public class ImageController {
         return ResponseEntity.ok().build();
     }
 */
+
 }
