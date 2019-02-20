@@ -492,7 +492,6 @@ URL example: `localhost:8080/Quizzes/9`
 Request type: `Get`
 
 Request Body example: 
-` {
     "quiztype": {
         "id": 7,
         "name": "SINGLEE SELECTION"
@@ -518,9 +517,11 @@ Request type: `Post`
 
 Request Body example: 
 ` {
-        "quiz_type_id": 7,
-        "system_id": 3
-    }`
+
+    {
+            "quiz_type_id": 7,
+            "system_id": 3
+    }
 
 Response example:
 `{
@@ -598,8 +599,9 @@ Request Body example:
 Response example:
 `-`
 
-## 
+## V. Question
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjcyMTAwMTMyLC05NjI3OTYyMjIsMTMyND
-g3NDU5MSwxMzM1MDk3OTgzLDgxMzIyNzEyNl19
+eyJoaXN0b3J5IjpbLTU4ODQ4MTczMiwxMDI1OTg5NzMwLDI3Mj
+EwMDEzMiwtMzU5MjEwMjUwLC05NjI3OTYyMjIsMTMyNDg3NDU5
+MSwxMzM1MDk3OTgzLDgxMzIyNzEyNl19
 -->

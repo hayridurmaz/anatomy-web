@@ -1,5 +1,7 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -15,7 +17,7 @@ public class ANSWER {
     @ManyToOne(optional = false)
     @JoinColumn(name = "question_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonIgnore
+    @JsonIgnore
     private QUESTION question;
 
     public ANSWER() {
