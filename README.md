@@ -363,6 +363,8 @@ Response example:
 
 ## IV. Quiztype 
 
+### 1. Get Quiztypes
+
 URL: `[url]/Quiztypes`
 
 URL example: `localhost:8080/Quiztypes`
@@ -382,6 +384,8 @@ Response example:
         "name": "MULTIPLE SELECTION"
     }
 ]`
+
+3## 2. GetImageById
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMTY3ODczNjddfQ==
+eyJoaXN0b3J5IjpbLTE5ODA0MjQ2NzldfQ==
 -->
