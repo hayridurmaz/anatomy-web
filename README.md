@@ -424,16 +424,21 @@ Response example:
 
 URL: `[url]/Quiztypes/{QuiztypeId}`
 
-URL example: `localhost:8080/Quiztypes`
+URL example: `localhost:8080/Quiztypes/28`
 
-Request type: `Post`
+Request type: `Put`
 
 Request Body example: 
 `{
-        "name": "NEW QUIZ TYPE"
+        "name": "UPDATED QUIZ TYPE"
     }`
 
 Response example:
+
+`{
+    "id": 28,
+    "name": "UPDATED QUIZ TYPE"
+}`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA1MTk5NjU5N119
+eyJoaXN0b3J5IjpbODEzMjI3MTI2XX0=
 -->
