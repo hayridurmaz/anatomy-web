@@ -28,7 +28,17 @@ public class AccountService implements IAccountService {
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found with id " + Id));
     }
 
-    public void delete(Long Id){
-        accountRepository.deleteById(Id);
+    public String delete(Long Id){
+        try {
+            accountRepository.deleteById(Id);
+            return "Deleted";
+        } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+            }
+
+            return "Cannot delete: " + t.getMessage();
+        }
     }
 }

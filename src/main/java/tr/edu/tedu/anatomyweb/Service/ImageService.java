@@ -30,7 +30,17 @@ public class ImageService implements IImageService {
     }
 
     @Override
-    public void delete(Long Id) {
-        imageRepository.deleteById(Id);
+    public String delete(Long Id) {
+        try {
+            imageRepository.deleteById(Id);
+            return "Deleted";
+        } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+            }
+
+            return "Cannot delete: " + t.getMessage();
+        }
     }
 }

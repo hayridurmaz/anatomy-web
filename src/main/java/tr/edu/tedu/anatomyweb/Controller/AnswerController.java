@@ -69,8 +69,7 @@ public class AnswerController {
     }
 
     @DeleteMapping("/Answers/{AnswerId}")
-    public ResponseEntity<?> deleteAnswer(@PathVariable Long AnswerId) {
-        answerService.delete(AnswerId);
-        return ResponseEntity.ok().build();
+    public String deleteAnswer(@PathVariable Long AnswerId) {
+        return answerService.delete(AnswerId);
     }
 }

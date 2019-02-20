@@ -33,7 +33,17 @@ public class QuizService implements IQuizService {
     }
 
     @Override
-    public void delete(Long quizId) {
-        repository.deleteById(quizId);
+    public String delete(Long quizId) {
+        try {
+            repository.deleteById(quizId);
+            return "Deleted";
+        } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+            }
+
+            return "Cannot delete: " + t.getMessage();
+        }
     }
 }

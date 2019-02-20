@@ -12,5 +12,5 @@ public interface ISystemService {
 
     public SYSTEM findById(long systemId);
 
-    public void delete(Long systemId);
+    public String delete(Long systemId);
 }

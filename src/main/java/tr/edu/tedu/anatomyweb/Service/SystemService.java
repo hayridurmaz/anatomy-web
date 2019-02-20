@@ -33,8 +33,17 @@ public class SystemService implements ISystemService {
     }
 
     @Override
-    public void delete(Long systemId) {
-        repository.deleteById(systemId);
+    public String delete(Long systemId) {
+        try {
+            repository.deleteById(systemId);
+            return "Deleted";
+        } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+            }
+            return "Cannot delete: " + t.getMessage();
+        }
     }
 
 }

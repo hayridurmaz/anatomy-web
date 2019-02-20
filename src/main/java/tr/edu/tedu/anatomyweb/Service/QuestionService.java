@@ -33,7 +33,17 @@ public class QuestionService implements IQuestionService {
     }
 
     @Override
-    public void delete(Long Id) {
-        questionRepository.deleteById(Id);
+    public String delete(Long Id) {
+        try {
+            questionRepository.deleteById(Id);
+            return "Deleted";
+        } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+            }
+
+            return "Cannot delete: " + t.getMessage();
+        }
     }
 }

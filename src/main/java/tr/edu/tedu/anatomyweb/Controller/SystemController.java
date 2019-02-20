@@ -40,9 +40,8 @@ public class SystemController {
     }
 
     @DeleteMapping("/Systems/{SystemId}")
-    public ResponseEntity<?> deleteSystem(@PathVariable Long SystemId) {
-        systemService.delete(SystemId);
-        return ResponseEntity.ok().build();
+    public String deleteSystem(@PathVariable Long SystemId) {
+        return systemService.delete(SystemId);
 
     }
 }

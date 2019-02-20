@@ -12,5 +12,5 @@ public interface IQuiztypeService {
 
     public QUIZTYPE findById(Long quiztypeId);
 
-    public void delete(Long quiztypeId);
+    public String delete(Long quiztypeId);
 }

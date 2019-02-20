@@ -11,5 +11,5 @@ public interface IAnswerService {
 
     public ANSWER findById(Long Id);
 
-    public void delete(Long Id);
+    public String delete(Long Id);
 }

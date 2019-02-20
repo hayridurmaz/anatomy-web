@@ -12,5 +12,5 @@ public interface IAccountService {
 
     public ACCOUNT findById(Long Id);
 
-    public void delete(Long Id);
+    public String delete(Long Id);
 }

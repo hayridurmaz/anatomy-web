@@ -11,5 +11,5 @@ public interface IImageService {
 
     public IMAGE findById(Long Id);
 
-    public void delete(Long Id);
+    public String delete(Long Id);
 }

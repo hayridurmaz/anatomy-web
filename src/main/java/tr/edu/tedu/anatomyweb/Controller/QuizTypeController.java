@@ -41,9 +41,8 @@ public class QuizTypeController {
     }
 
     @DeleteMapping("/Quiztypes/{quiztypeId}")
-    public @ResponseBody ResponseEntity<?> deleteQuiztype(@PathVariable Long quiztypeId) {
-        quiztypeService.delete(quiztypeId);
-        return ResponseEntity.ok().build();
+    public @ResponseBody String deleteQuiztype(@PathVariable Long quiztypeId) {
+        return quiztypeService.delete(quiztypeId);
     }
 
 }

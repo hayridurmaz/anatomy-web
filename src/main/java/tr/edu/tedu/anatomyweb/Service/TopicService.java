@@ -42,7 +42,6 @@ public class TopicService implements ITopicService {
             while (t.getCause() != null) {
                 t = t.getCause();
             }
-
             return "Cannot delete: " + t.getMessage();
         }
     }
