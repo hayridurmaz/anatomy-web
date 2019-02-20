@@ -25,11 +25,6 @@ public class QUESTION {
     // @JsonIgnore
     private IMAGE image;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "correct_answer_id", nullable = false)
-    // @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonIgnore
-    private ANSWER correct_answer;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false)
@@ -113,13 +108,6 @@ public class QUESTION {
         this.quiz = quiz;
     }
 
-    public ANSWER getCorrect_answer() {
-        return correct_answer;
-    }
-
-    public void setCorrect_answer(ANSWER correct_answer) {
-        this.correct_answer = correct_answer;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -130,20 +118,19 @@ public class QUESTION {
         QUESTION question = (QUESTION) o;
         return Objects.equals(id, question.id) && Objects.equals(qtext, question.qtext)
                 && Objects.equals(hint, question.hint) && Objects.equals(answers, question.answers)
-                && Objects.equals(image, question.image) && Objects.equals(correct_answer, question.correct_answer)
                 && Objects.equals(topic, question.topic) && Objects.equals(quiz, question.quiz)
                 && Objects.equals(quiz_id, question.quiz_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qtext, hint, answers, image, correct_answer, topic, quiz, quiz_id);
+        return Objects.hash(id, qtext, hint, answers, image,  topic, quiz, quiz_id);
     }
 
     @Override
     public String toString() {
         return "QUESTION{" + "id=" + id + ", qtext='" + qtext + '\'' + ", hint='" + hint + '\'' + ", answers=" + answers
-                + ", image=" + image + ", correct_answer=" + correct_answer + ", topic=" + topic + ", quiz=" + quiz
+                + ", image=" + image + ", topic=" + topic + ", quiz=" + quiz
                 + ", quiz_id=" + quiz_id + '}';
     }
 }

@@ -4,14 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.web.bind.annotation.*;
-import tr.edu.tedu.anatomyweb.Model.IMAGE;
-import tr.edu.tedu.anatomyweb.Model.QUESTION;
-import tr.edu.tedu.anatomyweb.Model.QUIZ;
-import tr.edu.tedu.anatomyweb.Model.TOPIC;
-import tr.edu.tedu.anatomyweb.Service.IImageService;
-import tr.edu.tedu.anatomyweb.Service.IQuestionService;
-import tr.edu.tedu.anatomyweb.Service.IQuizService;
-import tr.edu.tedu.anatomyweb.Service.ITopicService;
+import tr.edu.tedu.anatomyweb.Model.*;
+import tr.edu.tedu.anatomyweb.Service.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -29,6 +23,8 @@ public class QuestionController {
     IQuizService quizService;
     @Autowired
     IQuestionService questionService;
+    @Autowired
+    IAnswerService answerService;
 
     @GetMapping("/Questions")
     List<QUESTION> getQuestions() {
