@@ -489,7 +489,7 @@ URL: `[url]/Quizzes/{QuizId}`
 
 URL example: `localhost:8080/Quizzes/9`
 
-Request type: `Post`
+Request type: `Get`
 
 Request Body example: 
 ` {
@@ -536,6 +536,6 @@ Response example:
     "id": 9
 }`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMyNDg3NDU5MSwxMzM1MDk3OTgzLDgxMz
-IyNzEyNl19
+eyJoaXN0b3J5IjpbLTEwMzUxMzgwOSwxMzI0ODc0NTkxLDEzMz
+UwOTc5ODMsODEzMjI3MTI2XX0=
 -->
