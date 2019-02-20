@@ -483,6 +483,31 @@ Response example:
     }
 ]`
 
+### 2. Get Quiz By Id
+
+URL: `[url]/Quizzes/{QuizId}`
+
+URL example: `localhost:8080/Quizzes/9`
+
+Request type: `Post`
+
+Request Body example: 
+` {
+    "quiztype": {
+        "id": 7,
+        "name": "SINGLEE SELECTION"
+    },
+    "system": {
+        "id": 3,
+        "name": "system1"
+    },
+    "questions": [],
+    "id": 9
+}`
+
+Response example:
+`-`
+
  ### 3. Add Quiz
 
 URL: `[url]/Quizzes`
@@ -511,6 +536,6 @@ Response example:
     "id": 9
 }`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0NTc3MDQzNzIsMTMzNTA5Nzk4Myw4MT
-MyMjcxMjZdfQ==
+eyJoaXN0b3J5IjpbMTMyNDg3NDU5MSwxMzM1MDk3OTgzLDgxMz
+IyNzEyNl19
 -->
