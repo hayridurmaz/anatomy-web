@@ -554,37 +554,38 @@ Request Body Interface:
 Request Body example:
 
     {
-            "quiz_type_id": 28,
+            "quiz_type_id": 8,
     }
 
 or
 
     {
-            "system_id"?: 23
+            "system_id"?: 4
     }
 
 or
 
     {
-            "quiz_type_id": 28,
-            "system_id"?: 23
+            "quiz_type_id": 8,
+            "system_id"?: 4
     }
 
 Response example:
 
     {
-        "id": 16,
-        "data_url": "data url updated",
-        "topic": {
-            "id": 12,
-            "name": "topic example updated"
-        },
-        "system": {
-            "id": 8,
-            "name": "updated system"
-        }
-    }
+    "quiztype": {
+        "id": 8,
+        "name": "MULTIPLE SELECTION"
+    },
+    "system": {
+        "id": 4,
+        "name": "system2"
+    },
+    "questions": [],
+    "id": 9
+	}
+### 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTc0MzY1MzI4OSwxMzI0ODc0NTkxLDEzMz
-UwOTc5ODMsODEzMjI3MTI2XX0=
+eyJoaXN0b3J5IjpbMTU4NTE3MzY3LDEzMjQ4NzQ1OTEsMTMzNT
+A5Nzk4Myw4MTMyMjcxMjZdfQ==
 -->
