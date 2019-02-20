@@ -23,6 +23,12 @@ public class QUESTION {
     // @JsonIgnore
     private IMAGE image;
 
+    /*@OneToOne(optional = false)
+    @JoinColumn(name = "true_answer", nullable = false)
+    // @OnDelete(action = OnDeleteAction.CASCADE)
+    // @JsonIgnore
+    private ANSWER tanswer;
+*/
     @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
