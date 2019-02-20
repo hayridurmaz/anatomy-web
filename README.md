@@ -547,28 +547,27 @@ Request type: `Put`
 Request Body Interface:
 
     {
-    "data_url"?: string,
-    "topic_id"?: number
-    "system_id"?: number
-    }
+	        "quiz_type_id"?: 28,
+	        "system_id"?: 23
+	}
 
 Request Body example:
 
     {
-            "data_url": "data url updated"
+            "quiz_type_id": 28,
     }
 
 or
 
     {
-            "system_id": "8"
+            "system_id"?: 23
     }
 
 or
 
     {
-            "system_id": "8",
-            "data_url": "data url updated"
+            "quiz_type_id": 28,
+            "system_id"?: 23
     }
 
 Response example:
@@ -586,6 +585,6 @@ Response example:
         }
     }
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcwNDQ4MzY5MSwxMzI0ODc0NTkxLDEzMz
+eyJoaXN0b3J5IjpbMTc0MzY1MzI4OSwxMzI0ODc0NTkxLDEzMz
 UwOTc5ODMsODEzMjI3MTI2XX0=
 -->
