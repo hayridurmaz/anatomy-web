@@ -365,14 +365,23 @@ Response example:
 
 URL: `[url]/Quiztypes`
 
-URL example: `localhost:8080/Images`
+URL example: `localhost:8080/Quiztypes`
 
 Request type: `Get`
 
 Request Body example: `-`
 
 Response example:
-
+[
+    {
+        "id": 7,
+        "name": "SINGLE SELECTION"
+    },
+    {
+        "id": 8,
+        "name": "MULTIPLE SELECTION"
+    }
+]
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjYwODg1NjQ4XX0=
+eyJoaXN0b3J5IjpbLTE3MTYxMDkzMjFdfQ==
 -->
