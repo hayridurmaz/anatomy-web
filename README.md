@@ -535,7 +535,57 @@ Response example:
     "questions": null,
     "id": 9
 }`
+
+### 5. Update Quiz
+
+URL: `[url]/Quizzes/{QuizId}`
+
+URL example: `localhost:8080/Quizzes/9`
+
+Request type: `Put`
+
+Request Body Interface:
+
+    {
+    "data_url"?: string,
+    "topic_id"?: number
+    "system_id"?: number
+    }
+
+Request Body example:
+
+    {
+            "data_url": "data url updated"
+    }
+
+or
+
+    {
+            "system_id": "8"
+    }
+
+or
+
+    {
+            "system_id": "8",
+            "data_url": "data url updated"
+    }
+
+Response example:
+
+    {
+        "id": 16,
+        "data_url": "data url updated",
+        "topic": {
+            "id": 12,
+            "name": "topic example updated"
+        },
+        "system": {
+            "id": 8,
+            "name": "updated system"
+        }
+    }
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzUxMzgwOSwxMzI0ODc0NTkxLDEzMz
+eyJoaXN0b3J5IjpbMTcwNDQ4MzY5MSwxMzI0ODc0NTkxLDEzMz
 UwOTc5ODMsODEzMjI3MTI2XX0=
 -->
