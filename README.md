@@ -462,12 +462,27 @@ URL: `[url]/Quizzes`
 
 URL example: `localhost:8080/Quizzes`
 
-Request type: `Delete`
+Request type: `Get`
 
 Request Body example: 
-`-`
+` {
+        "quiz_type_id": 7,
+        "system_id": 3
+    }`
 
 Response example:
+`{
+    "quiztype": {
+        "id": 7,
+        "name": "SINGLEE SELECTION"
+    },
+    "system": {
+        "id": 3,
+        "name": "system1"
+    },
+    "questions": null,
+    "id": 9
+}`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MTQ4MzExNTIsODEzMjI3MTI2XX0=
+eyJoaXN0b3J5IjpbNTgyNDQ4ODA2LDgxMzIyNzEyNl19
 -->
