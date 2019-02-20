@@ -400,6 +400,20 @@ Response example:
     "id": 7,
     "name": "SINGLE SELECTION"
 }`
+
+### 3. Add Quiztype
+
+URL: `[url]/Quiztypes`
+
+URL example: `localhost:8080/Quiztypes/7`
+
+Request type: `Get`
+
+Request Body example: `{
+        "name": "MULTIPLE SELECTION"
+    }`
+
+Response example:
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4ODQ4MzQwMV19
+eyJoaXN0b3J5IjpbMzQ5MDQ3NDM1XX0=
 -->
