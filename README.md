@@ -439,6 +439,9 @@ Response example:
     "id": 28,
     "name": "UPDATED QUIZ TYPE"
 }`
+
+### 5.Delete Quiztype
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODEzMjI3MTI2XX0=
+eyJoaXN0b3J5IjpbMTkzMDE4Mzk3MCw4MTMyMjcxMjZdfQ==
 -->
