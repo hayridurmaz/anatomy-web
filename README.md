@@ -483,6 +483,34 @@ Response example:
     "questions": null,
     "id": 9
 }`
+
+ ### 3. Add Quiz
+
+URL: `[url]/Quizzes`
+
+URL example: `localhost:8080/Quizzes`
+
+Request type: `Post`
+
+Request Body example: 
+` {
+        "quiz_type_id": 7,
+        "system_id": 3
+    }`
+
+Response example:
+`{
+    "quiztype": {
+        "id": 7,
+        "name": "SINGLEE SELECTION"
+    },
+    "system": {
+        "id": 3,
+        "name": "system1"
+    },
+    "questions": null,
+    "id": 9
+}`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTgyNDQ4ODA2LDgxMzIyNzEyNl19
+eyJoaXN0b3J5IjpbMTMzNTA5Nzk4Myw4MTMyMjcxMjZdfQ==
 -->
