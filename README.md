@@ -453,6 +453,21 @@ Request Body example:
 
 Response example:
 `-`
+
+## IV. Quiz
+
+### 1. Get Quizzes
+
+URL: `[url]/Quizzes`
+
+URL example: `localhost:8080/Quizzes`
+
+Request type: `Delete`
+
+Request Body example: 
+`-`
+
+Response example:
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgwMDY2MTUyMiw4MTMyMjcxMjZdfQ==
+eyJoaXN0b3J5IjpbLTE4MTQ4MzExNTIsODEzMjI3MTI2XX0=
 -->
