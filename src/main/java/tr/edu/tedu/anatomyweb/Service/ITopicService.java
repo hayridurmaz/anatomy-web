@@ -12,5 +12,5 @@ public interface ITopicService {
 
     public TOPIC findById(long topicId);
 
-    public void delete(Long topicId);
+    public String delete(Long topicId);
 }

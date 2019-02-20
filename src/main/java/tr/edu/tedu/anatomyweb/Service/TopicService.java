@@ -1,5 +1,6 @@
 package tr.edu.tedu.anatomyweb.Service;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
@@ -32,7 +33,17 @@ public class TopicService implements ITopicService {
     }
 
     @Override
-    public void delete(Long topicId) {
-        repository.deleteById(topicId);
+    public String delete(Long topicId) {
+        try {
+            repository.deleteById(topicId);
+            return "Deleted";
+        } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+            }
+
+            return "Cannot delete: " + t.getMessage();
+        }
     }
 }
