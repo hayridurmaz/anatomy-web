@@ -405,15 +405,19 @@ Response example:
 
 URL: `[url]/Quiztypes`
 
-URL example: `localhost:8080/Quiztypes/7`
+URL example: `localhost:8080/Quiztypes`
 
-Request type: `Get`
+Request type: `Post`
 
 Request Body example: `{
-        "name": "MULTIPLE SELECTION"
+        "name": "NEW QUIZ TYPE"
     }`
 
 Response example:
+`{
+    "id": 9,
+    "name": "NEW QUIZ TYPE"
+}`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzQ5MDQ3NDM1XX0=
+eyJoaXN0b3J5IjpbMTgwMTMwNjQyMF19
 -->
