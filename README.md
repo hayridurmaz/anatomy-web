@@ -360,6 +360,8 @@ Request Body example:
 Response example:
 
     -
+
+## IV. Quiztype 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM4NTcwMTQ2Nl19
+eyJoaXN0b3J5IjpbLTk2MzQwNDUwOF19
 -->
