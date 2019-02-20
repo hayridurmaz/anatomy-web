@@ -536,7 +536,7 @@ Response example:
     "id": 9
 }`
 
-### 5. Update Quiz
+### 4. Update Quiz
 
 URL: `[url]/Quizzes/{QuizId}`
 
@@ -584,8 +584,21 @@ Response example:
     "questions": [],
     "id": 9
 	}
-### 
+### 5. Delete Quiz
+
+URL: `[url]/Quizzes/{QuizId}`
+
+URL example: `localhost:8080/Quizzes/9`
+
+Request type: `Delete`
+
+Request Body example: 
+`-`
+
+Response example:
+`-`
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU4NTE3MzY3LDEzMjQ4NzQ1OTEsMTMzNT
-A5Nzk4Myw4MTMyMjcxMjZdfQ==
+eyJoaXN0b3J5IjpbLTk2Mjc5NjIyMiwxMzI0ODc0NTkxLDEzMz
+UwOTc5ODMsODEzMjI3MTI2XX0=
 -->
