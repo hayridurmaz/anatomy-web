@@ -442,6 +442,17 @@ Response example:
 
 ### 5.Delete Quiztype
 
+URL: `[url]/Quiztypes/{QuiztypeId}`
+
+URL example: `localhost:8080/Quiztypes/28`
+
+Request type: `Delete`
+
+Request Body example: 
+`-`
+
+Response example:
+`-`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkzMDE4Mzk3MCw4MTMyMjcxMjZdfQ==
+eyJoaXN0b3J5IjpbMTgwMDY2MTUyMiw4MTMyMjcxMjZdfQ==
 -->
