@@ -362,6 +362,17 @@ Response example:
     -
 
 ## IV. Quiztype 
+
+URL: `[url]/Quiztypes`
+
+URL example: `localhost:8080/Images`
+
+Request type: `Get`
+
+Request Body example: `-`
+
+Response example:
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk2MzQwNDUwOF19
+eyJoaXN0b3J5IjpbNjYwODg1NjQ4XX0=
 -->
