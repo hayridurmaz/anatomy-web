@@ -385,7 +385,17 @@ Response example:
     }
 ]`
 
-3## 2. GetImageById
+### 2. Get Quiztype By Id
+
+URL: `[url]/Quiztypes/{QuiztypeId}`
+
+URL example: `localhost:8080/Quiztypes/7`
+
+Request type: `Get`
+
+Request Body example: `-`
+
+Response example:
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5ODA0MjQ2NzldfQ==
+eyJoaXN0b3J5IjpbLTE1MjA2ODczMDBdfQ==
 -->
