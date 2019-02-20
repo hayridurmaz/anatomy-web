@@ -20,8 +20,19 @@ public class ANSWER {
     @JsonIgnore
     private QUESTION question;
 
+    @Column(name="question_id", insertable=false, updatable=false)
+    private Long question_id;
+
     public ANSWER() {
 
+    }
+
+    public void setQuestion_id(Long question_id) {
+        this.question_id = question_id;
+    }
+
+    public Long getQuestion_id() {
+        return question_id;
     }
 
     public Long getId() {
@@ -50,22 +61,27 @@ public class ANSWER {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         ANSWER answer = (ANSWER) o;
-        return Objects.equals(id, answer.id) && Objects.equals(atext, answer.atext)
-                && Objects.equals(question, answer.question);
+        return id.equals(answer.id) &&
+                atext.equals(answer.atext) &&
+                question.equals(answer.question) &&
+                question_id.equals(answer.question_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, atext, question);
+        return Objects.hash(id, atext, question, question_id);
     }
 
     @Override
     public String toString() {
-        return "ANSWER{" + "id=" + id + ", atext='" + atext + '\'' + ", question=" + question + '}';
+        return "ANSWER{" +
+                "id=" + id +
+                ", atext='" + atext + '\'' +
+                ", question=" + question +
+                ", question_id=" + question_id +
+                '}';
     }
 }

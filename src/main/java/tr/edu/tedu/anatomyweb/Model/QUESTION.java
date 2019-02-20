@@ -43,7 +43,19 @@ public class QUESTION {
     @JsonIgnore
     private QUIZ quiz;
 
+    @Column(name="quiz_id", insertable=false, updatable=false)
+    private Long quiz_id;
+
+
     public QUESTION() {
+    }
+
+    public void setQuiz_id(Long quiz_id) {
+        this.quiz_id = quiz_id;
+    }
+
+    public Long getQuiz_id() {
+        return quiz_id;
     }
 
     public Long getId() {
@@ -103,26 +115,36 @@ public class QUESTION {
     }
 
     @Override
+    public String toString() {
+        return "QUESTION{" +
+                "id=" + id +
+                ", qtext='" + qtext + '\'' +
+                ", hint='" + hint + '\'' +
+                ", answers=" + answers +
+                ", image=" + image +
+                ", topic=" + topic +
+                ", quiz=" + quiz +
+                ", quiz_id=" + quiz_id +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         QUESTION question = (QUESTION) o;
-        return Objects.equals(id, question.id) && Objects.equals(qtext, question.qtext)
-                && Objects.equals(hint, question.hint) && Objects.equals(answers, question.answers)
-                && Objects.equals(image, question.image) && Objects.equals(topic, question.topic)
-                && Objects.equals(quiz, question.quiz);
+        return id.equals(question.id) &&
+                qtext.equals(question.qtext) &&
+                hint.equals(question.hint) &&
+                answers.equals(question.answers) &&
+                image.equals(question.image) &&
+                topic.equals(question.topic) &&
+                quiz.equals(question.quiz) &&
+                quiz_id.equals(question.quiz_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qtext, hint, answers, image, topic, quiz);
-    }
-
-    @Override
-    public String toString() {
-        return "QUESTION{" + "id=" + id + ", qtext='" + qtext + '\'' + ", hint='" + hint + '\'' + ", answers=" + answers
-                + ", image=" + image + ", topic=" + topic + ", quiz=" + quiz + '}';
+        return Objects.hash(id, qtext, hint, answers, image, topic, quiz, quiz_id);
     }
 }
