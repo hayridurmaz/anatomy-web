@@ -465,24 +465,23 @@ URL example: `localhost:8080/Quizzes`
 Request type: `Get`
 
 Request Body example: 
-` {
-        "quiz_type_id": 7,
-        "system_id": 3
-    }`
+`-`
 
 Response example:
-`{
-    "quiztype": {
-        "id": 7,
-        "name": "SINGLEE SELECTION"
-    },
-    "system": {
-        "id": 3,
-        "name": "system1"
-    },
-    "questions": null,
-    "id": 9
-}`
+`[
+    {
+        "quiztype": {
+            "id": 7,
+            "name": "SINGLEE SELECTION"
+        },
+        "system": {
+            "id": 3,
+            "name": "system1"
+        },
+        "questions": [],
+        "id": 9
+    }
+]`
 
  ### 3. Add Quiz
 
@@ -512,5 +511,6 @@ Response example:
     "id": 9
 }`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMzNTA5Nzk4Myw4MTMyMjcxMjZdfQ==
+eyJoaXN0b3J5IjpbLTE0NTc3MDQzNzIsMTMzNTA5Nzk4Myw4MT
+MyMjcxMjZdfQ==
 -->
