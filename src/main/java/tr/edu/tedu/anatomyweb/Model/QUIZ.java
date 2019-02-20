@@ -1,5 +1,7 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -15,13 +17,13 @@ public class QUIZ {
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_type_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonIgnore
+    //@JsonIgnore
     private QUIZTYPE quiztype;
 
     @ManyToOne(/* = FetchType.LAZY */optional = false)
     @JoinColumn(name = "system_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonIgnore
+    //@JsonIgnore
     private SYSTEM system;
 
     @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)

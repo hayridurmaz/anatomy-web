@@ -1,5 +1,7 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -32,7 +34,7 @@ public class QUESTION {
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
-    // @JsonIgnore
+    @JsonIgnore
     private QUIZ quiz;
 
     public QUESTION() {
