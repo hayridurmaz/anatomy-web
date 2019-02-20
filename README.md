@@ -396,6 +396,10 @@ Request type: `Get`
 Request Body example: `-`
 
 Response example:
+`{
+    "id": 7,
+    "name": "SINGLE SELECTION"
+}`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MjA2ODczMDBdfQ==
+eyJoaXN0b3J5IjpbLTg4ODQ4MzQwMV19
 -->
