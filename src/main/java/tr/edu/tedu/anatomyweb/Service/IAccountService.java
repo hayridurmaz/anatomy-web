@@ -1,7 +1,6 @@
 package tr.edu.tedu.anatomyweb.Service;
 
 import tr.edu.tedu.anatomyweb.Model.ACCOUNT;
-import tr.edu.tedu.anatomyweb.Model.ANSWER;
 
 import java.util.List;
 

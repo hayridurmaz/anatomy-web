@@ -3,10 +3,13 @@ package tr.edu.tedu.anatomyweb.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tr.edu.tedu.anatomyweb.Model.*;
-import tr.edu.tedu.anatomyweb.Service.*;
+import tr.edu.tedu.anatomyweb.Model.IMAGE;
+import tr.edu.tedu.anatomyweb.Model.SYSTEM;
+import tr.edu.tedu.anatomyweb.Model.TOPIC;
+import tr.edu.tedu.anatomyweb.Service.IImageService;
+import tr.edu.tedu.anatomyweb.Service.ISystemService;
+import tr.edu.tedu.anatomyweb.Service.ITopicService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -82,7 +85,8 @@ public class ImageController {
     }
 
     @DeleteMapping("/Images/{imageId}")
-    public @ResponseBody String deleteImage(@PathVariable Long imageId) {
+    public @ResponseBody
+    String deleteImage(@PathVariable Long imageId) {
         return imageService.delete(imageId);
     }
 

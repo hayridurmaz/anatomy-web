@@ -20,7 +20,7 @@ public class ANSWER {
     @JsonIgnore
     private QUESTION question;
 
-    @Column(name="question_id", insertable=false, updatable=false)
+    @Column(name = "question_id", insertable = false, updatable = false)
     private Long question_id;
 
     public ANSWER() {

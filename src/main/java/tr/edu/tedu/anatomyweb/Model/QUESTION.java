@@ -25,12 +25,12 @@ public class QUESTION {
     // @JsonIgnore
     private IMAGE image;
 
-    /*@OneToOne(optional = false)
-    @JoinColumn(name = "true_answer", nullable = false)
+    @OneToOne(optional = false)
+    @JoinColumn(name = "correct_answer_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonIgnore
-    private ANSWER tanswer;
-*/
+    private ANSWER correct_answer;
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
@@ -43,7 +43,7 @@ public class QUESTION {
     @JsonIgnore
     private QUIZ quiz;
 
-    @Column(name="quiz_id", insertable=false, updatable=false)
+    @Column(name = "quiz_id", insertable = false, updatable = false)
     private Long quiz_id;
 
 

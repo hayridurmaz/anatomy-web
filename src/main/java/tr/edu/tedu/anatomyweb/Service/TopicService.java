@@ -1,6 +1,5 @@
 package tr.edu.tedu.anatomyweb.Service;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;

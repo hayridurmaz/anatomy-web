@@ -3,11 +3,8 @@ package tr.edu.tedu.anatomyweb.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.tedu.anatomyweb.Model.ACCOUNT;
-import tr.edu.tedu.anatomyweb.Model.ANSWER;
-import tr.edu.tedu.anatomyweb.Model.QUESTION;
 import tr.edu.tedu.anatomyweb.Service.IAccountService;
 import tr.edu.tedu.anatomyweb.Utils.UserRole;
 

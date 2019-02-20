@@ -1,14 +1,10 @@
 package tr.edu.tedu.anatomyweb.Controller;
 
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Service.ITopicService;
 
-import javax.persistence.PersistenceException;
-import javax.persistence.RollbackException;
 import javax.validation.Valid;
 import java.util.List;
 
