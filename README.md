@@ -1,3 +1,7 @@
+# Anatomy Web Platform whole readme
+
+https://github.com/hayridurmaz/anatomy-web-readme
+
 # Anatomy-Web API Reference
 
 ## I. Topics
@@ -361,7 +365,7 @@ Response example:
 
     -
 
-## IV. Quiztype 
+## IV. Quiztype
 
 ### 1. Get Quiztypes
 
@@ -374,16 +378,7 @@ Request type: `Get`
 Request Body example: `-`
 
 Response example:
-`[
-    {
-        "id": 7,
-        "name": "SINGLE SELECTION"
-    },
-    {
-        "id": 8,
-        "name": "MULTIPLE SELECTION"
-    }
-]`
+`[ { "id": 7, "name": "SINGLE SELECTION" }, { "id": 8, "name": "MULTIPLE SELECTION" } ]`
 
 ### 2. Get Quiztype By Id
 
@@ -396,10 +391,7 @@ Request type: `Get`
 Request Body example: `-`
 
 Response example:
-`{
-    "id": 7,
-    "name": "SINGLE SELECTION"
-}`
+`{ "id": 7, "name": "SINGLE SELECTION" }`
 
 ### 3. Add Quiztype
 
@@ -409,16 +401,11 @@ URL example: `localhost:8080/Quiztypes`
 
 Request type: `Post`
 
-Request Body example: 
-`{
-        "name": "NEW QUIZ TYPE"
-    }`
+Request Body example:
+`{ "name": "NEW QUIZ TYPE" }`
 
 Response example:
-`{
-    "id": 9,
-    "name": "NEW QUIZ TYPE"
-}`
+`{ "id": 9, "name": "NEW QUIZ TYPE" }`
 
 ### 4. Update Quiztype
 
@@ -428,17 +415,12 @@ URL example: `localhost:8080/Quiztypes/28`
 
 Request type: `Put`
 
-Request Body example: 
-`{
-        "name": "UPDATED QUIZ TYPE"
-    }`
+Request Body example:
+`{ "name": "UPDATED QUIZ TYPE" }`
 
 Response example:
 
-`{
-    "id": 28,
-    "name": "UPDATED QUIZ TYPE"
-}`
+`{ "id": 28, "name": "UPDATED QUIZ TYPE" }`
 
 ### 5.Delete Quiztype
 
@@ -448,7 +430,7 @@ URL example: `localhost:8080/Quiztypes/28`
 
 Request type: `Delete`
 
-Request Body example: 
+Request Body example:
 `-`
 
 Response example:
@@ -464,24 +446,11 @@ URL example: `localhost:8080/Quizzes`
 
 Request type: `Get`
 
-Request Body example: 
+Request Body example:
 `-`
 
 Response example:
-`[
-    {
-        "quiztype": {
-            "id": 7,
-            "name": "SINGLEE SELECTION"
-        },
-        "system": {
-            "id": 3,
-            "name": "system1"
-        },
-        "questions": [],
-        "id": 9
-    }
-]`
+`[ { "quiztype": { "id": 7, "name": "SINGLEE SELECTION" }, "system": { "id": 3, "name": "system1" }, "questions": [], "id": 9 } ]`
 
 ### 2. Get Quiz By Id
 
@@ -491,23 +460,23 @@ URL example: `localhost:8080/Quizzes/9`
 
 Request type: `Get`
 
-Request Body example: 
-    "quiztype": {
-        "id": 7,
-        "name": "SINGLEE SELECTION"
-    },
-    "system": {
-        "id": 3,
-        "name": "system1"
-    },
-    "questions": [],
-    "id": 9
+Request Body example:
+"quiztype": {
+"id": 7,
+"name": "SINGLEE SELECTION"
+},
+"system": {
+"id": 3,
+"name": "system1"
+},
+"questions": [],
+"id": 9
 }`
 
 Response example:
 `-`
 
- ### 3. Add Quiz
+### 3. Add Quiz
 
 URL: `[url]/Quizzes`
 
@@ -515,7 +484,7 @@ URL example: `localhost:8080/Quizzes`
 
 Request type: `Post`
 
-Request Body example: 
+Request Body example:
 ` {
 
     {
@@ -524,18 +493,7 @@ Request Body example:
     }
 
 Response example:
-`{
-    "quiztype": {
-        "id": 7,
-        "name": "SINGLEE SELECTION"
-    },
-    "system": {
-        "id": 3,
-        "name": "system1"
-    },
-    "questions": null,
-    "id": 9
-}`
+`{ "quiztype": { "id": 7, "name": "SINGLEE SELECTION" }, "system": { "id": 3, "name": "system1" }, "questions": null, "id": 9 }`
 
 ### 4. Update Quiz
 
@@ -548,9 +506,9 @@ Request type: `Put`
 Request Body Interface:
 
     {
-	        "quiz_type_id"?: 28,
-	        "system_id"?: 23
-	}
+            "quiz_type_id"?: 28,
+            "system_id"?: 23
+    }
 
 Request Body example:
 
@@ -584,7 +542,8 @@ Response example:
     },
     "questions": [],
     "id": 9
-	}
+    }
+
 ### 5. Delete Quiz
 
 URL: `[url]/Quizzes/{QuizId}`
@@ -593,14 +552,13 @@ URL example: `localhost:8080/Quizzes/9`
 
 Request type: `Delete`
 
-Request Body example: 
+Request Body example:
 `-`
 
 Response example:
 `-`
 
 ## V. Question
-
 
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbLTg2MTU1MTA4MCwtNTg4NDgxNzMyLDEwMj
