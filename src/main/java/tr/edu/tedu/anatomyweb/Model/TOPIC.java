@@ -4,31 +4,31 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "SYSTEM")
-public class SYSTEM {
+@Table(name = "TOPIC")
+public class TOPIC {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     private String NAME;
 
-    public SYSTEM() {
-    }
-
-    public Long getID() {
-        return ID;
+    public TOPIC() {
     }
 
     public void setID(Long ID) {
         this.ID = ID;
     }
 
-    public String getNAME() {
-        return NAME;
-    }
-
     public void setNAME(String NAME) {
         this.NAME = NAME;
+    }
+
+    public Long getID() {
+        return ID;
+    }
+
+    public String getNAME() {
+        return NAME;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class SYSTEM {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        SYSTEM system = (SYSTEM) o;
-        return Objects.equals(ID, system.ID) && Objects.equals(NAME, system.NAME);
+        TOPIC topic = (TOPIC) o;
+        return ID.equals(topic.ID) && Objects.equals(NAME, topic.NAME);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class SYSTEM {
 
     @Override
     public String toString() {
-        return "SYSTEM{" + "ID=" + ID + ", NAME='" + NAME + '\'' + '}';
+        return "TOPIC{" + "ID=" + ID + ", NAME='" + NAME + '\'' + '}';
     }
 }

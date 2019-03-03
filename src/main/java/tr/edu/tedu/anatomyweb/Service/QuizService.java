@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.QUIZ;
-import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
 import tr.edu.tedu.anatomyweb.Repository.QuizRepository;
-import tr.edu.tedu.anatomyweb.Repository.QuizTypeRepository;
 
 import java.util.List;
+
 @Service
 public class QuizService implements IQuizService {
 
@@ -22,19 +21,29 @@ public class QuizService implements IQuizService {
     }
 
     @Override
-    public QUIZ save(QUIZ quiz){
+    public QUIZ save(QUIZ quiz) {
         return repository.save(quiz);
     }
 
     @Override
-    public QUIZ findById(Long Id){
-        QUIZ q = repository.findById(Id).orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + Id));
+    public QUIZ findById(Long quizId) {
+        QUIZ q = repository.findById(quizId)
+                .orElseThrow(() -> new ResourceNotFoundException("Quiz not found with id " + quizId));
         return q;
     }
 
     @Override
-    public void delete(Long Id){
-        QUIZ q = findById(Id);
-        repository.delete(q);
+    public String delete(Long quizId) {
+        try {
+            repository.deleteById(quizId);
+            return "Deleted";
+        } catch (Exception e) {
+            Throwable t = e;
+            while (t.getCause() != null) {
+                t = t.getCause();
+            }
+
+            return "Cannot delete: " + t.getMessage();
+        }
     }
 }

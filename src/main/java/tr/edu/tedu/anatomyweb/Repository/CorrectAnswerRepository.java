@@ -2,8 +2,8 @@ package tr.edu.tedu.anatomyweb.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tr.edu.tedu.anatomyweb.Model.QUIZTYPE;
+import tr.edu.tedu.anatomyweb.Model.CORRECTANSWER;
 
 @Repository
-public interface QuizTypeRepository extends JpaRepository<QUIZTYPE, Long> {
+public interface CorrectAnswerRepository extends JpaRepository<CORRECTANSWER,Long> {
 }
