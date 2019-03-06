@@ -1,5 +1,7 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import tr.edu.tedu.anatomyweb.Utils.MediaType;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -22,6 +24,8 @@ public class MEDIA {
     @JoinColumn(name = "system_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     private SYSTEM system;
+
+    private MediaType mediaType;
 
     public MEDIA() {
     }
@@ -58,25 +62,40 @@ public class MEDIA {
         this.system = system;
     }
 
+    public MediaType getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(MediaType mediaType) {
+        this.mediaType = mediaType;
+    }
+
+
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        MEDIA MEDIA = (MEDIA) o;
-        return Objects.equals(id, MEDIA.id) && Objects.equals(data_url, MEDIA.data_url)
-                && Objects.equals(topic, MEDIA.topic) && Objects.equals(system, MEDIA.system);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MEDIA media = (MEDIA) o;
+        return Objects.equals(id, media.id) &&
+                Objects.equals(data_url, media.data_url) &&
+                Objects.equals(topic, media.topic) &&
+                Objects.equals(system, media.system) &&
+                mediaType == media.mediaType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, data_url, topic, system);
+        return Objects.hash(id, data_url, topic, system, mediaType);
     }
 
     @Override
     public String toString() {
-        return "MEDIA{" + "id=" + id + ", data_url='" + data_url + '\'' + ", topic=" + topic + ", system=" + system
-                + '}';
+        return "MEDIA{" +
+                "id=" + id +
+                ", data_url='" + data_url + '\'' +
+                ", topic=" + topic +
+                ", system=" + system +
+                ", mediaType=" + mediaType +
+                '}';
     }
 }
