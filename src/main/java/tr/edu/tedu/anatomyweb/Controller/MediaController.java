@@ -10,6 +10,7 @@ import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Service.IMediaService;
 import tr.edu.tedu.anatomyweb.Service.ISystemService;
 import tr.edu.tedu.anatomyweb.Service.ITopicService;
+import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -51,10 +52,12 @@ public class MediaController {
 
         SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
         TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
+        MediaType media_type = MediaType.valueOf(parser.get("media_type").toString());
 
         MEDIA i = new MEDIA();
         i.setTopic(t);
         i.setSystem(s);
+        i.setMediaType(media_type);
         i.setData_url(parser.get("data_url").toString());
         return mediaService.save(i);
     }
@@ -79,6 +82,11 @@ public class MediaController {
         if (parser.get("data_url") != null) {
             String data_url = parser.get("data_url").toString();
             i.setData_url(data_url);
+        }
+
+        if (parser.get("media_type") != null) {
+            String media_type = parser.get("media_type").toString();
+            i.setMediaType(MediaType.valueOf(media_type));
         }
 
         return mediaService.save(i);
