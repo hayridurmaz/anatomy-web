@@ -15,6 +15,8 @@ public class MEDIA {
 
     private String data_url;
 
+    private String thumbnail_url;
+
     @ManyToOne(optional = false /*,cascade = CascadeType.ALL*/)
     @JoinColumn(name = "topic_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
@@ -70,6 +72,13 @@ public class MEDIA {
         this.mediaType = mediaType;
     }
 
+    public String getThumbnail_url() {
+        return thumbnail_url;
+    }
+
+    public void setThumbnail_url(String thumbnail_url) {
+        this.thumbnail_url = thumbnail_url;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -93,6 +102,7 @@ public class MEDIA {
         return "MEDIA{" +
                 "id=" + id +
                 ", data_url='" + data_url + '\'' +
+                ", thumbnail_url='" + thumbnail_url + '\'' +
                 ", topic=" + topic +
                 ", system=" + system +
                 ", mediaType=" + mediaType +

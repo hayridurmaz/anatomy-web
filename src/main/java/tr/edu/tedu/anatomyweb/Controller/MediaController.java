@@ -59,6 +59,7 @@ public class MediaController {
         i.setSystem(s);
         i.setMediaType(media_type);
         i.setData_url(parser.get("data_url").toString());
+        i.setThumbnail_url(parser.get("thumbnail_url").toString());
         return mediaService.save(i);
     }
 
@@ -84,10 +85,18 @@ public class MediaController {
             i.setData_url(data_url);
         }
 
+        if (parser.get("thumbnail_url") != null) {
+            String data_url = parser.get("thumbnail_url").toString();
+            i.setThumbnail_url(data_url);
+        }
+
+
         if (parser.get("media_type") != null) {
             String media_type = parser.get("media_type").toString();
             i.setMediaType(MediaType.valueOf(media_type));
         }
+
+
 
         return mediaService.save(i);
     }
