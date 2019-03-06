@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.web.bind.annotation.*;
-import tr.edu.tedu.anatomyweb.Model.IMAGE;
+import tr.edu.tedu.anatomyweb.Model.MEDIA;
 import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Model.TOPIC;
-import tr.edu.tedu.anatomyweb.Service.IImageService;
+import tr.edu.tedu.anatomyweb.Service.IMediaService;
 import tr.edu.tedu.anatomyweb.Service.ISystemService;
 import tr.edu.tedu.anatomyweb.Service.ITopicService;
 
@@ -18,33 +18,33 @@ import java.util.Map;
 
 @CrossOrigin
 @RestController
-public class ImageController {
+public class MediaController {
 
     @Autowired
     ISystemService systemService;
     @Autowired
     ITopicService topicService;
     @Autowired
-    IImageService imageService;
+    IMediaService mediaService;
 
-    @GetMapping(("/Images"))
-    List<IMAGE> getImages() {
-        List<IMAGE> img = new ArrayList<>();
-        imageService.findAll().forEach(image -> {
-            // System.out.println(image.getSystem().toString());
-            img.add(image);
+    @GetMapping(("/Media"))
+    List<MEDIA> getMedia() {
+        List<MEDIA> img = new ArrayList<>();
+        mediaService.findAll().forEach(media -> {
+            // System.out.println(Media.getSystem().toString());
+            img.add(media);
         });
         return img;
     }
 
-    @GetMapping(("/Images/{ImageId}"))
-    IMAGE getImageById(@PathVariable Long ImageId) {
-        IMAGE img = imageService.findById(ImageId);
+    @GetMapping(("/Media/{MediaId}"))
+    MEDIA getMediaById(@PathVariable Long MediaId) {
+        MEDIA img = mediaService.findById(MediaId);
         return img;
     }
 
-    @PostMapping("/Images")
-    public IMAGE createImage(@Valid @RequestBody String reqBody) {
+    @PostMapping("/Media")
+    public MEDIA createMedia(@Valid @RequestBody String reqBody) {
 
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
@@ -52,19 +52,19 @@ public class ImageController {
         SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
         TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
 
-        IMAGE i = new IMAGE();
+        MEDIA i = new MEDIA();
         i.setTopic(t);
         i.setSystem(s);
         i.setData_url(parser.get("data_url").toString());
-        return imageService.save(i);
+        return mediaService.save(i);
     }
 
-    @PutMapping("/Images/{imageId}")
-    public IMAGE updateImage(@PathVariable Long imageId, @Valid @RequestBody String reqBody) {
+    @PutMapping("/Media/{MediaId}")
+    public MEDIA updateMedia(@PathVariable Long MediaId, @Valid @RequestBody String reqBody) {
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
 
-        IMAGE i = imageService.findById(imageId);
+        MEDIA i = mediaService.findById(MediaId);
         if (parser.get("system_id") != null) {
             SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
             i.setSystem(s);
@@ -81,13 +81,12 @@ public class ImageController {
             i.setData_url(data_url);
         }
 
-        return imageService.save(i);
+        return mediaService.save(i);
     }
 
-    @DeleteMapping("/Images/{imageId}")
-    public @ResponseBody
-    String deleteImage(@PathVariable Long imageId) {
-        return imageService.delete(imageId);
+    @DeleteMapping("/Media/{MediaId}")
+    public @ResponseBody String deleteMedia(@PathVariable Long MediaId) {
+        return mediaService.delete(MediaId);
     }
 
 }

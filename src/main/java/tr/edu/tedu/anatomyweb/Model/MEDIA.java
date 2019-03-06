@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "IMAGE")
-public class IMAGE {
+@Table(name = "MEDIA")
+public class MEDIA {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +23,7 @@ public class IMAGE {
     // @OnDelete(action = OnDeleteAction.CASCADE)
     private SYSTEM system;
 
-    public IMAGE() {
+    public MEDIA() {
     }
 
     public Long getId() {
@@ -64,9 +64,9 @@ public class IMAGE {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        IMAGE image = (IMAGE) o;
-        return Objects.equals(id, image.id) && Objects.equals(data_url, image.data_url)
-                && Objects.equals(topic, image.topic) && Objects.equals(system, image.system);
+        MEDIA MEDIA = (MEDIA) o;
+        return Objects.equals(id, MEDIA.id) && Objects.equals(data_url, MEDIA.data_url)
+                && Objects.equals(topic, MEDIA.topic) && Objects.equals(system, MEDIA.system);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class IMAGE {
 
     @Override
     public String toString() {
-        return "IMAGE{" + "id=" + id + ", data_url='" + data_url + '\'' + ", topic=" + topic + ", system=" + system
+        return "MEDIA{" + "id=" + id + ", data_url='" + data_url + '\'' + ", topic=" + topic + ", system=" + system
                 + '}';
     }
 }

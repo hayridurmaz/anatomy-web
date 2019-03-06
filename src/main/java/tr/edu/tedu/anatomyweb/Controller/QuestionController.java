@@ -16,7 +16,7 @@ import java.util.Map;
 public class QuestionController {
 
     @Autowired
-    IImageService imageService;
+    IMediaService mediaService;
     @Autowired
     ITopicService topicService;
     @Autowired
@@ -43,7 +43,7 @@ public class QuestionController {
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
 
-        IMAGE i = imageService.findById(Long.parseLong(parser.get("image_id").toString()));
+        MEDIA i = mediaService.findById(Long.parseLong(parser.get("media_id").toString()));
         TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
         QUIZ q = quizService.findById(Long.parseLong(parser.get("quiz_id").toString()));
         String qtext = parser.get("qtext").toString();
@@ -52,7 +52,7 @@ public class QuestionController {
         QUESTION qu = new QUESTION();
         qu.setHint(hint);
         qu.setQtext(qtext);
-        qu.setImage(i);
+        qu.setMEDIA(i);
         qu.setTopic(t);
         qu.setQuiz(q);
         return questionService.save(qu);
@@ -66,15 +66,15 @@ public class QuestionController {
 
         QUESTION qu = questionService.findById(QuestionId);
 
-        IMAGE i;
+        MEDIA i;
         TOPIC t;
         QUIZ q;
         String qtext;
         String hint;
 
-        if (parser.get("image_id") != null) {
-            i = imageService.findById(Long.parseLong(parser.get("image_id").toString()));
-            qu.setImage(i);
+        if (parser.get("media_id") != null) {
+            i = mediaService.findById(Long.parseLong(parser.get("media_id").toString()));
+            qu.setMEDIA(i);
         }
 
         if (parser.get("topic_id") != null) {
