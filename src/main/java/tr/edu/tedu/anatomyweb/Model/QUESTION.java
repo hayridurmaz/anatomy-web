@@ -20,11 +20,10 @@ public class QUESTION {
     public List<ANSWER> answers;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "image_id", nullable = false)
+    @JoinColumn(name = "media_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonIgnore
-    private IMAGE image;
-
+    private MEDIA MEDIA;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "topic_id", nullable = false)
@@ -84,12 +83,12 @@ public class QUESTION {
         this.answers = answers;
     }
 
-    public IMAGE getImage() {
-        return image;
+    public MEDIA getMEDIA() {
+        return MEDIA;
     }
 
-    public void setImage(IMAGE image) {
-        this.image = image;
+    public void setMEDIA(MEDIA MEDIA) {
+        this.MEDIA = MEDIA;
     }
 
     public TOPIC getTopic() {
@@ -108,7 +107,6 @@ public class QUESTION {
         this.quiz = quiz;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -124,13 +122,12 @@ public class QUESTION {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, qtext, hint, answers, image,  topic, quiz, quiz_id);
+        return Objects.hash(id, qtext, hint, answers, MEDIA, topic, quiz, quiz_id);
     }
 
     @Override
     public String toString() {
         return "QUESTION{" + "id=" + id + ", qtext='" + qtext + '\'' + ", hint='" + hint + '\'' + ", answers=" + answers
-                + ", image=" + image + ", topic=" + topic + ", quiz=" + quiz
-                + ", quiz_id=" + quiz_id + '}';
+                + ", MEDIA=" + MEDIA + ", topic=" + topic + ", quiz=" + quiz + ", quiz_id=" + quiz_id + '}';
     }
 }
