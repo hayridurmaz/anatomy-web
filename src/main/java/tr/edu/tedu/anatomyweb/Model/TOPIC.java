@@ -1,7 +1,9 @@
 package tr.edu.tedu.anatomyweb.Model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "TOPIC")
@@ -11,6 +13,15 @@ public class TOPIC {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
     private String NAME;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "topics")
+    private Set<MEDIA> medias = new HashSet<>();
+
 
     public TOPIC() {
     }

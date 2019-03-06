@@ -13,9 +13,7 @@ import tr.edu.tedu.anatomyweb.Service.ITopicService;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @CrossOrigin
 @RestController
@@ -51,11 +49,22 @@ public class MediaController {
         Map parser = factory.parseMap(reqBody);
 
         SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
-        TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
+        //TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
         MediaType media_type = MediaType.valueOf(parser.get("media_type").toString());
 
         MEDIA i = new MEDIA();
-        i.setTopic(t);
+        //i.setTopic(t);
+
+        Set<TOPIC> topics = new HashSet<>();
+        List<Object> topic_ids = factory.parseList(parser.get("topic_ids").toString());
+        for (Object o :
+                topic_ids) {
+            System.out.println(o);
+            TOPIC t = topicService.findById(Long.parseLong(o.toString()));
+            topics.add(t);
+        }
+
+        i.setTopics(topics);
         i.setSystem(s);
         i.setMediaType(media_type);
         i.setData_url(parser.get("data_url").toString());
@@ -68,15 +77,24 @@ public class MediaController {
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
 
+
         MEDIA i = mediaService.findById(MediaId);
         if (parser.get("system_id") != null) {
             SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
             i.setSystem(s);
         }
 
-        if (parser.get("topic_id") != null) {
-            TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
-            i.setTopic(t);
+        if (parser.get("topic_ids") != null) {
+            Set<TOPIC> topics = new HashSet<>();
+            List<Object> topic_ids = factory.parseList(parser.get("topic_ids").toString());
+            for (Object o :
+                    topic_ids) {
+                System.out.println(o);
+                TOPIC t = topicService.findById(Long.parseLong(o.toString()));
+                topics.add(t);
+            }
+
+            i.setTopics(topics);
 
         }
 
@@ -97,12 +115,13 @@ public class MediaController {
         }
 
 
-
+        //return i;
         return mediaService.save(i);
     }
 
     @DeleteMapping("/Media/{MediaId}")
-    public @ResponseBody String deleteMedia(@PathVariable Long MediaId) {
+    public @ResponseBody
+    String deleteMedia(@PathVariable Long MediaId) {
         return mediaService.delete(MediaId);
     }
 

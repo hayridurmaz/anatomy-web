@@ -3,7 +3,9 @@ package tr.edu.tedu.anatomyweb.Model;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "MEDIA")
@@ -17,10 +19,17 @@ public class MEDIA {
 
     private String thumbnail_url;
 
-    @ManyToOne(optional = false /*,cascade = CascadeType.ALL*/)
-    @JoinColumn(name = "topic_id", nullable = false)
-    // @OnDelete(action = OnDeleteAction.CASCADE)
-    private TOPIC topic;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "media_topic",
+            joinColumns = {@JoinColumn(name = "media_id")},
+            inverseJoinColumns = {@JoinColumn(name = "topic_id")})
+    private Set<TOPIC> topics = new HashSet<>();
+
 
     @ManyToOne(optional = false/*, cascade = CascadeType.ALL*/)
     @JoinColumn(name = "system_id", nullable = false)
@@ -48,13 +57,6 @@ public class MEDIA {
         this.data_url = data_url;
     }
 
-    public TOPIC getTopic() {
-        return topic;
-    }
-
-    public void setTopic(TOPIC topic) {
-        this.topic = topic;
-    }
 
     public SYSTEM getSystem() {
         return system;
@@ -80,6 +82,14 @@ public class MEDIA {
         this.thumbnail_url = thumbnail_url;
     }
 
+    public Set<TOPIC> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(Set<TOPIC> topics) {
+        this.topics = topics;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -87,14 +97,15 @@ public class MEDIA {
         MEDIA media = (MEDIA) o;
         return Objects.equals(id, media.id) &&
                 Objects.equals(data_url, media.data_url) &&
-                Objects.equals(topic, media.topic) &&
+                Objects.equals(thumbnail_url, media.thumbnail_url) &&
+                Objects.equals(topics, media.topics) &&
                 Objects.equals(system, media.system) &&
                 mediaType == media.mediaType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, data_url, topic, system, mediaType);
+        return Objects.hash(id, data_url, thumbnail_url, topics, system, mediaType);
     }
 
     @Override
@@ -103,7 +114,7 @@ public class MEDIA {
                 "id=" + id +
                 ", data_url='" + data_url + '\'' +
                 ", thumbnail_url='" + thumbnail_url + '\'' +
-                ", topic=" + topic +
+                ", topics=" + topics +
                 ", system=" + system +
                 ", mediaType=" + mediaType +
                 '}';
