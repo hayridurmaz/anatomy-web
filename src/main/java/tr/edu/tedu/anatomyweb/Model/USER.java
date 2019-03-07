@@ -10,7 +10,7 @@ import java.util.Objects;
 public class USER {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long personId;
+    private long id;
 
     private String name;
     private String user_name;
@@ -20,12 +20,12 @@ public class USER {
     public USER() {
     }
 
-    public long getPersonId() {
-        return personId;
+    public long getId() {
+        return id;
     }
 
-    public void setPersonId(long personId) {
-        this.personId = personId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -63,7 +63,7 @@ public class USER {
     @Override
     public String toString() {
         return "USER{" +
-                "personId=" + personId +
+                "personId=" + id +
                 ", name='" + name + '\'' +
                 ", user_name='" + user_name + '\'' +
                 ", password='" + password + '\'' +
@@ -76,7 +76,7 @@ public class USER {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         USER user = (USER) o;
-        return personId == user.personId &&
+        return id == user.id &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(user_name, user.user_name) &&
                 Objects.equals(password, user.password) &&
@@ -85,6 +85,6 @@ public class USER {
 
     @Override
     public int hashCode() {
-        return Objects.hash(personId, name, user_name, password, email);
+        return Objects.hash(id, name, user_name, password, email);
     }
 }
