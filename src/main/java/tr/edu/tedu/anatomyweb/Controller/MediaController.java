@@ -50,7 +50,7 @@ public class MediaController {
 
         SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
         //TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
-        MediaType media_type = MediaType.valueOf(parser.get("media_type").toString());
+        MediaType media_type = MediaType.values()[Integer.parseInt(parser.get("media_type").toString())];
 
         MEDIA i = new MEDIA();
         //i.setTopic(t);
