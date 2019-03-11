@@ -38,6 +38,16 @@ public class MEDIA {
 
     private MediaType mediaType;
 
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public MEDIA() {
     }
 
@@ -117,6 +127,7 @@ public class MEDIA {
                 ", topics=" + topics +
                 ", system=" + system +
                 ", mediaType=" + mediaType +
+                ", date='" + date + '\'' +
                 '}';
     }
 }
