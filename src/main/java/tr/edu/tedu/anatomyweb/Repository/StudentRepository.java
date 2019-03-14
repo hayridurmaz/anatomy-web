@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import tr.edu.tedu.anatomyweb.Model.STUDENT;
 
+import java.util.List;
+
 @Repository
-public interface StudentRepository  extends JpaRepository<STUDENT,Long> {
+public interface StudentRepository extends JpaRepository<STUDENT, Long> {
+    public List<STUDENT> findAllByOrderByIDAsc();
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface IStudentService {
     public List<STUDENT> findAll();
 
-    public STUDENT save(STUDENT answer);
+    public STUDENT save(STUDENT student);
 
     public STUDENT findById(Long Id);
 
