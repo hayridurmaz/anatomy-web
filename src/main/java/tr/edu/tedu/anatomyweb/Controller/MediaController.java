@@ -28,12 +28,12 @@ public class MediaController {
 
     @GetMapping(("/Media"))
     List<MEDIA> getMedia() {
-        List<MEDIA> img = new ArrayList<>();
+        List<MEDIA> medias = new ArrayList<>();
         mediaService.findAll().forEach(media -> {
             // System.out.println(Media.getSystem().toString());
-            img.add(media);
+            medias.add(media);
         });
-        return img;
+        return medias;
     }
 
     @GetMapping(("/Media/{MediaId}"))
@@ -50,7 +50,7 @@ public class MediaController {
 
         SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
         //TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
-        MediaType media_type = MediaType.valueOf(parser.get("media_type").toString());
+        MediaType media_type = MediaType.values()[Integer.parseInt(parser.get("media_type").toString())];
 
         MEDIA i = new MEDIA();
         //i.setTopic(t);
@@ -69,6 +69,7 @@ public class MediaController {
         i.setMediaType(media_type);
         i.setData_url(parser.get("data_url").toString());
         i.setThumbnail_url(parser.get("thumbnail_url").toString());
+        i.setDate(parser.get("date").toString());
         return mediaService.save(i);
     }
 
