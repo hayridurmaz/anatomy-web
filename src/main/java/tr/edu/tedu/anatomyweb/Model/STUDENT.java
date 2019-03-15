@@ -11,7 +11,7 @@ public class STUDENT extends USER {
 
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "class_id", nullable = false)
+    @JoinColumn(name = "class_id", nullable = true)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private CLASS student_class;

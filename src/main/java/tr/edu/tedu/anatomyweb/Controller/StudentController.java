@@ -31,6 +31,7 @@ public class StudentController {
         //TODO: Parse a json and add the teacher or test whether current impl works
         System.out.println(student.toString());
         return studentService.save(student);
+        //return null;
     }
 
     @PutMapping("/Students/{Id}")
