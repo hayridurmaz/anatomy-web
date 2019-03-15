@@ -16,7 +16,7 @@ public class SystemService implements ISystemService {
 
     @Override
     public List<SYSTEM> findAll() {
-        List<SYSTEM> systems = (List<SYSTEM>) repository.findAllByOrderByIDAsc();
+        List<SYSTEM> systems = (List<SYSTEM>) repository.findAllByOrderByIDDesc();
         return systems;
     }
 

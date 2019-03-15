@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface SystemRepository extends JpaRepository<SYSTEM, Long> {
-    public List<SYSTEM> findAllByOrderByIDAsc();
+    public List<SYSTEM> findAllByOrderByIDDesc();
 }

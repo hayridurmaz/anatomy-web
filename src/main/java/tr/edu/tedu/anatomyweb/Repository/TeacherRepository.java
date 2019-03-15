@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TeacherRepository extends JpaRepository<TEACHER, Long> {
-    public List<TEACHER> findAllByOrderByIDAsc();
+    public List<TEACHER> findAllByOrderByIDDesc();
 }

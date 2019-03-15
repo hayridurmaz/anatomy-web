@@ -16,7 +16,7 @@ public class TeacherService implements ITeacherService {
 
     @Override
     public List<TEACHER> findAll() {
-        return repository.findAllByOrderByIDAsc();
+        return repository.findAllByOrderByIDDesc();
     }
 
     @Override
