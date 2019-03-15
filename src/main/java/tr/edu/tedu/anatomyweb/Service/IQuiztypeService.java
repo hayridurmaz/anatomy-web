@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface IQuiztypeService {
 
-    public List<QUIZTYPE> findAll();
+    List<QUIZTYPE> findAll();
 
-    public QUIZTYPE save(QUIZTYPE quiztype);
+    QUIZTYPE save(QUIZTYPE quiztype);
 
-    public QUIZTYPE findById(Long quiztypeId);
+    QUIZTYPE findById(Long quiztypeId);
 
-    public String delete(Long quiztypeId);
+    String delete(Long quiztypeId);
 }

@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ICorrectAnswerService {
 
-    public List<CORRECTANSWER> findAll();
+    List<CORRECTANSWER> findAll();
 
-    public CORRECTANSWER save(CORRECTANSWER correctanswer);
+    CORRECTANSWER save(CORRECTANSWER correctanswer);
 
-    public CORRECTANSWER findById(Long Id);
+    CORRECTANSWER findById(Long Id);
 
-    public String delete(Long Id);
+    String delete(Long Id);
 }

@@ -6,11 +6,11 @@ import tr.edu.tedu.anatomyweb.Model.STUDENT;
 import java.util.List;
 
 public interface IStudentService {
-    public List<STUDENT> findAll();
+    List<STUDENT> findAll();
 
-    public STUDENT save(STUDENT student);
+    STUDENT save(STUDENT student);
 
-    public STUDENT findById(Long Id);
+    STUDENT findById(Long Id);
 
-    public String delete(Long Id);
+    String delete(Long Id);
 }

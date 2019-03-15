@@ -5,7 +5,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class TEACHER extends USER{
+public class TEACHER extends USER {
 
 
     @OneToOne(optional = false)

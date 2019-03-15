@@ -6,5 +6,5 @@ import tr.edu.tedu.anatomyweb.Model.CLASS;
 
 
 @Repository
-public interface ClassRepository  extends JpaRepository<CLASS,Long> {
+public interface ClassRepository extends JpaRepository<CLASS, Long> {
 }

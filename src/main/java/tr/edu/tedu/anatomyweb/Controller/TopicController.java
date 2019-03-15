@@ -17,7 +17,7 @@ public class TopicController {
 
     @GetMapping("/Topics")
     List<TOPIC> getTopics() {
-        List<TOPIC> topics = (List<TOPIC>) topicService.findAll();
+        List<TOPIC> topics = topicService.findAll();
         return topics;
     }
 

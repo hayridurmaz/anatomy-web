@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface TopicRepository extends JpaRepository<TOPIC, Long> {
-    public List<TOPIC> findAllByOrderByIDAsc();
+    List<TOPIC> findAllByOrderByIDAsc();
 }

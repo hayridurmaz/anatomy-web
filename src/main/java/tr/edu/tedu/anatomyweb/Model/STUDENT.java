@@ -7,7 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class STUDENT extends USER{
+public class STUDENT extends USER {
 
 
     @ManyToOne(optional = false)

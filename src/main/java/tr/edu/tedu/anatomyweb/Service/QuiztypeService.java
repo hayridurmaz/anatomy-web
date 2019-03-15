@@ -16,7 +16,7 @@ public class QuiztypeService implements IQuiztypeService {
 
     @Override
     public List<QUIZTYPE> findAll() {
-        List<QUIZTYPE> quiztypes = (List<QUIZTYPE>) repository.findAll();
+        List<QUIZTYPE> quiztypes = repository.findAll();
         return quiztypes;
     }
 

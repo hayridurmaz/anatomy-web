@@ -15,7 +15,7 @@ public class AccountService implements IAccountService {
     AccountRepository accountRepository;
 
     public List<ACCOUNT> findAll() {
-        return (List<ACCOUNT>) accountRepository.findAll();
+        return accountRepository.findAll();
     }
 
     public ACCOUNT save(ACCOUNT account) {
