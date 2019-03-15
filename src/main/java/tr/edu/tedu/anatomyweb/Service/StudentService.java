@@ -3,6 +3,7 @@ package tr.edu.tedu.anatomyweb.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
+import tr.edu.tedu.anatomyweb.Model.CLASS;
 import tr.edu.tedu.anatomyweb.Model.STUDENT;
 import tr.edu.tedu.anatomyweb.Repository.StudentRepository;
 
@@ -17,6 +18,11 @@ public class StudentService implements IStudentService {
     @Override
     public List<STUDENT> findAll() {
         return repository.findAllByOrderByIDDesc();
+    }
+
+    @Override
+    public List<STUDENT> findStudentsInClass(CLASS c) {
+        return repository.findAllByStudent_classOrderByID(c);
     }
 
     @Override
