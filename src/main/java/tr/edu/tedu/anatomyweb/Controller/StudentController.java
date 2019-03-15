@@ -29,6 +29,7 @@ public class StudentController {
     @PostMapping("/Students")
     public STUDENT createStudent(@Valid @RequestBody STUDENT student) {
         //TODO: Parse a json and add the teacher or test whether current impl works
+        System.out.println(student.toString());
         return studentService.save(student);
     }
 

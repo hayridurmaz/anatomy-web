@@ -20,10 +20,7 @@ public class StudentService implements IStudentService {
         return repository.findAllByOrderByIDDesc();
     }
 
-    @Override
-    public List<STUDENT> findStudentsInClass(CLASS c) {
-        return repository.findAllByStudent_classOrderByID(c);
-    }
+
 
     @Override
     public STUDENT save(STUDENT s) {
