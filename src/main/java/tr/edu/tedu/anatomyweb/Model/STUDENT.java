@@ -1,20 +1,26 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class STUDENT extends USER {
+public class STUDENT {
 
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "class_id", nullable = true)
-    // @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private CLASS student_class;
+    @Id
+    private Long ID;
+    private String username;
+    private int score;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "students")
+    private Set<CLASS> clases = new HashSet<>();
 
 
 }

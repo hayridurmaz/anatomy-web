@@ -16,9 +16,36 @@ public class ACCOUNT {
     private String username;
     private String password;
     private String mail;
+    private String name;
     private UserRole userRole;
+    private String phone_number;
+    private String gender;
 
     public ACCOUNT() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public UserRole getUserRole() {
@@ -70,22 +97,28 @@ public class ACCOUNT {
                 Objects.equals(username, account.username) &&
                 Objects.equals(password, account.password) &&
                 Objects.equals(mail, account.mail) &&
-                userRole == account.userRole;
+                Objects.equals(name, account.name) &&
+                userRole == account.userRole &&
+                Objects.equals(phone_number, account.phone_number) &&
+                Objects.equals(gender, account.gender);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, username, password, mail, userRole);
+        return Objects.hash(ID, username, password, mail, name, userRole, phone_number, gender);
     }
 
     @Override
     public String toString() {
-        return "USER{" +
+        return "ACCOUNT{" +
                 "ID=" + ID +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", mail='" + mail + '\'' +
+                ", name='" + name + '\'' +
                 ", userRole=" + userRole +
+                ", phone_number='" + phone_number + '\'' +
+                ", gender='" + gender + '\'' +
                 '}';
     }
 }
