@@ -12,10 +12,9 @@ import tr.edu.tedu.anatomyweb.Service.IStudentService;
 import tr.edu.tedu.anatomyweb.Service.ITeacherService;
 
 import javax.validation.Valid;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @CrossOrigin
 @RestController
@@ -52,7 +51,7 @@ public class ClassController {
         CLASS c = new CLASS();
         c.setName(parser.get("name").toString());
 
-        Set<STUDENT> students = new HashSet<>();
+        List<STUDENT> students = new ArrayList<>();
         List<Object> student_ids = factory.parseList(parser.get("student_ids").toString());
         for (Object o :
                 student_ids) {
@@ -62,7 +61,7 @@ public class ClassController {
 
         c.setStudents(students);
 
-        Set<TEACHER> teachers = new HashSet<>();
+        List<TEACHER> teachers = new ArrayList<>();
         List<Object> teacher_ids = factory.parseList(parser.get("teacher_ids").toString());
         for (Object o :
                 teacher_ids) {
@@ -89,7 +88,7 @@ public class ClassController {
         }
 
         if (parser.get("student_ids") != null) {
-            Set<STUDENT> students = c.getStudents();
+            List<STUDENT> students = c.getStudents();
             List<Object> student_ids = factory.parseList(parser.get("student_ids").toString());
             for (Object o :
                     student_ids) {
@@ -101,7 +100,7 @@ public class ClassController {
         }
 
         if (parser.get("teacher_ids") != null) {
-            Set<TEACHER> teachers = c.getTeachers();
+            List<TEACHER> teachers = c.getTeachers();
             List<Object> teacher_ids = factory.parseList(parser.get("teacher_ids").toString());
             for (Object o :
                     teacher_ids) {

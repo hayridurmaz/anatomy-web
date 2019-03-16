@@ -1,9 +1,14 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import javax.persistence.*;
-import java.util.HashSet;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class STUDENT {
@@ -16,12 +21,10 @@ public class STUDENT {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
+            targetEntity = CLASS.class,
             mappedBy = "students")
-    private Set<CLASS> clases = new HashSet<>();
+    @JsonBackReference
+    private List<CLASS> clases = new ArrayList<>();
 
     public STUDENT() {
     }
@@ -50,11 +53,11 @@ public class STUDENT {
         this.score = score;
     }
 
-    public Set<CLASS> getClases() {
+    public List<CLASS> getClases() {
         return clases;
     }
 
-    public void setClases(Set<CLASS> clases) {
+    public void setClases(List<CLASS> clases) {
         this.clases = clases;
     }
 

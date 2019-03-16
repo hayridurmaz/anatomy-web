@@ -38,7 +38,7 @@ public class AccountController {
     }
 
     @GetMapping(("/Accounts/"))
-    ACCOUNT getAccountByUserName(@RequestParam(value="username") String UserName) {
+    ACCOUNT getAccountByUserName(@RequestParam(value = "username") String UserName) {
         ACCOUNT a = accountService.findByUsername(UserName);
         return a;
     }
@@ -49,10 +49,9 @@ public class AccountController {
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
 
-        if(getAccountByUserName(parser.get("username").toString())!=null){
+        if (getAccountByUserName(parser.get("username").toString()) != null) {
             throw new ResourceAlreadyFoundException("Username is already taken!");
-        }
-        else{
+        } else {
             ACCOUNT a = new ACCOUNT();
             a.setMail(parser.get("mail").toString());
             a.setPassword(parser.get("password").toString());
@@ -75,13 +74,13 @@ public class AccountController {
         ACCOUNT a = accountService.findById(AccountId);
 
 
-        if(parser.get("gender")!=null){
+        if (parser.get("gender") != null) {
             a.setGender(parser.get("gender").toString());
         }
-        if(parser.get("name")!=null){
+        if (parser.get("name") != null) {
             a.setName(parser.get("name").toString());
         }
-        if(parser.get("phoneNumber")!=null){
+        if (parser.get("phoneNumber") != null) {
             a.setPhone_number(parser.get("phoneNumber").toString());
         }
         if (parser.get("mail") != null) {
@@ -98,7 +97,7 @@ public class AccountController {
         }
         if (parser.get("addScore") != null) {
             STUDENT s = studentService.findById(a.getID());
-            s.setScore(s.getScore()+Integer.parseInt(parser.get("addScore").toString()));
+            s.setScore(s.getScore() + Integer.parseInt(parser.get("addScore").toString()));
             studentService.save(s);
         }
 

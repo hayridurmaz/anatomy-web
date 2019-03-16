@@ -1,6 +1,11 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -15,11 +20,9 @@ public class TEACHER {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
+            targetEntity = CLASS.class,
             mappedBy = "teachers")
+    @JsonBackReference
     private Set<CLASS> clases = new HashSet<>();
 
     public TEACHER() {

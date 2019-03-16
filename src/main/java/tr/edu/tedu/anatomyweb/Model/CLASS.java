@@ -1,9 +1,11 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "CLASS")
@@ -15,25 +17,21 @@ public class CLASS {
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
+            targetEntity = STUDENT.class)
     @JoinTable(name = "student_class",
             joinColumns = {@JoinColumn(name = "class_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")})
-    private Set<STUDENT> students = new HashSet<>();
+    @JsonManagedReference
+    private List<STUDENT> students = new ArrayList<>();
 
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
+            targetEntity = TEACHER.class)
     @JoinTable(name = "teacher_class",
             joinColumns = {@JoinColumn(name = "class_id")},
             inverseJoinColumns = {@JoinColumn(name = "teacher_id")})
-    private Set<TEACHER> teachers = new HashSet<>();
+    @JsonManagedReference
+    private List<TEACHER> teachers = new ArrayList<>();
 
 
     public CLASS() {
@@ -55,19 +53,19 @@ public class CLASS {
         this.name = name;
     }
 
-    public Set<STUDENT> getStudents() {
+    public List<STUDENT> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<STUDENT> students) {
+    public void setStudents(List<STUDENT> students) {
         this.students = students;
     }
 
-    public Set<TEACHER> getTeachers() {
+    public List<TEACHER> getTeachers() {
         return teachers;
     }
 
-    public void setTeachers(Set<TEACHER> teachers) {
+    public void setTeachers(List<TEACHER> teachers) {
         this.teachers = teachers;
     }
 
