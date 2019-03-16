@@ -41,7 +41,10 @@ public class AccountController {
         a.setMail(parser.get("mail").toString());
         a.setPassword(parser.get("password").toString());
         a.setUsername(parser.get("username").toString());
-        a.setUserRole((UserRole) parser.get("userRole"));
+        a.setUserRole(UserRole.valueOf(parser.get("userRole").toString()));
+        a.setGender(parser.get("gender").toString());
+        a.setName(parser.get("name").toString());
+        a.setPhone_number(parser.get("phone_number").toString());
         return accountService.save(a);
     }
 
