@@ -2,7 +2,7 @@ package tr.edu.tedu.anatomyweb.Model;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -34,4 +34,67 @@ public class CLASS {
             joinColumns = {@JoinColumn(name = "class_id")},
             inverseJoinColumns = {@JoinColumn(name = "teacher_id")})
     private Set<TEACHER> teachers = new HashSet<>();
+
+
+    public CLASS() {
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<STUDENT> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<STUDENT> students) {
+        this.students = students;
+    }
+
+    public Set<TEACHER> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<TEACHER> teachers) {
+        this.teachers = teachers;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CLASS aClass = (CLASS) o;
+        return Objects.equals(Id, aClass.Id) &&
+                Objects.equals(name, aClass.name) &&
+                Objects.equals(students, aClass.students) &&
+                Objects.equals(teachers, aClass.teachers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(Id, name, students, teachers);
+    }
+
+    @Override
+    public String toString() {
+        return "CLASS{" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", students=" + students +
+                ", teachers=" + teachers +
+                '}';
+    }
 }
