@@ -16,7 +16,10 @@ public class CLASS {
 
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    },
             targetEntity = STUDENT.class)
     @JoinTable(name = "student_class",
             joinColumns = {@JoinColumn(name = "class_id")},
@@ -26,6 +29,10 @@ public class CLASS {
 
 
     @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
             targetEntity = TEACHER.class)
     @JoinTable(name = "teacher_class",
             joinColumns = {@JoinColumn(name = "class_id")},

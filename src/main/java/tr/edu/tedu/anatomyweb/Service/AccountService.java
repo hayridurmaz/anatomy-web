@@ -9,7 +9,6 @@ import tr.edu.tedu.anatomyweb.Model.TEACHER;
 import tr.edu.tedu.anatomyweb.Repository.AccountRepository;
 import tr.edu.tedu.anatomyweb.Utils.UserRole;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,12 +35,11 @@ public class AccountService implements IAccountService {
             s.setID(savedAccount.getID());
             s.setUsername(savedAccount.getUsername());
             try {
-                STUDENT isAlreadyExistStudent=studentService.findById(account.getID());
-                if (isAlreadyExistStudent!=null) {
+                STUDENT isAlreadyExistStudent = studentService.findById(account.getID());
+                if (isAlreadyExistStudent != null) {
                     s.setScore(isAlreadyExistStudent.getScore());
                     s.setStudents_clases(isAlreadyExistStudent.getStudents_clases());
-                }
-                else{
+                } else {
                     s.setScore(0);
                 }
             } catch (Exception e) {
@@ -82,10 +80,14 @@ public class AccountService implements IAccountService {
         try {
             ACCOUNT account = findById(Id);
             if (account.getUserRole() == UserRole.Student) {
-                studentService.delete(Id);
+                if (studentService.delete(Id).contains("Cannot delete:")) {
+                    return "Cannot delete, student belongs to a class";
+                }
             }
             if (account.getUserRole() == UserRole.Teacher) {
-                teacherService.delete(Id);
+                if (teacherService.delete(Id).contains("Cannot delete:")) {
+                    return "Cannot delete, teacher belongs to a class";
+                }
             }
             accountRepository.deleteById(Id);
             return "Deleted";

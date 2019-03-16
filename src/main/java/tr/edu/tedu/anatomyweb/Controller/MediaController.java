@@ -13,7 +13,9 @@ import tr.edu.tedu.anatomyweb.Service.ITopicService;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController

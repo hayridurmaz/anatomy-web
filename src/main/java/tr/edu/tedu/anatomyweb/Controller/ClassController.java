@@ -99,6 +99,16 @@ public class ClassController {
             }
         }
 
+        if (parser.get("remove_student_ids") != null) {
+            List<STUDENT> students = c.getStudents();
+            List<Object> remove_student_ids = factory.parseList(parser.get("remove_student_ids").toString());
+            for (Object o :
+                    remove_student_ids) {
+                STUDENT s = studentService.findById(Long.parseLong(o.toString()));
+                students.remove(s);
+            }
+        }
+
         if (parser.get("teacher_ids") != null) {
             List<TEACHER> teachers = c.getTeachers();
             List<Object> teacher_ids = factory.parseList(parser.get("teacher_ids").toString());
@@ -111,6 +121,16 @@ public class ClassController {
             }
         }
 
+
+        if (parser.get("remove_teacher_ids") != null) {
+            List<TEACHER> teachers = c.getTeachers();
+            List<Object> teacher_ids = factory.parseList(parser.get("remove_teacher_ids").toString());
+            for (Object o :
+                    teacher_ids) {
+                TEACHER t = teacherService.findById(Long.parseLong(o.toString()));
+                teachers.remove(t);
+            }
+        }
 
         return classService.save(c);
     }
