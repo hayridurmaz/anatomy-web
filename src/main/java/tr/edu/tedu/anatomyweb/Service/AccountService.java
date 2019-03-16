@@ -34,10 +34,16 @@ public class AccountService implements IAccountService {
     public ACCOUNT save(ACCOUNT account) {
         ACCOUNT savedAccount = accountRepository.save(account);
         if (account.getUserRole() == UserRole.Student) {
+
             STUDENT s = new STUDENT();
             s.setID(savedAccount.getID());
             s.setUsername(savedAccount.getUsername());
-            s.setScore(0);
+            if(studentService.findById(account.getID())!=null){
+                s.setScore(studentService.findById(account.getID()).getScore());
+            }
+            else{
+                s.setScore(0);
+            }
             s.setClases(new HashSet<CLASS>());
             studentService.save(s);
         }

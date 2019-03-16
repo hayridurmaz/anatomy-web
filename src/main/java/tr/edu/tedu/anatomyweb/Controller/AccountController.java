@@ -94,7 +94,7 @@ public class AccountController {
             a.setUsername(parser.get("username").toString());
         }
         if (parser.get("userRole") != null) {
-            a.setUserRole((UserRole) parser.get("userRole"));
+            //a.setUserRole((UserRole) parser.get("userRole")); //Changing user role is not allowed!
         }
         if (parser.get("addScore") != null) {
             STUDENT s = studentService.findById(a.getID());
