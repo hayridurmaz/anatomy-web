@@ -56,6 +56,10 @@ public class AccountService implements IAccountService {
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found with id " + Id));
     }
 
+    public ACCOUNT findByUsername(String Username) {
+        return accountRepository.findByUsername(Username);
+    }
+
     public String delete(Long Id) {
         try {
             accountRepository.deleteById(Id);

@@ -9,6 +9,8 @@ public interface IAccountService {
 
     ACCOUNT save(ACCOUNT account);
 
+    ACCOUNT findByUsername(String Username);
+
     ACCOUNT findById(Long Id);
 
     String delete(Long Id);
