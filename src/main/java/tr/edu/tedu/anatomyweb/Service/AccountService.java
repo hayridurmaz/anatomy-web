@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.ACCOUNT;
-import tr.edu.tedu.anatomyweb.Model.CLASS;
 import tr.edu.tedu.anatomyweb.Model.STUDENT;
 import tr.edu.tedu.anatomyweb.Model.TEACHER;
 import tr.edu.tedu.anatomyweb.Repository.AccountRepository;
 import tr.edu.tedu.anatomyweb.Utils.UserRole;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -38,14 +36,17 @@ public class AccountService implements IAccountService {
             s.setID(savedAccount.getID());
             s.setUsername(savedAccount.getUsername());
             try {
-                System.out.println(studentService.findById(account.getID()));
-                if (studentService.findById(account.getID()) != null) {
-                    s.setScore(studentService.findById(account.getID()).getScore());
-                    s.setClases(studentService.findById(account.getID()).getClases());
+                STUDENT isAlreadyExistStudent=studentService.findById(account.getID());
+                if (isAlreadyExistStudent!=null) {
+                    s.setScore(isAlreadyExistStudent.getScore());
+                    s.setStudents_clases(isAlreadyExistStudent.getStudents_clases());
+                }
+                else{
+                    s.setScore(0);
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 s.setScore(0);
-                s.setClases(new ArrayList<>());
             }
             studentService.save(s);
         }
@@ -56,12 +57,10 @@ public class AccountService implements IAccountService {
             t.setID(savedAccount.getID());
             t.setUsername(savedAccount.getUsername());
             try {
-                System.out.println(teacherService.findById(account.getID()));
                 if (teacherService.findById(account.getID()) != null) {
-                    t.setClases(teacherService.findById(account.getID()).getClases());
+                    t.setTeachers_clases(teacherService.findById(account.getID()).getTeachers_clases());
                 }
             } catch (Exception e) {
-                t.setClases(new HashSet<CLASS>());
             }
             teacherService.save(t);
         }

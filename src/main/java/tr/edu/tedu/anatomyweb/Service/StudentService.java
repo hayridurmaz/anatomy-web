@@ -22,7 +22,6 @@ public class StudentService implements IStudentService {
 
     @Override
     public STUDENT save(STUDENT s) {
-        System.out.println(s.toString());
         return repository.save(s);
     }
 

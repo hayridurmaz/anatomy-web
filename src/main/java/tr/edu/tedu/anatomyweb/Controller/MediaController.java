@@ -55,7 +55,7 @@ public class MediaController {
         MEDIA i = new MEDIA();
         //i.setTopic(t);
 
-        Set<TOPIC> topics = new HashSet<>();
+        List<TOPIC> topics = new ArrayList<>();
         List<Object> topic_ids = factory.parseList(parser.get("topic_ids").toString());
         for (Object o :
                 topic_ids) {
@@ -86,7 +86,7 @@ public class MediaController {
         }
 
         if (parser.get("topic_ids") != null) {
-            Set<TOPIC> topics = new HashSet<>();
+            List<TOPIC> topics = new ArrayList<>();
             List<Object> topic_ids = factory.parseList(parser.get("topic_ids").toString());
             for (Object o :
                     topic_ids) {

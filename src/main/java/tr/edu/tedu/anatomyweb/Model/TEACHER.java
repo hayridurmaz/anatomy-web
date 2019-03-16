@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class TEACHER {
@@ -23,7 +21,7 @@ public class TEACHER {
             targetEntity = CLASS.class,
             mappedBy = "teachers")
     @JsonBackReference
-    private Set<CLASS> clases = new HashSet<>();
+    private List<CLASS> teachers_clases = new ArrayList<>();
 
     public TEACHER() {
     }
@@ -44,12 +42,12 @@ public class TEACHER {
         this.username = username;
     }
 
-    public Set<CLASS> getClases() {
-        return clases;
+    public List<CLASS> getTeachers_clases() {
+        return teachers_clases;
     }
 
-    public void setClases(Set<CLASS> clases) {
-        this.clases = clases;
+    public void setTeachers_clases(List<CLASS> teachers_clases) {
+        this.teachers_clases = teachers_clases;
     }
 
     @Override
@@ -59,12 +57,12 @@ public class TEACHER {
         TEACHER teacher = (TEACHER) o;
         return Objects.equals(ID, teacher.ID) &&
                 Objects.equals(username, teacher.username) &&
-                Objects.equals(clases, teacher.clases);
+                Objects.equals(teachers_clases, teacher.teachers_clases);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, username, clases);
+        return Objects.hash(ID, username, teachers_clases);
     }
 
     @Override
@@ -72,7 +70,7 @@ public class TEACHER {
         return "TEACHER{" +
                 "ID=" + ID +
                 ", username='" + username + '\'' +
-                ", clases=" + clases +
+                ", teachers_clases=" + teachers_clases +
                 '}';
     }
 }

@@ -3,9 +3,7 @@ package tr.edu.tedu.anatomyweb.Model;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "MEDIA")
@@ -28,7 +26,7 @@ public class MEDIA {
     @JoinTable(name = "media_topic",
             joinColumns = {@JoinColumn(name = "media_id")},
             inverseJoinColumns = {@JoinColumn(name = "topic_id")})
-    private Set<TOPIC> topics = new HashSet<>();
+    private List<TOPIC> topics = new ArrayList<>();
 
 
     @ManyToOne(optional = false/*, cascade = CascadeType.ALL*/)
@@ -92,11 +90,11 @@ public class MEDIA {
         this.thumbnail_url = thumbnail_url;
     }
 
-    public Set<TOPIC> getTopics() {
+    public List<TOPIC> getTopics() {
         return topics;
     }
 
-    public void setTopics(Set<TOPIC> topics) {
+    public void setTopics(List<TOPIC> topics) {
         this.topics = topics;
     }
 
