@@ -22,10 +22,10 @@ public class AccountService implements IAccountService {
     AccountRepository accountRepository;
 
     @Autowired
-    StudentRepository studentRepository;
+    IStudentService studentService;
 
     @Autowired
-    TeacherRepository teacherRepository;
+    ITeacherService teacherService;
 
     public List<ACCOUNT> findAll() {
         return accountRepository.findAll();
@@ -39,14 +39,14 @@ public class AccountService implements IAccountService {
             s.setUsername(savedAccount.getUsername());
             s.setScore(0);
             s.setClases(new HashSet<CLASS>());
-            studentRepository.save(s);
+            studentService.save(s);
         }
         if (account.getUserRole() == UserRole.Teacher) {
             TEACHER t = new TEACHER();
             t.setID(savedAccount.getID());
             t.setUsername(savedAccount.getUsername());
             t.setClases(new HashSet<CLASS>());
-            teacherRepository.save(t);
+            teacherService.save(t);
         }
         return savedAccount;
     }
@@ -62,6 +62,13 @@ public class AccountService implements IAccountService {
 
     public String delete(Long Id) {
         try {
+            ACCOUNT account = findById(Id);
+            if (account.getUserRole() == UserRole.Student) {
+                studentService.delete(Id);
+            }
+            if (account.getUserRole() == UserRole.Teacher) {
+                teacherService.delete(Id);
+            }
             accountRepository.deleteById(Id);
             return "Deleted";
         } catch (Exception e) {
