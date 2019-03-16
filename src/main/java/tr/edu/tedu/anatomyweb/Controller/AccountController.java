@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.web.bind.annotation.*;
+import tr.edu.tedu.anatomyweb.Exception.ResourceAlreadyFoundException;
 import tr.edu.tedu.anatomyweb.Model.ACCOUNT;
 import tr.edu.tedu.anatomyweb.Model.STUDENT;
 import tr.edu.tedu.anatomyweb.Service.IAccountService;
@@ -48,15 +49,21 @@ public class AccountController {
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
 
-        ACCOUNT a = new ACCOUNT();
-        a.setMail(parser.get("mail").toString());
-        a.setPassword(parser.get("password").toString());
-        a.setUsername(parser.get("username").toString());
-        a.setUserRole(UserRole.valueOf(parser.get("userRole").toString()));
-        a.setGender(parser.get("gender").toString());
-        a.setName(parser.get("name").toString());
-        a.setPhone_number(parser.get("phoneNumber").toString());
-        return accountService.save(a);
+        if(getAccountByUserName(parser.get("username").toString())!=null){
+            throw new ResourceAlreadyFoundException("Username is already taken!");
+        }
+        else{
+            ACCOUNT a = new ACCOUNT();
+            a.setMail(parser.get("mail").toString());
+            a.setPassword(parser.get("password").toString());
+            a.setUsername(parser.get("username").toString());
+            a.setUserRole(UserRole.valueOf(parser.get("userRole").toString()));
+            a.setGender(parser.get("gender").toString());
+            a.setName(parser.get("name").toString());
+            a.setPhone_number(parser.get("phoneNumber").toString());
+            return accountService.save(a);
+        }
+
     }
 
     @PutMapping("/Accounts/{AccountId}")
