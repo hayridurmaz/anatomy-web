@@ -8,10 +8,9 @@ import tr.edu.tedu.anatomyweb.Model.CLASS;
 import tr.edu.tedu.anatomyweb.Model.STUDENT;
 import tr.edu.tedu.anatomyweb.Model.TEACHER;
 import tr.edu.tedu.anatomyweb.Repository.AccountRepository;
-import tr.edu.tedu.anatomyweb.Repository.StudentRepository;
-import tr.edu.tedu.anatomyweb.Repository.TeacherRepository;
 import tr.edu.tedu.anatomyweb.Utils.UserRole;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -34,26 +33,40 @@ public class AccountService implements IAccountService {
     public ACCOUNT save(ACCOUNT account) {
         ACCOUNT savedAccount = accountRepository.save(account);
         if (account.getUserRole() == UserRole.Student) {
-
+            System.out.println("STUDENT GİRDİ!");
             STUDENT s = new STUDENT();
             s.setID(savedAccount.getID());
             s.setUsername(savedAccount.getUsername());
-            if(studentService.findById(account.getID())!=null){
-                s.setScore(studentService.findById(account.getID()).getScore());
-            }
-            else{
+            try {
+                System.out.println(studentService.findById(account.getID()));
+                if (studentService.findById(account.getID()) != null) {
+                    s.setScore(studentService.findById(account.getID()).getScore());
+                    s.setClases(studentService.findById(account.getID()).getClases());
+                }
+            } catch (Exception e) {
                 s.setScore(0);
+                s.setClases(new ArrayList<>());
             }
-            s.setClases(new HashSet<CLASS>());
             studentService.save(s);
         }
         if (account.getUserRole() == UserRole.Teacher) {
+            System.out.println("TEACHER GİRDİ!");
+
             TEACHER t = new TEACHER();
             t.setID(savedAccount.getID());
             t.setUsername(savedAccount.getUsername());
-            t.setClases(new HashSet<CLASS>());
+            try {
+                System.out.println(teacherService.findById(account.getID()));
+                if (teacherService.findById(account.getID()) != null) {
+                    t.setClases(teacherService.findById(account.getID()).getClases());
+                }
+            } catch (Exception e) {
+                t.setClases(new HashSet<CLASS>());
+            }
             teacherService.save(t);
         }
+        System.out.println("ACCOUNT SERVİCE SONU!");
+
         return savedAccount;
     }
 
