@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface GivenanswersRepository extends JpaRepository<GIVENANSWERS, Long> {
 
-    List<GIVENANSWERS> findAllByGivenanswers_student(STUDENT student);
+    List<GIVENANSWERS> findAllByGivenanswersstudent(STUDENT student);
 
-    GIVENANSWERS findByGivenanswers_quizAndGivenanswers_student(STUDENT student, QUIZ quız);
+    GIVENANSWERS findByGivenanswersquizAndGivenanswersstudent(STUDENT student, QUIZ quız);
 }

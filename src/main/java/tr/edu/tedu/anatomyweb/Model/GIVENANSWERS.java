@@ -7,14 +7,18 @@ import java.util.Objects;
 @Table(name = "GIVENANSWERS")
 public class GIVENANSWERS {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ID;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id")
-    private STUDENT givenanswers_student;
+    private STUDENT givenanswersstudent;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "quiz_id")
-    private QUIZ givenanswers_quiz;
+    private QUIZ givenanswersquiz;
 
     private String json;
     private Integer grade;
@@ -23,20 +27,20 @@ public class GIVENANSWERS {
     public GIVENANSWERS() {
     }
 
-    public STUDENT getGivenanswers_student() {
-        return givenanswers_student;
+    public STUDENT getGivenanswersstudent() {
+        return givenanswersstudent;
     }
 
-    public void setGivenanswers_student(STUDENT givenanswers_student) {
-        this.givenanswers_student = givenanswers_student;
+    public void setGivenanswersstudent(STUDENT givenanswersstudent) {
+        this.givenanswersstudent = givenanswersstudent;
     }
 
-    public QUIZ getGivenanswers_quiz() {
-        return givenanswers_quiz;
+    public QUIZ getGivenanswersquiz() {
+        return givenanswersquiz;
     }
 
-    public void setGivenanswers_quiz(QUIZ givenanswers_quiz) {
-        this.givenanswers_quiz = givenanswers_quiz;
+    public void setGivenanswersquiz(QUIZ givenanswersquiz) {
+        this.givenanswersquiz = givenanswersquiz;
     }
 
     public String getJson() {
@@ -55,28 +59,37 @@ public class GIVENANSWERS {
         this.grade = grade;
     }
 
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GIVENANSWERS that = (GIVENANSWERS) o;
-        return Objects.equals(givenanswers_student, that.givenanswers_student) &&
-                Objects.equals(givenanswers_quiz, that.givenanswers_quiz) &&
+        return Objects.equals(ID, that.ID) &&
+                Objects.equals(givenanswersstudent, that.givenanswersstudent) &&
+                Objects.equals(givenanswersquiz, that.givenanswersquiz) &&
                 Objects.equals(json, that.json) &&
                 Objects.equals(grade, that.grade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(givenanswers_student, givenanswers_quiz, json, grade);
+        return Objects.hash(ID, givenanswersstudent, givenanswersquiz, json, grade);
     }
 
     @Override
     public String toString() {
         return "GIVENANSWERS{" +
-                "givenanswers_student=" + givenanswers_student +
-                ", givenanswers_quiz=" + givenanswers_quiz +
+                "ID=" + ID +
+                ", givenanswersstudent=" + givenanswersstudent +
+                ", givenanswersquiz=" + givenanswersquiz +
                 ", json='" + json + '\'' +
                 ", grade=" + grade +
                 '}';

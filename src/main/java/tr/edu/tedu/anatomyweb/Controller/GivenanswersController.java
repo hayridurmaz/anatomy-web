@@ -45,8 +45,8 @@ public class GivenanswersController {
         STUDENT s = (studentService.findById(Long.parseLong(parser.get("student_id").toString())));
 
         GIVENANSWERS givenanswers = new GIVENANSWERS();
-        givenanswers.setGivenanswers_quiz(quizService.findById(Long.parseLong(parser.get("quiz_id").toString())));
-        givenanswers.setGivenanswers_student(s);
+        givenanswers.setGivenanswersquiz(quizService.findById(Long.parseLong(parser.get("quiz_id").toString())));
+        givenanswers.setGivenanswersstudent(s);
 
         givenanswers.setJson(parser.get("json").toString());
         givenanswers.setGrade(Integer.parseInt(parser.get("grade").toString()));

@@ -30,9 +30,9 @@ public class STUDENT {
     private List<CLASS> students_clases = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "givenanswers_student")
+    @OneToMany(mappedBy = "givenanswersstudent")
     @JsonIgnore
-    private List<GIVENANSWERS> student_givenanswers = new ArrayList<>();
+    private List<GIVENANSWERS> studentgivenanswers = new ArrayList<>();
 
     public STUDENT() {
     }
@@ -69,12 +69,12 @@ public class STUDENT {
         this.students_clases = students_clases;
     }
 
-    public List<GIVENANSWERS> getStudent_givenanswers() {
-        return student_givenanswers;
+    public List<GIVENANSWERS> getStudentgivenanswers() {
+        return studentgivenanswers;
     }
 
-    public void setStudent_givenanswers(List<GIVENANSWERS> student_givenanswers) {
-        this.student_givenanswers = student_givenanswers;
+    public void setStudentgivenanswers(List<GIVENANSWERS> studentgivenanswers) {
+        this.studentgivenanswers = studentgivenanswers;
     }
 
     @Override
@@ -86,12 +86,12 @@ public class STUDENT {
                 Objects.equals(ID, student.ID) &&
                 Objects.equals(username, student.username) &&
                 Objects.equals(students_clases, student.students_clases) &&
-                Objects.equals(student_givenanswers, student.student_givenanswers);
+                Objects.equals(studentgivenanswers, student.studentgivenanswers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, username, score, students_clases, student_givenanswers);
+        return Objects.hash(ID, username, score, students_clases, studentgivenanswers);
     }
 
     @Override

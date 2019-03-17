@@ -12,21 +12,26 @@ import java.util.Objects;
 @Table(name = "QUIZ")
 public class QUIZ {
 
-    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
-    public List<QUESTION> questions;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
+
+    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
+    public List<QUESTION> questions;
+
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_type_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonIgnore
     private QUIZTYPE quiztype;
+
     @ManyToOne(/* = FetchType.LAZY */optional = false)
     @JoinColumn(name = "system_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonIgnore
     private SYSTEM system;
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -38,9 +43,9 @@ public class QUIZ {
     private List<CLASS> quiz_clases = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "givenanswers_quiz")
+    @OneToMany(mappedBy = "givenanswersquiz")
     @JsonIgnore
-    private List<GIVENANSWERS> quiz_givenanswers = new ArrayList<>();
+    private List<GIVENANSWERS> quizgivenanswers = new ArrayList<>();
 
     public QUIZ() {
 
@@ -86,12 +91,12 @@ public class QUIZ {
         this.quiz_clases = quiz_clases;
     }
 
-    public List<GIVENANSWERS> getQuiz_givenanswers() {
-        return quiz_givenanswers;
+    public List<GIVENANSWERS> getQuizgivenanswers() {
+        return quizgivenanswers;
     }
 
-    public void setQuiz_givenanswers(List<GIVENANSWERS> quiz_givenanswers) {
-        this.quiz_givenanswers = quiz_givenanswers;
+    public void setQuizgivenanswers(List<GIVENANSWERS> quizgivenanswers) {
+        this.quizgivenanswers = quizgivenanswers;
     }
 
     @Override
@@ -104,12 +109,12 @@ public class QUIZ {
                 Objects.equals(system, quız.system) &&
                 Objects.equals(questions, quız.questions) &&
                 Objects.equals(quiz_clases, quız.quiz_clases) &&
-                Objects.equals(quiz_givenanswers, quız.quiz_givenanswers);
+                Objects.equals(quizgivenanswers, quız.quizgivenanswers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, quiztype, system, questions, quiz_clases, quiz_givenanswers);
+        return Objects.hash(ID, quiztype, system, questions, quiz_clases, quizgivenanswers);
     }
 
     @Override
