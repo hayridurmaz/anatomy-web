@@ -42,11 +42,16 @@ public class GivenanswersController {
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
 
+        STUDENT s = (studentService.findById(Long.parseLong(parser.get("student_id").toString())));
+
         GIVENANSWERS givenanswers = new GIVENANSWERS();
         givenanswers.setGivenanswers_quiz(quizService.findById(Long.parseLong(parser.get("quiz_id").toString())));
-        givenanswers.setGivenanswers_student((studentService.findById(Long.parseLong(parser.get("student_id").toString()))));
+        givenanswers.setGivenanswers_student(s);
 
         givenanswers.setJson(parser.get("json").toString());
+        givenanswers.setGrade(Integer.parseInt(parser.get("grade").toString()));
+        s.setScore(s.getScore() + Integer.parseInt(parser.get("grade").toString()));
+        studentService.save(s);
 
         return givenanswersService.save(givenanswers);
     }
@@ -63,6 +68,13 @@ public class GivenanswersController {
         GIVENANSWERS g = givenanswersService.findByGivenanswers_quizAndGivenanswers_student(s, q);
 
         g.setJson(parser.get("json").toString());
+
+        if (parser.get("grade") != null) {
+            g.setGrade(Integer.parseInt(parser.get("grade").toString()));
+            s.setScore(s.getScore() + Integer.parseInt(parser.get("grade").toString()));
+            studentService.save(s);
+        }
+
 
         return givenanswersService.save(g);
     }

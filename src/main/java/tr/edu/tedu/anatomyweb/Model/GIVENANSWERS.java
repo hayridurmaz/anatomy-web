@@ -17,6 +17,7 @@ public class GIVENANSWERS {
     private QUIZ givenanswers_quiz;
 
     private String json;
+    private Integer grade;
 
 
     public GIVENANSWERS() {
@@ -46,6 +47,15 @@ public class GIVENANSWERS {
         this.json = json;
     }
 
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,12 +63,13 @@ public class GIVENANSWERS {
         GIVENANSWERS that = (GIVENANSWERS) o;
         return Objects.equals(givenanswers_student, that.givenanswers_student) &&
                 Objects.equals(givenanswers_quiz, that.givenanswers_quiz) &&
-                Objects.equals(json, that.json);
+                Objects.equals(json, that.json) &&
+                Objects.equals(grade, that.grade);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(givenanswers_student, givenanswers_quiz, json);
+        return Objects.hash(givenanswers_student, givenanswers_quiz, json, grade);
     }
 
     @Override
@@ -67,6 +78,7 @@ public class GIVENANSWERS {
                 "givenanswers_student=" + givenanswers_student +
                 ", givenanswers_quiz=" + givenanswers_quiz +
                 ", json='" + json + '\'' +
+                ", grade=" + grade +
                 '}';
     }
 }
