@@ -1,6 +1,7 @@
 package tr.edu.tedu.anatomyweb.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,26 +12,21 @@ import java.util.Objects;
 @Table(name = "QUIZ")
 public class QUIZ {
 
+    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
+    public List<QUESTION> questions;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_type_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonIgnore
     private QUIZTYPE quiztype;
-
     @ManyToOne(/* = FetchType.LAZY */optional = false)
     @JoinColumn(name = "system_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonIgnore
     private SYSTEM system;
-
-    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
-    public List<QUESTION> questions;
-
-
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -40,6 +36,11 @@ public class QUIZ {
             mappedBy = "quizzes")
     @JsonBackReference
     private List<CLASS> quiz_clases = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "givenanswers_quiz")
+    @JsonIgnore
+    private List<GIVENANSWERS> quiz_givenanswers = new ArrayList<>();
 
     public QUIZ() {
 
@@ -77,20 +78,38 @@ public class QUIZ {
         this.questions = questions;
     }
 
+    public List<CLASS> getQuiz_clases() {
+        return quiz_clases;
+    }
+
+    public void setQuiz_clases(List<CLASS> quiz_clases) {
+        this.quiz_clases = quiz_clases;
+    }
+
+    public List<GIVENANSWERS> getQuiz_givenanswers() {
+        return quiz_givenanswers;
+    }
+
+    public void setQuiz_givenanswers(List<GIVENANSWERS> quiz_givenanswers) {
+        this.quiz_givenanswers = quiz_givenanswers;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        QUIZ quiz = (QUIZ) o;
-        return Objects.equals(ID, quiz.ID) && Objects.equals(quiztype, quiz.quiztype)
-                && Objects.equals(system, quiz.system) && Objects.equals(questions, quiz.questions);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QUIZ quız = (QUIZ) o;
+        return Objects.equals(ID, quız.ID) &&
+                Objects.equals(quiztype, quız.quiztype) &&
+                Objects.equals(system, quız.system) &&
+                Objects.equals(questions, quız.questions) &&
+                Objects.equals(quiz_clases, quız.quiz_clases) &&
+                Objects.equals(quiz_givenanswers, quız.quiz_givenanswers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, quiztype, system, questions);
+        return Objects.hash(ID, quiztype, system, questions, quiz_clases, quiz_givenanswers);
     }
 
     @Override
