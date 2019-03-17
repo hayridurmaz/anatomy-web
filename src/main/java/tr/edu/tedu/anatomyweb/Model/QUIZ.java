@@ -1,6 +1,9 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,6 +29,17 @@ public class QUIZ {
 
     @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
     public List<QUESTION> questions;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            targetEntity = CLASS.class,
+            mappedBy = "quizzes")
+    @JsonBackReference
+    private List<CLASS> quiz_clases = new ArrayList<>();
 
     public QUIZ() {
 

@@ -5,9 +5,11 @@ import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.web.bind.annotation.*;
 import tr.edu.tedu.anatomyweb.Model.CLASS;
+import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.STUDENT;
 import tr.edu.tedu.anatomyweb.Model.TEACHER;
 import tr.edu.tedu.anatomyweb.Service.IClassService;
+import tr.edu.tedu.anatomyweb.Service.IQuizService;
 import tr.edu.tedu.anatomyweb.Service.IStudentService;
 import tr.edu.tedu.anatomyweb.Service.ITeacherService;
 
@@ -29,6 +31,9 @@ public class ClassController {
 
     @Autowired
     ITeacherService teacherService;
+
+    @Autowired
+    IQuizService quizService;
 
 
     @GetMapping("/Classes")
@@ -129,6 +134,26 @@ public class ClassController {
                     teacher_ids) {
                 TEACHER t = teacherService.findById(Long.parseLong(o.toString()));
                 teachers.remove(t);
+            }
+        }
+
+        if (parser.get("quiz_ids") != null) {
+            List<QUIZ> quizzes = c.getQuizzes();
+            List<Object> quiz_ids = factory.parseList(parser.get("quiz_ids").toString());
+            for (Object o :
+                    quiz_ids) {
+                QUIZ t = quizService.findById(Long.parseLong(o.toString()));
+                quizzes.add(t);
+            }
+        }
+
+        if (parser.get("remove_quiz_ids") != null) {
+            List<QUIZ> quizzes = c.getQuizzes();
+            List<Object> remove_quiz_ids = factory.parseList(parser.get("remove_quiz_ids").toString());
+            for (Object o :
+                    remove_quiz_ids) {
+                QUIZ t = quizService.findById(Long.parseLong(o.toString()));
+                quizzes.remove(t);
             }
         }
 

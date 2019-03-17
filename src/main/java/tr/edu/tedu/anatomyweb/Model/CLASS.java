@@ -41,7 +41,27 @@ public class CLASS {
     private List<TEACHER> teachers = new ArrayList<>();
 
 
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            targetEntity = QUIZ.class)
+    @JoinTable(name = "quiz_class",
+            joinColumns = {@JoinColumn(name = "class_id")},
+            inverseJoinColumns = {@JoinColumn(name = "quiz_id")})
+    @JsonManagedReference
+    private List<QUIZ> quizzes = new ArrayList<>();
+
     public CLASS() {
+    }
+
+    public List<QUIZ> getQuizzes() {
+        return quizzes;
+    }
+
+    public void setQuizzes(List<QUIZ> quizzes) {
+        this.quizzes = quizzes;
     }
 
     public Long getId() {
@@ -78,6 +98,17 @@ public class CLASS {
 
 
     @Override
+    public String toString() {
+        return "CLASS{" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", students=" + students +
+                ", teachers=" + teachers +
+                ", quizzes=" + quizzes +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -85,21 +116,12 @@ public class CLASS {
         return Objects.equals(Id, aClass.Id) &&
                 Objects.equals(name, aClass.name) &&
                 Objects.equals(students, aClass.students) &&
-                Objects.equals(teachers, aClass.teachers);
+                Objects.equals(teachers, aClass.teachers) &&
+                Objects.equals(quizzes, aClass.quizzes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, name, students, teachers);
-    }
-
-    @Override
-    public String toString() {
-        return "CLASS{" +
-                "Id=" + Id +
-                ", name='" + name + '\'' +
-                ", students=" + students +
-                ", teachers=" + teachers +
-                '}';
+        return Objects.hash(Id, name, students, teachers, quizzes);
     }
 }
