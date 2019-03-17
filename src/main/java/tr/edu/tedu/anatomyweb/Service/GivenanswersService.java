@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.GIVENANSWERS;
+import tr.edu.tedu.anatomyweb.Model.QUIZ;
+import tr.edu.tedu.anatomyweb.Model.STUDENT;
 import tr.edu.tedu.anatomyweb.Repository.GivenanswersRepository;
 
 import java.util.List;
@@ -20,6 +22,16 @@ public class GivenanswersService implements IGivenanswersService {
     }
 
     @Override
+    public List<GIVENANSWERS> findAllByGivenanswers_student(STUDENT student) {
+        return repository.findAllByGivenanswers_student(student);
+    }
+
+    @Override
+    public GIVENANSWERS findByGivenanswers_quizAndGivenanswers_student(STUDENT student, QUIZ quız) {
+        return findByGivenanswers_quizAndGivenanswers_student(student, quız);
+    }
+
+    @Override
     public GIVENANSWERS save(GIVENANSWERS gıvenanswers) {
         return repository.save(gıvenanswers);
     }
@@ -32,9 +44,10 @@ public class GivenanswersService implements IGivenanswersService {
     }
 
     @Override
-    public String delete(Long corrId) {
+    public String delete(STUDENT s, QUIZ q) {
         try {
-            repository.deleteById(corrId);
+            GIVENANSWERS g = findByGivenanswers_quizAndGivenanswers_student(s, q);
+            repository.delete(g);
             return "Deleted";
         } catch (Exception e) {
             Throwable t = e;
