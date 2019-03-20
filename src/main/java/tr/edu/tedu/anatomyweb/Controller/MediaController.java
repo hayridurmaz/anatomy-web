@@ -71,6 +71,7 @@ public class MediaController {
         i.setMediaType(media_type);
         i.setData_url(parser.get("data_url").toString());
         i.setThumbnail_url(parser.get("thumbnail_url").toString());
+        i.setDescription(parser.get("description").toString());
         i.setDate(parser.get("date").toString());
         return mediaService.save(i);
     }
@@ -99,6 +100,10 @@ public class MediaController {
 
             i.setTopics(topics);
 
+        }
+
+        if (parser.get("description") != null) {
+            i.setDescription(parser.get("description").toString());
         }
 
         if (parser.get("data_url") != null) {

@@ -19,6 +19,8 @@ public class MEDIA {
 
     private String thumbnail_url;
 
+    private String description;
+
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
@@ -100,22 +102,32 @@ public class MEDIA {
         this.topics = topics;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MEDIA media = (MEDIA) o;
-        return Objects.equals(id, media.id) &&
-                Objects.equals(data_url, media.data_url) &&
-                Objects.equals(thumbnail_url, media.thumbnail_url) &&
-                Objects.equals(topics, media.topics) &&
-                Objects.equals(system, media.system) &&
-                mediaType == media.mediaType;
+        MEDIA medıa = (MEDIA) o;
+        return Objects.equals(id, medıa.id) &&
+                Objects.equals(data_url, medıa.data_url) &&
+                Objects.equals(thumbnail_url, medıa.thumbnail_url) &&
+                Objects.equals(description, medıa.description) &&
+                Objects.equals(topics, medıa.topics) &&
+                Objects.equals(system, medıa.system) &&
+                mediaType == medıa.mediaType &&
+                Objects.equals(date, medıa.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, data_url, thumbnail_url, topics, system, mediaType);
+        return Objects.hash(id, data_url, thumbnail_url, description, topics, system, mediaType, date);
     }
 
     @Override
@@ -124,6 +136,7 @@ public class MEDIA {
                 "id=" + id +
                 ", data_url='" + data_url + '\'' +
                 ", thumbnail_url='" + thumbnail_url + '\'' +
+                ", description='" + description + '\'' +
                 ", topics=" + topics +
                 ", system=" + system +
                 ", mediaType=" + mediaType +
