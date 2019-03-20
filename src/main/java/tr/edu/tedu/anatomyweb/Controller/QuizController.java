@@ -49,6 +49,7 @@ public class QuizController {
         QUIZ q = new QUIZ();
         q.setQuiztype(qt);
         q.setSystem(s);
+        q.setHeader(parser.get("header").toString());
         return quizService.save(q);
     }
 
@@ -67,6 +68,9 @@ public class QuizController {
         if (parser.get("quiz_type_id") != null) {
             QUIZTYPE qt = quiztypeService.findById(Long.parseLong(parser.get("quiz_type_id").toString()));
             q.setQuiztype(qt);
+        }
+        if (parser.get("header") != null){
+            q.setHeader(parser.get("header").toString());
         }
 
         return quizService.save(q);

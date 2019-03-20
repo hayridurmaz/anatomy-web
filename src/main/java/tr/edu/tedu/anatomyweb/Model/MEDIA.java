@@ -36,7 +36,7 @@ public class MEDIA {
     // @OnDelete(action = OnDeleteAction.CASCADE)
     private SYSTEM system;
 
-    private MediaType mediaType;
+    private MediaType media_type;
 
     private String date;
 
@@ -77,11 +77,11 @@ public class MEDIA {
     }
 
     public MediaType getMediaType() {
-        return mediaType;
+        return media_type;
     }
 
-    public void setMediaType(MediaType mediaType) {
-        this.mediaType = mediaType;
+    public void setMediaType(MediaType media_type) {
+        this.media_type = media_type;
     }
 
     public String getThumbnail_url() {
@@ -110,12 +110,12 @@ public class MEDIA {
                 Objects.equals(thumbnail_url, media.thumbnail_url) &&
                 Objects.equals(topics, media.topics) &&
                 Objects.equals(system, media.system) &&
-                mediaType == media.mediaType;
+                media_type == media.media_type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, data_url, thumbnail_url, topics, system, mediaType);
+        return Objects.hash(id, data_url, thumbnail_url, topics, system, media_type);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class MEDIA {
                 ", thumbnail_url='" + thumbnail_url + '\'' +
                 ", topics=" + topics +
                 ", system=" + system +
-                ", mediaType=" + mediaType +
+                ", media_type=" + media_type +
                 ", date='" + date + '\'' +
                 '}';
     }

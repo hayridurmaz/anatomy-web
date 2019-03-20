@@ -27,8 +27,19 @@ public class QUIZ {
     @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
     public List<QUESTION> questions;
 
+    @JoinColumn(name = "header", nullable = false)
+    public String header;
+
     public QUIZ() {
 
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public Long getID() {
@@ -76,12 +87,17 @@ public class QUIZ {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, quiztype, system, questions);
+        return Objects.hash(ID, quiztype, system, questions, header);
     }
 
     @Override
     public String toString() {
-        return "QUIZ{" + "ID=" + ID + ", quiztype=" + quiztype + ", system=" + system + ", questions=" + questions
-                + '}';
+        return "QUIZ{" +
+                "ID=" + ID +
+                ", quiztype=" + quiztype +
+                ", system=" + system +
+                ", questions=" + questions +
+                ", header='" + header + '\'' +
+                '}';
     }
 }
