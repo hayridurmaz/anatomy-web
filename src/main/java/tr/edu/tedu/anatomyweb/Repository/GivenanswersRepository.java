@@ -13,5 +13,8 @@ public interface GivenanswersRepository extends JpaRepository<GIVENANSWERS, Long
 
     List<GIVENANSWERS> findAllByGivenanswersstudent(STUDENT student);
 
-    GIVENANSWERS findByGivenanswersquizAndGivenanswersstudent(STUDENT student, QUIZ quız);
+    GIVENANSWERS findByGivenanswersquizAndGivenanswersstudent(QUIZ quız,STUDENT student);
+
+    List<GIVENANSWERS> findAllByGivenanswersquiz(QUIZ quız);
+
 }

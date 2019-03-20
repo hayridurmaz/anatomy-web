@@ -21,5 +21,8 @@ public interface IGivenanswersService {
 
     GIVENANSWERS findByGivenanswers_quizAndGivenanswers_student(STUDENT student, QUIZ quız);
 
+    List<GIVENANSWERS> findByGivenanswers_quiz(QUIZ quız);
+
+
 }
 

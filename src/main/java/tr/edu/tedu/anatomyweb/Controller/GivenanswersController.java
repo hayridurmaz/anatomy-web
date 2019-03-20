@@ -12,6 +12,7 @@ import tr.edu.tedu.anatomyweb.Service.IQuizService;
 import tr.edu.tedu.anatomyweb.Service.IStudentService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,16 +26,27 @@ public class GivenanswersController {
     @Autowired
     IStudentService studentService;
 
-    @GetMapping("/Givenanswers")
-    List<GIVENANSWERS> getGivenanswers() {
-        return givenanswersService.findAll();
+   
+    @GetMapping(("/Givenanswers"))
+    List<GIVENANSWERS> getGivenAnswerswithParams(@RequestParam(value = "userid", required = false) Long userid, @RequestParam(value = "quizid", required = false) Long quizid) {
+        if (userid != null && quizid != null) {
+            STUDENT s = studentService.findById(userid);
+            QUIZ q = quizService.findById(quizid);
+            ArrayList<GIVENANSWERS> list = new ArrayList<>();
+            list.add(givenanswersService.findByGivenanswers_quizAndGivenanswers_student(s, q));
+            return list;
+        } else if (userid != null && quizid == null) {
+            STUDENT s = studentService.findById(userid);
+            return givenanswersService.findAllByGivenanswers_student(s);
+        } else if (userid == null && quizid != null) {
+            QUIZ q = quizService.findById(quizid);
+            return givenanswersService.findByGivenanswers_quiz(q);
+        } else {
+            return givenanswersService.findAll();
+        }
+
     }
 
-    @GetMapping(("/Givenanswers/{studentId}"))
-    List<GIVENANSWERS> getGivenanswersByStudentId(@PathVariable Long studentId) {
-        STUDENT s = studentService.findById(studentId);
-        return givenanswersService.findAllByGivenanswers_student(s);
-    }
 
     @PostMapping("/Givenanswers")
     public GIVENANSWERS createGivenanswers(@Valid @RequestBody String reqBody) {

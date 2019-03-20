@@ -28,7 +28,13 @@ public class GivenanswersService implements IGivenanswersService {
 
     @Override
     public GIVENANSWERS findByGivenanswers_quizAndGivenanswers_student(STUDENT student, QUIZ quız) {
-        return repository.findByGivenanswersquizAndGivenanswersstudent(student, quız);
+        return repository.findByGivenanswersquizAndGivenanswersstudent(quız, student);
+    }
+
+
+    @Override
+    public List<GIVENANSWERS> findByGivenanswers_quiz(QUIZ quız) {
+        return repository.findAllByGivenanswersquiz(quız);
     }
 
     @Override
