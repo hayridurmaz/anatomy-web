@@ -47,8 +47,19 @@ public class QUIZ {
     @JsonIgnore
     private List<GIVENANSWERS> quizgivenanswers = new ArrayList<>();
 
+    @JoinColumn(name = "header", nullable = false)
+    public String header;
+
     public QUIZ() {
 
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public Long getID() {
@@ -105,21 +116,27 @@ public class QUIZ {
         if (o == null || getClass() != o.getClass()) return false;
         QUIZ quız = (QUIZ) o;
         return Objects.equals(ID, quız.ID) &&
+                Objects.equals(questions, quız.questions) &&
                 Objects.equals(quiztype, quız.quiztype) &&
                 Objects.equals(system, quız.system) &&
-                Objects.equals(questions, quız.questions) &&
                 Objects.equals(quiz_clases, quız.quiz_clases) &&
-                Objects.equals(quizgivenanswers, quız.quizgivenanswers);
+                Objects.equals(quizgivenanswers, quız.quizgivenanswers) &&
+                Objects.equals(header, quız.header);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, quiztype, system, questions, quiz_clases, quizgivenanswers);
+        return Objects.hash(ID, questions, quiztype, system, quiz_clases, quizgivenanswers, header);
     }
 
     @Override
     public String toString() {
-        return "QUIZ{" + "ID=" + ID + ", quiztype=" + quiztype + ", system=" + system + ", questions=" + questions
-                + '}';
+        return "QUIZ{" +
+                "ID=" + ID +
+                ", quiztype=" + quiztype +
+                ", system=" + system +
+                ", questions=" + questions +
+                ", header='" + header + '\'' +
+                '}';
     }
 }
