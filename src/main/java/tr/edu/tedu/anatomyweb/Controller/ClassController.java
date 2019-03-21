@@ -8,10 +8,7 @@ import tr.edu.tedu.anatomyweb.Model.CLASS;
 import tr.edu.tedu.anatomyweb.Model.QUIZ;
 import tr.edu.tedu.anatomyweb.Model.STUDENT;
 import tr.edu.tedu.anatomyweb.Model.TEACHER;
-import tr.edu.tedu.anatomyweb.Service.IClassService;
-import tr.edu.tedu.anatomyweb.Service.IQuizService;
-import tr.edu.tedu.anatomyweb.Service.IStudentService;
-import tr.edu.tedu.anatomyweb.Service.ITeacherService;
+import tr.edu.tedu.anatomyweb.Service.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -33,22 +30,26 @@ public class ClassController {
     ITeacherService teacherService;
 
     @Autowired
+    IAccountService accountService;
+
+    @Autowired
     IQuizService quizService;
 
 
-    @GetMapping("/Classes")
-    List<CLASS> getClasses() {
-        return classService.findAll();
+    @GetMapping("/Classes/")
+    List<CLASS> getClasses(@RequestParam(value = "userid") Long userid) {
+        TEACHER t = teacherService.findById(userid);
+        return classService.findAllByTeachers(t);
     }
 
     @GetMapping(("/Classes/{Id}"))
-    CLASS getAccountById(@PathVariable Long Id) {
+    CLASS getClassesById(@PathVariable Long Id) {
         return classService.findById(Id);
     }
 
 
     @PostMapping("/Classes")
-    public CLASS createAccount(@Valid @RequestBody String reqBody) {
+    public CLASS createClass(@Valid @RequestBody String reqBody) {
 
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
@@ -80,7 +81,7 @@ public class ClassController {
     }
 
     @PutMapping("/Classes/{Id}")
-    public CLASS updateAccount(@PathVariable Long Id, @Valid @RequestBody String reqBody) {
+    public CLASS updateClass(@PathVariable Long Id, @Valid @RequestBody String reqBody) {
 
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
