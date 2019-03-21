@@ -1,6 +1,10 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,6 +15,10 @@ public class QUIZ {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
+
+    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
+    public List<QUESTION> questions;
+
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_type_id", nullable = false)
@@ -24,11 +32,34 @@ public class QUIZ {
     // @JsonIgnore
     private SYSTEM system;
 
-    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
-    public List<QUESTION> questions;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            targetEntity = CLASS.class,
+            mappedBy = "quizzes")
+    @JsonBackReference
+    private List<CLASS> quiz_clases = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "givenanswersquiz")
+    @JsonIgnore
+    private List<GIVENANSWERS> quizgivenanswers = new ArrayList<>();
+
+    @JoinColumn(name = "header", nullable = false)
+    public String header;
 
     public QUIZ() {
 
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public Long getID() {
@@ -63,25 +94,49 @@ public class QUIZ {
         this.questions = questions;
     }
 
+    public List<CLASS> getQuiz_clases() {
+        return quiz_clases;
+    }
+
+    public void setQuiz_clases(List<CLASS> quiz_clases) {
+        this.quiz_clases = quiz_clases;
+    }
+
+    public List<GIVENANSWERS> getQuizgivenanswers() {
+        return quizgivenanswers;
+    }
+
+    public void setQuizgivenanswers(List<GIVENANSWERS> quizgivenanswers) {
+        this.quizgivenanswers = quizgivenanswers;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        QUIZ quiz = (QUIZ) o;
-        return Objects.equals(ID, quiz.ID) && Objects.equals(quiztype, quiz.quiztype)
-                && Objects.equals(system, quiz.system) && Objects.equals(questions, quiz.questions);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        QUIZ quız = (QUIZ) o;
+        return Objects.equals(ID, quız.ID) &&
+                Objects.equals(questions, quız.questions) &&
+                Objects.equals(quiztype, quız.quiztype) &&
+                Objects.equals(system, quız.system) &&
+                Objects.equals(quiz_clases, quız.quiz_clases) &&
+                Objects.equals(quizgivenanswers, quız.quizgivenanswers) &&
+                Objects.equals(header, quız.header);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, quiztype, system, questions);
+        return Objects.hash(ID, questions, quiztype, system, quiz_clases, quizgivenanswers, header);
     }
 
     @Override
     public String toString() {
-        return "QUIZ{" + "ID=" + ID + ", quiztype=" + quiztype + ", system=" + system + ", questions=" + questions
-                + '}';
+        return "QUIZ{" +
+                "ID=" + ID +
+                ", quiztype=" + quiztype +
+                ", system=" + system +
+                ", questions=" + questions +
+                ", header='" + header + '\'' +
+                '}';
     }
 }

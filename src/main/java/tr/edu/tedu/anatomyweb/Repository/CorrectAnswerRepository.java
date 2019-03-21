@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import tr.edu.tedu.anatomyweb.Model.CORRECTANSWER;
 
 @Repository
-public interface CorrectAnswerRepository extends JpaRepository<CORRECTANSWER,Long> {
+public interface CorrectAnswerRepository extends JpaRepository<CORRECTANSWER, Long> {
 }

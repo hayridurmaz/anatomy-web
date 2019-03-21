@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "CORRECTANSWER")
-public class CORRECTANSWER  {
+public class CORRECTANSWER {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

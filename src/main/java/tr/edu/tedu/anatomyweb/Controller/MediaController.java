@@ -13,7 +13,9 @@ import tr.edu.tedu.anatomyweb.Service.ITopicService;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -28,12 +30,12 @@ public class MediaController {
 
     @GetMapping(("/Media"))
     List<MEDIA> getMedia() {
-        List<MEDIA> img = new ArrayList<>();
+        List<MEDIA> medias = new ArrayList<>();
         mediaService.findAll().forEach(media -> {
             // System.out.println(Media.getSystem().toString());
-            img.add(media);
+            medias.add(media);
         });
-        return img;
+        return medias;
     }
 
     @GetMapping(("/Media/{MediaId}"))
@@ -50,12 +52,12 @@ public class MediaController {
 
         SYSTEM s = systemService.findById(Long.parseLong(parser.get("system_id").toString()));
         //TOPIC t = topicService.findById(Long.parseLong(parser.get("topic_id").toString()));
-        MediaType media_type = MediaType.valueOf(parser.get("media_type").toString());
+        MediaType media_type = MediaType.values()[Integer.parseInt(parser.get("media_type").toString())];
 
         MEDIA i = new MEDIA();
         //i.setTopic(t);
 
-        Set<TOPIC> topics = new HashSet<>();
+        List<TOPIC> topics = new ArrayList<>();
         List<Object> topic_ids = factory.parseList(parser.get("topic_ids").toString());
         for (Object o :
                 topic_ids) {
@@ -69,6 +71,8 @@ public class MediaController {
         i.setMediaType(media_type);
         i.setData_url(parser.get("data_url").toString());
         i.setThumbnail_url(parser.get("thumbnail_url").toString());
+        i.setDescription(parser.get("description").toString());
+        i.setDate(parser.get("date").toString());
         return mediaService.save(i);
     }
 
@@ -85,7 +89,7 @@ public class MediaController {
         }
 
         if (parser.get("topic_ids") != null) {
-            Set<TOPIC> topics = new HashSet<>();
+            List<TOPIC> topics = new ArrayList<>();
             List<Object> topic_ids = factory.parseList(parser.get("topic_ids").toString());
             for (Object o :
                     topic_ids) {
@@ -96,6 +100,10 @@ public class MediaController {
 
             i.setTopics(topics);
 
+        }
+
+        if (parser.get("description") != null) {
+            i.setDescription(parser.get("description").toString());
         }
 
         if (parser.get("data_url") != null) {

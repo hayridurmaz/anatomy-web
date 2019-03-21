@@ -5,11 +5,13 @@ import tr.edu.tedu.anatomyweb.Model.ACCOUNT;
 import java.util.List;
 
 public interface IAccountService {
-    public List<ACCOUNT> findAll();
+    List<ACCOUNT> findAll();
 
-    public ACCOUNT save(ACCOUNT account);
+    ACCOUNT save(ACCOUNT account);
 
-    public ACCOUNT findById(Long Id);
+    ACCOUNT findByUsername(String Username);
 
-    public String delete(Long Id);
+    ACCOUNT findById(Long Id);
+
+    String delete(Long Id);
 }
