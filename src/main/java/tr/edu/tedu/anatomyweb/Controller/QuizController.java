@@ -50,6 +50,7 @@ public class QuizController {
         q.setQuiztype(qt);
         q.setSystem(s);
         q.setHeader(parser.get("header").toString());
+
         return quizService.save(q);
     }
 

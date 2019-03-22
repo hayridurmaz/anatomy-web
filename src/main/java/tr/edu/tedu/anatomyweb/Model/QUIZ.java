@@ -1,5 +1,8 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +27,8 @@ public class QUIZ {
     // @JsonIgnore
     private SYSTEM system;
 
-    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
+    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */, orphanRemoval = true)
+    //@OnDelete(action = OnDeleteAction.CASCADE)
     public List<QUESTION> questions;
 
     @JoinColumn(name = "header", nullable = false)
