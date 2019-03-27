@@ -42,6 +42,11 @@ public class ClassController {
         return classService.findAllByTeachers(t);
     }
 
+    @GetMapping("/Classes")
+    List<CLASS> getClasses() {
+        return classService.findAll();
+    }
+
     @GetMapping(("/Classes/{Id}"))
     CLASS getClassesById(@PathVariable Long Id) {
         return classService.findById(Id);
