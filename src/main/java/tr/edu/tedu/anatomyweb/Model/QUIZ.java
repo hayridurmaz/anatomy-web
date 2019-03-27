@@ -1,7 +1,5 @@
 package tr.edu.tedu.anatomyweb.Model;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -14,29 +12,26 @@ import java.util.Objects;
 @Table(name = "QUIZ")
 public class QUIZ {
 
+    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */, orphanRemoval = true)
+    //@OnDelete(action = OnDeleteAction.CASCADE)
+    public List<QUESTION> questions;
+
+    @JoinColumn(name = "header", nullable = false)
+    public String header;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
-
-    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
-    public List<QUESTION> questions;
-
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "quiz_type_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonIgnore
     private QUIZTYPE quiztype;
-
     @ManyToOne(/* = FetchType.LAZY */optional = false)
     @JoinColumn(name = "system_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     // @JsonIgnore
     private SYSTEM system;
-
-    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */, orphanRemoval = true)
-    //@OnDelete(action = OnDeleteAction.CASCADE)
-    public List<QUESTION> questions;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -46,14 +41,9 @@ public class QUIZ {
             mappedBy = "quizzes")
     @JsonBackReference
     private List<CLASS> quiz_clases = new ArrayList<>();
-
-
     @OneToMany(mappedBy = "givenanswersquiz")
     @JsonIgnore
     private List<GIVENANSWERS> quizgivenanswers = new ArrayList<>();
-
-    @JoinColumn(name = "header", nullable = false)
-    public String header;
 
     public QUIZ() {
 
