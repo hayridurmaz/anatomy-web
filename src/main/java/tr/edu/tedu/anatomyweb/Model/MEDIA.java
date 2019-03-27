@@ -1,5 +1,6 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.persistence.*;
@@ -37,6 +38,26 @@ public class MEDIA {
     @JoinColumn(name = "system_id", nullable = false)
     // @OnDelete(action = OnDeleteAction.CASCADE)
     private SYSTEM system;
+
+
+    @Column(name = "system_id", insertable = false, updatable = false)
+    private Long system_id;
+
+    public Long getSystem_id() {
+        return system_id;
+    }
+
+    public void setSystem_id(Long system_id) {
+        this.system_id = system_id;
+    }
+
+    public MediaType getMedia_type() {
+        return media_type;
+    }
+
+    public void setMedia_type(MediaType media_type) {
+        this.media_type = media_type;
+    }
 
     private MediaType media_type;
 

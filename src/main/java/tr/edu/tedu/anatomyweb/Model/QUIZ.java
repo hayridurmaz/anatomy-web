@@ -1,5 +1,7 @@
 package tr.edu.tedu.anatomyweb.Model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -32,6 +34,9 @@ public class QUIZ {
     // @JsonIgnore
     private SYSTEM system;
 
+    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */, orphanRemoval = true)
+    //@OnDelete(action = OnDeleteAction.CASCADE)
+    public List<QUESTION> questions;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,

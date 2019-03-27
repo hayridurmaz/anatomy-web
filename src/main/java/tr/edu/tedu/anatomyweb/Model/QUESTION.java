@@ -16,7 +16,7 @@ public class QUESTION {
     private String qtext;
     private String hint;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", orphanRemoval = true)
     public List<ANSWER> answers;
 
     @ManyToOne(optional = false)

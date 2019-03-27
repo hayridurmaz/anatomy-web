@@ -44,6 +44,12 @@ public class MediaController {
         return img;
     }
 
+    @GetMapping(("/Media/SystemId/{SystemId}"))
+    List<MEDIA> getMediaBySystemId(@PathVariable Long SystemId) {
+        List<MEDIA> medias = mediaService.findBySystemId(SystemId);
+        return medias;
+    }
+
     @PostMapping("/Media")
     public MEDIA createMedia(@Valid @RequestBody String reqBody) {
 

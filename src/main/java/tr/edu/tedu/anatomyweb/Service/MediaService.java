@@ -30,6 +30,11 @@ public class MediaService implements IMediaService {
     }
 
     @Override
+    public List<MEDIA> findBySystemId(Long Id) {
+        return mediaRepository.findBySystemId(Id);
+    }
+
+    @Override
     public String delete(Long Id) {
         try {
             mediaRepository.deleteById(Id);
