@@ -6,4 +6,5 @@ import tr.edu.tedu.anatomyweb.Model.ACCOUNT;
 
 @Repository
 public interface AccountRepository extends JpaRepository<ACCOUNT, Long> {
+    ACCOUNT findByUsername(String Username);
 }

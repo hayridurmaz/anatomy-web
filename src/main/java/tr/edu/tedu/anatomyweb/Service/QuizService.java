@@ -16,7 +16,7 @@ public class QuizService implements IQuizService {
 
     @Override
     public List<QUIZ> findAll() {
-        List<QUIZ> quizzes = (List<QUIZ>) repository.findAll();
+        List<QUIZ> quizzes = repository.findAll();
         return quizzes;
     }
 

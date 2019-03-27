@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.web.bind.annotation.*;
-import tr.edu.tedu.anatomyweb.Model.*;
+import tr.edu.tedu.anatomyweb.Model.MEDIA;
+import tr.edu.tedu.anatomyweb.Model.QUESTION;
+import tr.edu.tedu.anatomyweb.Model.QUIZ;
+import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Service.*;
 
 import javax.validation.Valid;

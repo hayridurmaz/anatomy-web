@@ -13,7 +13,9 @@ import tr.edu.tedu.anatomyweb.Service.ITopicService;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -61,7 +63,7 @@ public class MediaController {
         MEDIA i = new MEDIA();
         //i.setTopic(t);
 
-        Set<TOPIC> topics = new HashSet<>();
+        List<TOPIC> topics = new ArrayList<>();
         List<Object> topic_ids = factory.parseList(parser.get("topic_ids").toString());
         for (Object o :
                 topic_ids) {
@@ -75,6 +77,7 @@ public class MediaController {
         i.setMediaType(media_type);
         i.setData_url(parser.get("data_url").toString());
         i.setThumbnail_url(parser.get("thumbnail_url").toString());
+        i.setDescription(parser.get("description").toString());
         i.setDate(parser.get("date").toString());
         return mediaService.save(i);
     }
@@ -92,7 +95,7 @@ public class MediaController {
         }
 
         if (parser.get("topic_ids") != null) {
-            Set<TOPIC> topics = new HashSet<>();
+            List<TOPIC> topics = new ArrayList<>();
             List<Object> topic_ids = factory.parseList(parser.get("topic_ids").toString());
             for (Object o :
                     topic_ids) {
@@ -103,6 +106,10 @@ public class MediaController {
 
             i.setTopics(topics);
 
+        }
+
+        if (parser.get("description") != null) {
+            i.setDescription(parser.get("description").toString());
         }
 
         if (parser.get("data_url") != null) {
