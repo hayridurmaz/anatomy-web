@@ -43,12 +43,36 @@ public class AccountController {
         return a;
     }
 
+    @GetMapping(("/Login"))
+    ACCOUNT Login(@RequestParam(value = "username") String UserName, @RequestParam(value = "password") String password) {
+
+        ACCOUNT a = accountService.findByUsername(UserName);
+        if(a==null){
+            ACCOUNT acc = new ACCOUNT();
+            acc.setName("There is no such user");
+            return acc;
+        }
+        if (a.getPassword().equals(password) && a.getUserRole().equals(UserRole.Teacher)) {
+            return a;
+        } else if (!a.getPassword().equals(password)) {
+            ACCOUNT acc = new ACCOUNT();
+            acc.setName("Password not correct");
+            return acc;
+        } else {
+            ACCOUNT acc = new ACCOUNT();
+            acc.setName("You do not have permission to login");
+            return acc;
+        }
+
+    }
+
     @PostMapping("/Accounts")
     public ACCOUNT createAccount(@Valid @RequestBody String reqBody) {
 
         JsonParser factory = JsonParserFactory.getJsonParser();
         Map parser = factory.parseMap(reqBody);
 
+        System.out.println(parser.keySet().toString());
         if (getAccountByUserName(parser.get("username").toString()) != null) {
             throw new ResourceAlreadyFoundException("Username is already taken!");
         } else {
