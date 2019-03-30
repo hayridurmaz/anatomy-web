@@ -18,8 +18,7 @@ public class QUIZ {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
 
-    @OneToMany(mappedBy = "quiz"/* fetch = FetchType.LAZY */)
-    public List<QUESTION> questions;
+
 
 
     @ManyToOne(optional = false)

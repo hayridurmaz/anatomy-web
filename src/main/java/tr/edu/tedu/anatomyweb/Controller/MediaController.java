@@ -50,6 +50,13 @@ public class MediaController {
         return medias;
     }
 
+    @GetMapping(("/Media/GetBySystemAndMediaType"))
+    public List<MEDIA> findBySystemAndAndMediaType(@RequestParam(name="system_id") String system_id, @RequestParam(name="mediatype_id") String mediaType){
+        SYSTEM system = systemService.findById(Long.valueOf(system_id));
+        MediaType media_type = MediaType.values()[Integer.parseInt(mediaType)];
+        return mediaService.findBySystemIdAndMediaType(Long.valueOf(system_id), media_type);
+    }
+
     @PostMapping("/Media")
     public MEDIA createMedia(@Valid @RequestBody String reqBody) {
 
@@ -74,7 +81,7 @@ public class MediaController {
 
         i.setTopics(topics);
         i.setSystem(s);
-        i.setMediaType(media_type);
+        i.setMedia_type(media_type);
         i.setData_url(parser.get("data_url").toString());
         i.setThumbnail_url(parser.get("thumbnail_url").toString());
         i.setDescription(parser.get("description").toString());
@@ -125,7 +132,7 @@ public class MediaController {
 
         if (parser.get("media_type") != null) {
             String media_type = parser.get("media_type").toString();
-            i.setMediaType(MediaType.valueOf(media_type));
+            i.setMedia_type(MediaType.valueOf(media_type));
         }
 
 

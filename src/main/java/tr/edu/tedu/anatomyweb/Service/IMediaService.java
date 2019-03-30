@@ -2,6 +2,8 @@ package tr.edu.tedu.anatomyweb.Service;
 
 import org.springframework.data.repository.query.Param;
 import tr.edu.tedu.anatomyweb.Model.MEDIA;
+import tr.edu.tedu.anatomyweb.Model.SYSTEM;
+import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import java.util.List;
 
@@ -12,7 +14,11 @@ public interface IMediaService {
 
     MEDIA findById(Long Id);
 
-    public String delete(Long Id);
+    String delete(Long Id);
 
-    public List<MEDIA> findBySystemId(Long systemid);
+    List<MEDIA> findBySystemId(Long systemid);
+
+    //List<MEDIA> findBySystemAndAndMediaType(SYSTEM s, MediaType m);
+
+    List<MEDIA> findBySystemIdAndMediaType(Long systemid, MediaType mediatype);
 }
