@@ -14,4 +14,7 @@ public interface MediaRepository extends JpaRepository<MEDIA, Long> {
     @Query("SELECT M FROM MEDIA M WHERE M.system_id = :systemid")
     List<MEDIA> findBySystemId(@Param("systemid") Long systemid);
 
+    @Query("SELECT M FROM MEDIA M WHERE M.system_id = :systemid")
+    List<MEDIA> findBySystemIdAndMediaType(@Param("systemid") Long systemid);
+
 }
