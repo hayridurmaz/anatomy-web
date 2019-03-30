@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ITopicService {
 
-    public List<TOPIC> findAll();
+    List<TOPIC> findAll();
 
-    public TOPIC save(TOPIC topic);
+    TOPIC save(TOPIC topic);
 
-    public TOPIC findById(long topicId);
+    TOPIC findById(long topicId);
 
-    public String delete(Long topicId);
+    String delete(Long topicId);
 }

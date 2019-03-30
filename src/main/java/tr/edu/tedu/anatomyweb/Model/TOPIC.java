@@ -1,9 +1,9 @@
 package tr.edu.tedu.anatomyweb.Model;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "TOPIC")
@@ -20,7 +20,7 @@ public class TOPIC {
                     CascadeType.MERGE
             },
             mappedBy = "topics")
-    private Set<MEDIA> medias = new HashSet<>();
+    private List<MEDIA> medias = new ArrayList<>();
 
 
     public TOPIC() {

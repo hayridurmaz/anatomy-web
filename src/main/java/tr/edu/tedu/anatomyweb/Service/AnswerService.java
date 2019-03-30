@@ -16,7 +16,7 @@ public class AnswerService implements IAnswerService {
 
     @Override
     public List<ANSWER> findAll() {
-        return (List<ANSWER>) answerRepository.findAll();
+        return answerRepository.findAll();
     }
 
     @Override

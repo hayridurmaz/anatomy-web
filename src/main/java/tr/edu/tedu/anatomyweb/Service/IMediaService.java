@@ -6,11 +6,11 @@ import tr.edu.tedu.anatomyweb.Model.MEDIA;
 import java.util.List;
 
 public interface IMediaService {
-    public List<MEDIA> findAll();
+    List<MEDIA> findAll();
 
-    public MEDIA save(MEDIA MEDIA);
+    MEDIA save(MEDIA MEDIA);
 
-    public MEDIA findById(Long Id);
+    MEDIA findById(Long Id);
 
     public String delete(Long Id);
 

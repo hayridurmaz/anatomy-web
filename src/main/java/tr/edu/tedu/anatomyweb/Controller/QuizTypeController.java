@@ -17,7 +17,7 @@ public class QuizTypeController {
 
     @GetMapping(("/Quiztypes"))
     List<QUIZTYPE> getQuiztypes() {
-        List<QUIZTYPE> quiztypes = (List<QUIZTYPE>) quiztypeService.findAll();
+        List<QUIZTYPE> quiztypes = quiztypeService.findAll();
         return quiztypes;
     }
 

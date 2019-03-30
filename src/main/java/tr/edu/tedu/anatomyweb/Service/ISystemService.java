@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface ISystemService {
 
-    public List<SYSTEM> findAll();
+    List<SYSTEM> findAll();
 
-    public SYSTEM save(SYSTEM system);
+    SYSTEM save(SYSTEM system);
 
-    public SYSTEM findById(long systemId);
+    SYSTEM findById(long systemId);
 
-    public String delete(Long systemId);
+    String delete(Long systemId);
 }

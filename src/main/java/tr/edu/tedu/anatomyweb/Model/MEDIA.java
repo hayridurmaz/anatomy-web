@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "MEDIA")
@@ -20,6 +20,8 @@ public class MEDIA {
 
     private String thumbnail_url;
 
+    private String description;
+
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
@@ -29,7 +31,7 @@ public class MEDIA {
     @JoinTable(name = "media_topic",
             joinColumns = {@JoinColumn(name = "media_id")},
             inverseJoinColumns = {@JoinColumn(name = "topic_id")})
-    private Set<TOPIC> topics = new HashSet<>();
+    private List<TOPIC> topics = new ArrayList<>();
 
 
     @ManyToOne(optional = false/*, cascade = CascadeType.ALL*/)
@@ -113,30 +115,40 @@ public class MEDIA {
         this.thumbnail_url = thumbnail_url;
     }
 
-    public Set<TOPIC> getTopics() {
+    public List<TOPIC> getTopics() {
         return topics;
     }
 
-    public void setTopics(Set<TOPIC> topics) {
+    public void setTopics(List<TOPIC> topics) {
         this.topics = topics;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MEDIA media = (MEDIA) o;
-        return Objects.equals(id, media.id) &&
-                Objects.equals(data_url, media.data_url) &&
-                Objects.equals(thumbnail_url, media.thumbnail_url) &&
-                Objects.equals(topics, media.topics) &&
-                Objects.equals(system, media.system) &&
-                media_type == media.media_type;
+        MEDIA medıa = (MEDIA) o;
+        return Objects.equals(id, medıa.id) &&
+                Objects.equals(data_url, medıa.data_url) &&
+                Objects.equals(thumbnail_url, medıa.thumbnail_url) &&
+                Objects.equals(description, medıa.description) &&
+                Objects.equals(topics, medıa.topics) &&
+                Objects.equals(system, medıa.system) &&
+                media_type == medıa.media_type &&
+                Objects.equals(date, medıa.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, data_url, thumbnail_url, topics, system, media_type);
+        return Objects.hash(id, data_url, thumbnail_url, description, topics, system, media_type, date);
     }
 
     @Override
@@ -145,6 +157,7 @@ public class MEDIA {
                 "id=" + id +
                 ", data_url='" + data_url + '\'' +
                 ", thumbnail_url='" + thumbnail_url + '\'' +
+                ", description='" + description + '\'' +
                 ", topics=" + topics +
                 ", system=" + system +
                 ", media_type=" + media_type +
