@@ -11,6 +11,7 @@ import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Service.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +59,53 @@ public class QuestionController {
         qu.setMEDIA(i);
         qu.setTopic(t);
         qu.setQuiz(q);
+        qu.setQuiz_id(q.getID());
         return questionService.save(qu);
+    }
+
+    @PostMapping("/Questions/Batch")
+    public List<QUESTION> createQuestions(@Valid @RequestBody String reqBody) {
+
+        JsonParser factory = JsonParserFactory.getJsonParser();
+        Map parser = factory.parseMap(reqBody);
+
+
+        QUIZ q = quizService.findById(Long.parseLong(parser.get("quiz_id").toString()));
+
+
+        List<QUESTION> savedQuestions = new ArrayList<>();
+        String str = parser.get("questions").toString().replace("=", ":").
+                replace("hinttext", "\"hinttext\"").
+                replace("qtext", "\"qtext\"").
+                replace("media_id", "\"media_id\"").
+                replace("topic_id", "\"topic_id\"");
+
+        List<Object> questionStrings = factory.parseList(str);
+        for (Object o :
+                questionStrings) {
+
+            if (o instanceof Map) {
+                Map<String, Object> map = (Map<String, Object>) o;
+
+                QUESTION qu = new QUESTION();
+                qu.setHint(map.get("hinttext").toString());
+                qu.setQtext(map.get("qtext").toString());
+                MEDIA i = mediaService.findById(Long.parseLong(map.get("media_id").toString()));
+                TOPIC t = topicService.findById(Long.parseLong(map.get("topic_id").toString()));
+
+                qu.setMEDIA(i);
+                qu.setTopic(t);
+                qu.setQuiz(q);
+                qu.setQuiz_id(q.getID());
+                savedQuestions.add(questionService.save(qu));
+            }
+
+            //Map parserQuestion = factory.parseMap(o.toString());
+
+
+        }
+
+        return savedQuestions;
     }
 
     @PutMapping("/Questions/{QuestionId}")
