@@ -10,6 +10,7 @@ import tr.edu.tedu.anatomyweb.Service.IAnswerService;
 import tr.edu.tedu.anatomyweb.Service.IQuestionService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +46,27 @@ public class AnswerController {
         a.setAtext(parser.get("atext").toString());
         a.setQuestion(q);
         return answerService.save(a);
+    }
+
+    @PostMapping("/Answers/Batch")
+    public List<ANSWER> createAnswers(@Valid @RequestBody String reqBody) {
+
+        JsonParser factory = JsonParserFactory.getJsonParser();
+        Map parser = factory.parseMap(reqBody);
+
+        QUESTION q = questionService.findById(Long.parseLong(parser.get("question_id").toString()));
+
+        List<ANSWER> savedAns = new ArrayList<>();
+        List<Object> answersStrings = factory.parseList(parser.get("answers").toString());
+        for (Object o :
+                answersStrings) {
+            ANSWER a = new ANSWER();
+            a.setAtext(o.toString());
+            a.setQuestion(q);
+            savedAns.add(answerService.save(a));
+        }
+
+        return savedAns;
     }
 
     @PutMapping("/Answers/{AnswerId}")
