@@ -63,7 +63,9 @@ public class AnswerController {
             ANSWER a = new ANSWER();
             a.setAtext(o.toString());
             a.setQuestion(q);
-            savedAns.add(answerService.save(a));
+            a.setQuestion_id(q.getId());
+            a=answerService.save(a);
+            savedAns.add(a);
         }
 
         return savedAns;
