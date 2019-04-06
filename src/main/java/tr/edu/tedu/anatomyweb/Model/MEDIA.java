@@ -43,6 +43,14 @@ public class MEDIA {
     @Column(name = "system_id", insertable = false, updatable = false)
     private Long system_id;
 
+    @Column(name = "media_type")
+    private MediaType media_type;
+
+    private String date;
+
+    public MEDIA() {
+    }
+
     public Long getSystem_id() {
         return system_id;
     }
@@ -59,19 +67,12 @@ public class MEDIA {
         this.media_type = media_type;
     }
 
-    private MediaType media_type;
-
-    private String date;
-
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public MEDIA() {
     }
 
     public Long getId() {
@@ -90,21 +91,12 @@ public class MEDIA {
         this.data_url = data_url;
     }
 
-
     public SYSTEM getSystem() {
         return system;
     }
 
     public void setSystem(SYSTEM system) {
         this.system = system;
-    }
-
-    public MediaType getMediaType() {
-        return media_type;
-    }
-
-    public void setMediaType(MediaType media_type) {
-        this.media_type = media_type;
     }
 
     public String getThumbnail_url() {
