@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface SystemRepository extends JpaRepository<SYSTEM, Long> {
     List<SYSTEM> findAllByOrderByIDDesc();
+    List<SYSTEM> findAllByOrderByIDAsc();
+
 }
