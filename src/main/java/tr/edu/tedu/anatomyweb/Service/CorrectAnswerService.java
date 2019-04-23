@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.CORRECTANSWER;
+import tr.edu.tedu.anatomyweb.Model.QUESTION;
 import tr.edu.tedu.anatomyweb.Repository.CorrectAnswerRepository;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public class CorrectAnswerService implements ICorrectAnswerService {
     @Autowired
     private CorrectAnswerRepository repository;
 
+    @Autowired
+    private IQuestionService questionService;
     @Override
     public List<CORRECTANSWER> findAll() {
         List<CORRECTANSWER> correctanswers = repository.findAll();
@@ -25,11 +28,18 @@ public class CorrectAnswerService implements ICorrectAnswerService {
     }
 
     @Override
-    public CORRECTANSWER findById(Long corrId) {
-        CORRECTANSWER c = repository.findById(corrId)
-                .orElseThrow(() -> new ResourceNotFoundException("Correct answer tuple not found with id " + corrId));
+    public CORRECTANSWER findByQuestionId(Long questionId) {
+        QUESTION q = questionService.findById(questionId);
+        CORRECTANSWER c = repository.findByQuestion(q);
         return c;
     }
+    @Override
+    public CORRECTANSWER findById(Long id) {
+        CORRECTANSWER c = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Correct answer not found with id " + id));
+        return c;
+    }
+
 
     @Override
     public String delete(Long corrId) {

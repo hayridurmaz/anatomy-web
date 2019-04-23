@@ -29,9 +29,9 @@ public class CorrectAnswerController {
         return correctAnswerService.findAll();
     }
 
-    @GetMapping(("/CorrectAnswers/{corrId}"))
-    CORRECTANSWER getCorrectAnswerById(@PathVariable Long corrId) {
-        CORRECTANSWER a = correctAnswerService.findById(corrId);
+    @GetMapping(("/CorrectAnswers/{qId}"))
+    CORRECTANSWER getCorrectAnswerByQuestionId(@PathVariable Long qId) {
+        CORRECTANSWER a = correctAnswerService.findByQuestionId(qId);
         return a;
     }
 

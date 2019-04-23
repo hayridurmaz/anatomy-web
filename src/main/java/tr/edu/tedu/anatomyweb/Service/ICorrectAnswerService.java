@@ -10,6 +10,7 @@ public interface ICorrectAnswerService {
 
     CORRECTANSWER save(CORRECTANSWER correctanswer);
 
+    CORRECTANSWER findByQuestionId(Long questionId);
     CORRECTANSWER findById(Long Id);
 
     String delete(Long Id);
