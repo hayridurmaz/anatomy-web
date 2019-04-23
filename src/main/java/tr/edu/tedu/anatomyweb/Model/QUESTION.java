@@ -128,6 +128,6 @@ public class QUESTION {
     @Override
     public String toString() {
         return "QUESTION{" + "id=" + id + ", qtext='" + qtext + '\'' + ", hint='" + hint + '\'' + ", answers=" + answers
-                + ", MEDIA=" + MEDIA + ", topic=" + topic + ", quiz=" + quiz + ", quiz_id=" + quiz_id + '}';
+                + ", MEDIA=" + MEDIA + ", topic=" + topic +  ", quiz_id=" + quiz_id + '}';
     }
 }

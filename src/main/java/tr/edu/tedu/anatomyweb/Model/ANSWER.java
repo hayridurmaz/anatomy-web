@@ -80,7 +80,7 @@ public class ANSWER {
         return "ANSWER{" +
                 "id=" + id +
                 ", atext='" + atext + '\'' +
-                ", question=" + question +
+                //", question=" + question +
                 ", question_id=" + question_id +
                 '}';
     }
