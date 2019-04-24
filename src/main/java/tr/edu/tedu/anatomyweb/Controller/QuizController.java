@@ -31,6 +31,11 @@ public class QuizController {
         return quizService.findAll();
     }
 
+    @GetMapping("/Quizzes/SystemId/{SystemId}")
+    List<QUIZ> getQuizzesBySystemId(@PathVariable Long SystemId) {
+        return quizService.findAllBySystem(systemService.findById(SystemId));
+    }
+
     @GetMapping(("/Quizzes/{QuizId}"))
     QUIZ getQuizById(@PathVariable Long QuizId) {
         QUIZ quiz = quizService.findById(QuizId);

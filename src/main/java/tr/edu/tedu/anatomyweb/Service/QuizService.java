@@ -6,6 +6,7 @@ import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.CORRECTANSWER;
 import tr.edu.tedu.anatomyweb.Model.QUESTION;
 import tr.edu.tedu.anatomyweb.Model.QUIZ;
+import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Repository.QuizRepository;
 
 import java.util.List;
@@ -74,5 +75,10 @@ public class QuizService implements IQuizService {
 
             return "Cannot delete: " + t.getMessage();
         }
+    }
+
+    @Override
+    public List<QUIZ> findAllBySystem(SYSTEM system) {
+        return repository.findAllBySystem(system);
     }
 }
