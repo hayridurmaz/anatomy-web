@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.MEDIA;
 import tr.edu.tedu.anatomyweb.Model.SYSTEM;
+import tr.edu.tedu.anatomyweb.Model.TOPIC;
 import tr.edu.tedu.anatomyweb.Repository.MediaRepository;
 import tr.edu.tedu.anatomyweb.Utils.MediaType;
 
@@ -37,7 +38,12 @@ public class MediaService implements IMediaService {
     }
 
     @Override
-    public List<MEDIA> findBySystemIdAndMediaType(Long system_id, MediaType media_type){
+    public List<MEDIA> findAllByTopics(TOPIC topıc) {
+        return mediaRepository.findAllByTopics(topıc);
+    }
+
+    @Override
+    public List<MEDIA> findBySystemIdAndMediaType(Long system_id, MediaType media_type) {
         return mediaRepository.findBySystemIdAndMediaType(system_id, media_type);
     }
 

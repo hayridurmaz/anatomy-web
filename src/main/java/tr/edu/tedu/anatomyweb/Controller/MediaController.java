@@ -50,6 +50,12 @@ public class MediaController {
         return medias;
     }
 
+    @GetMapping(("/Media/TopicId/{TopicId}"))
+    List<MEDIA> getMediaByTopicId(@PathVariable Long TopicId) {
+        List<MEDIA> medias = mediaService.findAllByTopics(topicService.findById(TopicId));
+        return medias;
+    }
+
     @GetMapping(("/Media/GetBySystemAndMediaType"))
     public List<MEDIA> findBySystemAndAndMediaType(@RequestParam(name="system_id") String system_id, @RequestParam(name="mediatype_id") String mediaType){
         SYSTEM system = systemService.findById(Long.valueOf(system_id));
