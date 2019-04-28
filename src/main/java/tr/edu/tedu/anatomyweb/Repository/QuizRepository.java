@@ -11,4 +11,6 @@ import java.util.List;
 public interface QuizRepository extends JpaRepository<QUIZ, Long> {
 
     List<QUIZ> findAllBySystem(SYSTEM system);
+
+    List<QUIZ> findAllByOrderByIDAsc();
 }

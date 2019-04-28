@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface TopicRepository extends JpaRepository<TOPIC, Long> {
     List<TOPIC> findAllByOrderByIDDesc();
+    List<TOPIC> findAllByOrderByIDAsc();
+
 }

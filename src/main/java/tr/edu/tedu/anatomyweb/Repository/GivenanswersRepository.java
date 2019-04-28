@@ -17,4 +17,5 @@ public interface GivenanswersRepository extends JpaRepository<GIVENANSWERS, Long
 
     List<GIVENANSWERS> findAllByGivenanswersquiz(QUIZ quız);
 
+    List<GIVENANSWERS> findAllByOrderByIDAsc();
 }

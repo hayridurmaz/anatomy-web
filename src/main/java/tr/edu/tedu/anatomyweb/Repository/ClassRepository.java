@@ -13,4 +13,6 @@ import java.util.List;
 public interface ClassRepository extends JpaRepository<CLASS, Long> {
 
     List<CLASS> findAllByTeachers(TEACHER teacher);
+
+    List<CLASS> findAllByOrderByIdAsc();
 }

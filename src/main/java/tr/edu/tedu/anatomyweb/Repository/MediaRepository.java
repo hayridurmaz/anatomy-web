@@ -22,6 +22,8 @@ public interface MediaRepository extends JpaRepository<MEDIA, Long> {
 
     List<MEDIA> findAllByTopics(TOPIC topıc);
 
+    List<MEDIA> findAllByOrderByIdAsc();
+
     @Query("SELECT M FROM MEDIA M WHERE M.system_id = :systemid AND M.media_type = :mediatype")
     List<MEDIA> findBySystemIdAndMediaType(@Param("systemid") Long systemid, @Param("mediatype") MediaType mediatype);
 }
