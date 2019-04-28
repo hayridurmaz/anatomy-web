@@ -12,7 +12,7 @@ import java.util.Objects;
 public class CLASS {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
 
     private String name;
 
@@ -65,11 +65,11 @@ public class CLASS {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -100,7 +100,7 @@ public class CLASS {
     @Override
     public String toString() {
         return "CLASS{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", students=" + students +
                 ", teachers=" + teachers +
@@ -113,7 +113,7 @@ public class CLASS {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CLASS aClass = (CLASS) o;
-        return Objects.equals(Id, aClass.Id) &&
+        return Objects.equals(id, aClass.id) &&
                 Objects.equals(name, aClass.name) &&
                 Objects.equals(students, aClass.students) &&
                 Objects.equals(teachers, aClass.teachers) &&
@@ -122,6 +122,6 @@ public class CLASS {
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, name, students, teachers, quizzes);
+        return Objects.hash(id, name, students, teachers, quizzes);
     }
 }

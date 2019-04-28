@@ -10,7 +10,7 @@ public class CORRECTANSWER {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "question_id", nullable = false)
@@ -21,11 +21,11 @@ public class CORRECTANSWER {
     private ANSWER answer;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public QUESTION getQuestion() {
@@ -49,21 +49,21 @@ public class CORRECTANSWER {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CORRECTANSWER that = (CORRECTANSWER) o;
-        return Objects.equals(Id, that.Id) &&
+        return Objects.equals(id, that.id) &&
                 Objects.equals(question, that.question) &&
                 Objects.equals(answer, that.answer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, question, answer);
+        return Objects.hash(id, question, answer);
     }
 
 
     @Override
     public String toString() {
         return "CORRECTANSWER{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", question=" + question +
                 ", answer=" + answer +
                 '}';
