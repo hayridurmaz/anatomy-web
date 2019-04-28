@@ -24,7 +24,7 @@ public class AccountService implements IAccountService {
     ITeacherService teacherService;
 
     public List<ACCOUNT> findAll() {
-        return accountRepository.findAll();
+        return accountRepository.findAllByOrderByIDAsc();
     }
 
     public ACCOUNT save(ACCOUNT account) {

@@ -18,7 +18,7 @@ public class MediaService implements IMediaService {
 
     @Override
     public List<MEDIA> findAll() {
-        return mediaRepository.findAll();
+        return mediaRepository.findAllByOrderByIdAsc();
     }
 
     @Override

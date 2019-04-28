@@ -16,7 +16,7 @@ public class TopicService implements ITopicService {
 
     @Override
     public List<TOPIC> findAll() {
-        return repository.findAllByOrderByIDDesc();
+        return repository.findAllByOrderByIDAsc();
     }
 
     @Override

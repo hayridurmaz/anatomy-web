@@ -16,7 +16,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public List<STUDENT> findAll() {
-        return repository.findAllByOrderByIDDesc();
+        return repository.findAllByOrderByIDAsc();
     }
 
 

@@ -16,7 +16,7 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public List<QUESTION> findAll() {
-        List<QUESTION> questions = questionRepository.findAll();
+        List<QUESTION> questions = questionRepository.findAllByOrderByIdAsc();
         return questions;
     }
 

@@ -17,7 +17,7 @@ public class ClassService implements IClassService {
 
     @Override
     public List<CLASS> findAll() {
-        return classRepository.findAll();
+        return classRepository.findAllByOrderByIdAsc();
     }
 
     @Override

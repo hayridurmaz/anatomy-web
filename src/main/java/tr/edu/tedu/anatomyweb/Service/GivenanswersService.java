@@ -17,7 +17,7 @@ public class GivenanswersService implements IGivenanswersService {
 
     @Override
     public List<GIVENANSWERS> findAll() {
-        List<GIVENANSWERS> givenAnswers = repository.findAll();
+        List<GIVENANSWERS> givenAnswers = repository.findAllByOrderByIDAsc();
         return givenAnswers;
     }
 

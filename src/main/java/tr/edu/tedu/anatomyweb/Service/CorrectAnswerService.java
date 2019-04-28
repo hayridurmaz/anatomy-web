@@ -18,7 +18,7 @@ public class CorrectAnswerService implements ICorrectAnswerService {
     private IQuestionService questionService;
     @Override
     public List<CORRECTANSWER> findAll() {
-        List<CORRECTANSWER> correctanswers = repository.findAll();
+        List<CORRECTANSWER> correctanswers = repository.findAllByOrderByIdAsc();
         return correctanswers;
     }
 
