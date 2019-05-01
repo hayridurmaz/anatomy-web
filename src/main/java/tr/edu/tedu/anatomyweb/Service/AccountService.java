@@ -15,7 +15,7 @@ import java.util.List;
 public class AccountService implements IAccountService {
 
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
     IStudentService studentService;
