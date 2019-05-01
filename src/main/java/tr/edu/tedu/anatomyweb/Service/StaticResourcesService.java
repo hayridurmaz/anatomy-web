@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tr.edu.tedu.anatomyweb.Exception.ResourceNotFoundException;
 import tr.edu.tedu.anatomyweb.Model.STATICRESOURCES;
+import tr.edu.tedu.anatomyweb.Model.STATICRESOURCETYPES;
+import tr.edu.tedu.anatomyweb.Model.SYSTEM;
 import tr.edu.tedu.anatomyweb.Repository.StaticResourcesRepository;
 
 import java.util.List;
@@ -26,6 +28,11 @@ public class StaticResourcesService implements IStaticResourcesService{
     public STATICRESOURCES findById(Long resourcesID){
         STATICRESOURCES resource = StaticResourcesRepository.findById(resourcesID).orElseThrow(() -> new ResourceNotFoundException("Given resource not found with id " + resourcesID));;
         return resource;
+    }
+
+    @Override
+    public List<STATICRESOURCES> findBySystem_idAndResource_type(SYSTEM system, STATICRESOURCETYPES type){
+        return StaticResourcesRepository.findBySystem_idAndResource_type(system, type);
     }
     @Override
     public String delete(Long resourcesID){

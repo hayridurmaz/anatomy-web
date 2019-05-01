@@ -49,7 +49,7 @@ public class StaticResourcesController {
         STATICRESOURCES rsc = new STATICRESOURCES();
         //i.setTopic(t);
 
-        rsc.setSystem(s);
+      rsc.setSystem(s);
         rsc.setResource_type(resource_type);
         rsc.setButton_image_url(parser.get("button_image_url").toString());
         rsc.setResource_name(parser.get("resource_name").toString());
@@ -106,5 +106,10 @@ public class StaticResourcesController {
 
     }
 
-
+    @GetMapping(("/StaticResources/GetBySystemAndType"))
+    public List<STATICRESOURCES> findBySystemAndType(@RequestParam(name="system_id") String system_id, @RequestParam(name="type_id") String resource_Type_id){
+        SYSTEM system = systemService.findById(Long.valueOf(system_id));
+        STATICRESOURCETYPES type = resourceTypesService.findById(Long.parseLong(resource_Type_id));
+        return staticResourceservice.findBySystem_idAndResource_type(system, type);
+    }
 }
