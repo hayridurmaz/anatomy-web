@@ -32,7 +32,7 @@ public class StaticResourcesService implements IStaticResourcesService{
 
     @Override
     public List<STATICRESOURCES> findBySystem_idAndResource_type(SYSTEM system, STATICRESOURCETYPES type){
-        return StaticResourcesRepository.findBySystem_idAndResource_type(system, type);
+        return StaticResourcesRepository.findBySystemAndResourceType(system, type);
     }
     @Override
     public String delete(Long resourcesID){

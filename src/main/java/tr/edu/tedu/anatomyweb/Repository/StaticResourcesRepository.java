@@ -14,6 +14,6 @@ public interface StaticResourcesRepository extends JpaRepository<STATICRESOURCES
 
 
 
-    List<STATICRESOURCES> findBySystem_idAndResource_type(SYSTEM system, STATICRESOURCETYPES type);
+    List<STATICRESOURCES> findBySystemAndResourceType(SYSTEM system, STATICRESOURCETYPES type);
 
 }

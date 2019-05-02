@@ -32,7 +32,7 @@ public class STATICRESOURCES {
 
     @ManyToOne(optional = false/*, cascade = CascadeType.ALL*/)
     @JoinColumn(name = "resource_type", nullable = false)
-    private STATICRESOURCETYPES resource_type;
+    private STATICRESOURCETYPES resourceType;
 
 
     public Long getID() {
@@ -92,11 +92,11 @@ public class STATICRESOURCES {
     }
 
     public STATICRESOURCETYPES getResource_type() {
-        return resource_type;
+        return resourceType;
     }
 
     public void setResource_type(STATICRESOURCETYPES resource_type) {
-        this.resource_type = resource_type;
+        this.resourceType = resource_type;
     }
 
     @Override
@@ -129,7 +129,7 @@ public class STATICRESOURCES {
                 ", button_image_url='" + button_image_url + '\'' +
                 ", system=" + system +
                 ", system_id=" + system_id +
-                ", resource_type=" + resource_type +
+                ", resource_type=" + resourceType +
                 '}';
     }
 }
