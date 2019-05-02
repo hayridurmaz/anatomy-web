@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class MediaService implements IMediaService {
     @Autowired
-    MediaRepository mediaRepository;
+    private MediaRepository mediaRepository;
 
     @Override
     public List<MEDIA> findAll() {

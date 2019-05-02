@@ -12,7 +12,7 @@ import java.util.List;
 public class AnswerService implements IAnswerService {
 
     @Autowired
-    AnswerRepository answerRepository;
+    private AnswerRepository answerRepository;
 
     @Override
     public List<ANSWER> findAll() {

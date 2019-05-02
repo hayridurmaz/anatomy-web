@@ -84,7 +84,6 @@ public class MediaController {
             TOPIC t = topicService.findById(Long.parseLong(o.toString()));
             topics.add(t);
         }
-
         i.setTopics(topics);
         i.setSystem(s);
         i.setMedia_type(media_type);
